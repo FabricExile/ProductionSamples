@@ -1,0 +1,51 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+    "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+    "uiTooltip" : "GETTER (leg bone lengths)\n\nSupported types:\n  this: MultipedeSegment\n  boneLengths0: Float32[]\n  boneLengths1: Float32[]\n"
+    },
+  "title" : "GetLegBoneLengths",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "this",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "MultipedeSegment"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "boneLengths0",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Float32[]"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "boneLengths1",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Float32[]"
+      }
+    ],
+  "extDeps" : {
+    "Multipede" : "*"
+    },
+  "presetGUID" : "65E7AE4A9752340D8204239B9B986EA5",
+  "code" : "require Multipede;
+
+dfgEntry {
+  this.getLegBoneLengths(boneLengths0, boneLengths1);
+}
+"
+  }

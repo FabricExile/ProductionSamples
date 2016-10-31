@@ -1,0 +1,63 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+    "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+    "uiTooltip" : "Multipede[].\n\nSupported types:\n  count: UInt32\n  numSegments: UInt32\n  result: Multipede[]\n"
+    },
+  "title" : "Multipede[]",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiRange" : "(0, 100)"
+        },
+      "name" : "count",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "UInt32" : 0
+        },
+      "execPortType" : "In",
+      "typeSpec" : "UInt32"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiRange" : "(1, 32)"
+        },
+      "name" : "numSegments",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "UInt32" : 16
+        },
+      "execPortType" : "In",
+      "typeSpec" : "UInt32"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "result",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Multipede[]"
+      }
+    ],
+  "extDeps" : {
+    "Multipede" : "*"
+    },
+  "presetGUID" : "7672F0990D580CCE7ED2A767E57DB2FC",
+  "code" : "require Multipede;
+
+dfgEntry {
+  result = MultipedeArray(count, numSegments);
+}
+"
+  }

@@ -1,0 +1,107 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+    "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+    "uiTooltip" : "Returns a Xfo representation of the multipede.\n\nSupported types:\n  this: Multipede\n  muteAll: Boolean\n  centers: Boolean\n  bodies: Boolean\n  legRoots: Boolean\n  legBones: Boolean\n  legEffectors: Boolean\n  xfos: Xfo[]\n"
+    },
+  "title" : "GetXfoRepresentation",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "this",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "Multipede"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "muteAll",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : false
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "centers",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : true
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "bodies",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : true
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "legRoots",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : true
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "legBones",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : true
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "legEffectors",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : true
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 249,\n  \"g\" : 157,\n  \"b\" : 28\n  }"
+        },
+      "name" : "xfos",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Xfo[]"
+      }
+    ],
+  "extDeps" : {
+    "Multipede" : "*"
+    },
+  "presetGUID" : "CD72C2E43AD75865F0BE65F4C086EF90",
+  "code" : "require Multipede;
+
+dfgEntry {
+  this.getXfoRepresentation(muteAll, centers, bodies, legRoots, legBones, legEffectors, xfos);
+}
+"
+  }

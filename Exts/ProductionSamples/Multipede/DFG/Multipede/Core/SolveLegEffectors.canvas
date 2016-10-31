@@ -1,0 +1,47 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+    "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+    "uiTooltip" : "Solve the leg effectors.\n\nSupported types:\n  this: Multipede\n  mute: Boolean\n"
+    },
+  "title" : "SolveLegEffectors",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "this",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Multipede"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "mute",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : false
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      }
+    ],
+  "extDeps" : {
+    "Multipede" : "*"
+    },
+  "presetGUID" : "3A46E8B02507C1646732E93CAEF014B8",
+  "code" : "require Multipede;
+
+dfgEntry {
+  this.solveLegEffectors(mute);
+}
+"
+  }

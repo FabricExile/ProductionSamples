@@ -1,0 +1,9 @@
+{
+  "code": [
+    "Multipede.kl"
+  ]
+  "dfgPresets": {
+    "dir": "DFG",
+    "presetPath": "Fabric.ProductionSamples.Multipede"
+    }
+}

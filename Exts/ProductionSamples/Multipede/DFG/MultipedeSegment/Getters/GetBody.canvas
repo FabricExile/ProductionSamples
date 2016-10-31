@@ -1,0 +1,67 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+    "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+    "uiTooltip" : "GETTER (body Xfo)\n\nSupported types:\n  this: MultipedeSegment\n  orientation: Quat\n  position: Vec3\n  scale: Vec3\n"
+    },
+  "title" : "GetBody",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "this",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "MultipedeSegment"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 0,\n  \"g\" : 191,\n  \"b\" : 232\n  }"
+        },
+      "name" : "orientation",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Quat"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
+        },
+      "name" : "position",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Vec3"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
+        },
+      "name" : "scale",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Vec3"
+      }
+    ],
+  "extDeps" : {
+    "Multipede" : "*"
+    },
+  "presetGUID" : "E91B2441128D222B53AF0C6F4A3C4B0A",
+  "code" : "require Multipede;
+
+dfgEntry {
+  this.getBody(orientation, position, scale);
+}
+"
+  }

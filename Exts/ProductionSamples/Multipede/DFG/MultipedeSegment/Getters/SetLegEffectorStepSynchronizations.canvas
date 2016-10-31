@@ -1,0 +1,89 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+    "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+    "uiTooltip" : "SETTER (leg effector step synchronizations)\n\nSupported types:\n  this: MultipedeSegment\n  strengthForward: Float32\n  strengthBackward: Float32\n  offset: Float32\n  max: Float32\n"
+    },
+  "title" : "SetLegEffectorStepSynchronizations",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "this",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "MultipedeSegment"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiRange" : "(0.0, 1.0)"
+        },
+      "name" : "strengthForward",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Float32" : 0.6000000238418579
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Float32"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiRange" : "(0.0, 1.0)"
+        },
+      "name" : "strengthBackward",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Float32" : 0.05000000074505806
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Float32"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiRange" : "(0.0, 1.0)"
+        },
+      "name" : "offset",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Float32" : 0.300000011920929
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Float32"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiRange" : "(0.0, 1.0)"
+        },
+      "name" : "max",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Float32" : 0.07999999821186066
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Float32"
+      }
+    ],
+  "extDeps" : {
+    "Multipede" : "*"
+    },
+  "presetGUID" : "26D1827F7BB96BC31EBDECAA89B35426",
+  "code" : "require Multipede;
+
+dfgEntry {
+  this.setLegEffectorStepSynchronizations(strengthForward, strengthBackward, offset, max);
+}
+"
+  }

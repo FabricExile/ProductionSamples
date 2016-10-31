@@ -1,0 +1,65 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+    "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+    "uiTooltip" : "GETTER (leg effector step synchronizations)\n\nSupported types:\n  this: MultipedeSegment\n  strengthForward: Float32\n  strengthBackward: Float32\n  offset: Float32\n  max: Float32\n"
+    },
+  "title" : "GetLegEffectorStepSynchronizations",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "this",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "MultipedeSegment"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "strengthForward",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Float32"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "strengthBackward",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Float32"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "offset",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Float32"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "max",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Float32"
+      }
+    ],
+  "extDeps" : {
+    "Multipede" : "*"
+    },
+  "presetGUID" : "656CC7624867CBA7A9A65EB205FCD715",
+  "code" : "require Multipede;
+
+dfgEntry {
+  this.getLegEffectorStepSynchronizations(strengthForward, strengthBackward, offset, max);
+}
+"
+  }

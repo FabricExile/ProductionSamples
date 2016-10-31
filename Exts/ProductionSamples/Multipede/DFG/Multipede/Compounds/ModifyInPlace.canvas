@@ -1,0 +1,1237 @@
+{
+  "objectType" : "Graph",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+    "uiGraphZoom" : "{\n  \"value\" : 1.0\n  }",
+    "uiHeaderColor" : "{\n  \"r\" : 233,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+    "uiGraphPan" : "{\n  \"x\" : -397.0399169921875,\n  \"y\" : 5.705284118652344\n  }"
+    },
+  "title" : "ModifyInPlace",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "defaultValues" : {
+        "Execute" : {}
+        },
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "multipede",
+      "nodePortType" : "IO",
+      "defaultValues" : {
+        "PolygonMesh" : null,
+        "Multipede" : null
+        },
+      "execPortType" : "IO",
+      "typeSpec" : "Multipede"
+      }
+    ],
+  "extDeps" : {
+    "Multipede" : "*"
+    },
+  "presetGUID" : "677A8C0754C2FBC422B5BB55EAFDEFF8",
+  "nodes" : [
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":1107.18690562,\"y\":172.374871969}"
+        },
+      "name" : "ForLoop_1",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "name" : "exec",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "count",
+          "nodePortType" : "In"
+          }
+        ],
+      "blocks" : [
+        {
+          "name" : "body",
+          "objectType" : "InstBlock",
+          "execBlockRelPath" : "body",
+          "ports" : [
+            {
+              "objectType" : "InstBlockPort",
+              "name" : "multipede",
+              "nodePortType" : "In",
+              "defaultValues" : {
+                "Multipede" : null
+                },
+              "outsidePortType" : "In"
+              },
+            {
+              "objectType" : "InstBlockPort",
+              "name" : "segmentCount",
+              "nodePortType" : "In",
+              "outsidePortType" : "In"
+              }
+            ],
+          "exec" : {
+            "objectType" : "Graph",
+            "metadata" : {
+              "uiGraphZoom" : "{\n  \"value\" : 1.0\n  }",
+              "uiGraphPan" : "{\n  \"x\" : 87.5,\n  \"y\" : -347.0\n  }"
+              },
+            "title" : "",
+            "ports" : [
+              {
+                "objectType" : "ExecPort",
+                "name" : "multipede",
+                "nodePortType" : "Out",
+                "execPortType" : "In",
+                "typeSpec" : "Multipede"
+                },
+              {
+                "objectType" : "ExecPort",
+                "name" : "segmentCount",
+                "nodePortType" : "Out",
+                "execPortType" : "In",
+                "typeSpec" : "UInt32"
+                }
+              ],
+            "fixedPorts" : [
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "exec",
+                "nodePortType" : "IO",
+                "outsidePortType" : "IO"
+                },
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "index",
+                "nodePortType" : "Out",
+                "outsidePortType" : "In"
+                }
+              ],
+            "blocks" : [
+              {
+                "objectType" : "ExecBlock",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":533.0,\"y\":500.0}",
+                  "uiNodeColor" : "{\n  \"r\" : 193,\n  \"g\" : 189,\n  \"b\" : 138\n  }",
+                  "uiTextColor" : "{\n  \"r\" : 20,\n  \"g\" : 20,\n  \"b\" : 20\n  }"
+                  },
+                "name" : "body",
+                "ports" : [
+                  {
+                    "objectType" : "ExecBlockPort",
+                    "name" : "index",
+                    "nodePortType" : "In",
+                    "outsidePortType" : "In",
+                    "typeSpec" : "Index"
+                    },
+                  {
+                    "objectType" : "ExecBlockPort",
+                    "name" : "count",
+                    "nodePortType" : "In",
+                    "defaultValues" : {
+                      "UInt32" : 0
+                      },
+                    "outsidePortType" : "In",
+                    "typeSpec" : "UInt32"
+                    },
+                  {
+                    "objectType" : "ExecBlockPort",
+                    "name" : "u",
+                    "nodePortType" : "In",
+                    "outsidePortType" : "In",
+                    "typeSpec" : "Scalar"
+                    },
+                  {
+                    "objectType" : "ExecBlockPort",
+                    "name" : "originalSegment",
+                    "nodePortType" : "In",
+                    "outsidePortType" : "In",
+                    "typeSpec" : "MultipedeSegment"
+                    },
+                  {
+                    "objectType" : "ExecBlockPort",
+                    "name" : "newSegment",
+                    "nodePortType" : "Out",
+                    "defaultValues" : {
+                      "MultipedeSegment" : null
+                      },
+                    "outsidePortType" : "Out",
+                    "typeSpec" : "MultipedeSegment"
+                    }
+                  ],
+                "defaultExec" : {
+                  "objectType" : "Graph",
+                  "metadata" : {
+                    "uiGraphZoom" : "{\n  \"value\" : 1.0\n  }",
+                    "uiGraphPan" : "{\n  \"x\" : -134.1842651367188,\n  \"y\" : -40.49382019042969\n  }"
+                    },
+                  "title" : "",
+                  "ports" : [],
+                  "fixedPorts" : [
+                    {
+                      "objectType" : "ExecFixedPort",
+                      "name" : "index",
+                      "nodePortType" : "Out",
+                      "outsidePortType" : "In"
+                      },
+                    {
+                      "objectType" : "ExecFixedPort",
+                      "name" : "count",
+                      "nodePortType" : "Out",
+                      "outsidePortType" : "In"
+                      },
+                    {
+                      "objectType" : "ExecFixedPort",
+                      "name" : "u",
+                      "nodePortType" : "Out",
+                      "outsidePortType" : "In"
+                      },
+                    {
+                      "objectType" : "ExecFixedPort",
+                      "name" : "originalSegment",
+                      "nodePortType" : "Out",
+                      "outsidePortType" : "In"
+                      },
+                    {
+                      "objectType" : "ExecFixedPort",
+                      "name" : "newSegment",
+                      "nodePortType" : "In",
+                      "outsidePortType" : "Out"
+                      }
+                    ],
+                  "extDeps" : {},
+                  "nodes" : [
+                    {
+                      "objectType" : "Inst",
+                      "metadata" : {
+                        "uiGraphPos" : "{\"x\":875.184263408,\"y\":214.493814766}"
+                        },
+                      "name" : "PassIO_2",
+                      "ports" : [
+                        {
+                          "objectType" : "InstPort",
+                          "name" : "exec",
+                          "nodePortType" : "IO"
+                          },
+                        {
+                          "objectType" : "InstPort",
+                          "name" : "value",
+                          "nodePortType" : "IO"
+                          }
+                        ],
+                      "executable" : "Fabric.Compounds.Data.PassIO",
+                      "presetGUID" : "11D3886FBE4057E4D8EF4CE1639CB453"
+                      }
+                    ],
+                  "connections" : {
+                    "originalSegment" : [
+                      "PassIO_2.value"
+                      ],
+                    "PassIO_2.value" : [
+                      "newSegment"
+                      ]
+                    }
+                  }
+                }
+              ],
+            "extDeps" : {},
+            "nodes" : [
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":253.0,\"y\":403.0}"
+                  },
+                "name" : "GetSegment_1",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "this",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "index",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "segment",
+                    "nodePortType" : "Out"
+                    }
+                  ],
+                "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegment",
+                "presetGUID" : "77AA6398D685E692868B3E6A2E586793"
+                },
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":857.0,\"y\":403.0}"
+                  },
+                "name" : "SetSegment_1",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "this",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "index",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "segment",
+                    "nodePortType" : "In"
+                    }
+                  ],
+                "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SetSegment",
+                "presetGUID" : "BE07B786B8F42913EECC09F2C75D6053"
+                },
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":254.5,\"y\":500.0}"
+                  },
+                "name" : "calc_u",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "index",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "count",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "u",
+                    "nodePortType" : "Out"
+                    }
+                  ],
+                "definition" : {
+                  "objectType" : "Func",
+                  "metadata" : {
+                    "uiTextColor" : "{\n  \"r\" : 20,\n  \"g\" : 20,\n  \"b\" : 20\n  }",
+                    "uiNodeColor" : "{\n  \"r\" : 121,\n  \"g\" : 134,\n  \"b\" : 143\n  }"
+                    },
+                  "title" : "func",
+                  "ports" : [
+                    {
+                      "objectType" : "ExecPort",
+                      "name" : "exec",
+                      "nodePortType" : "IO",
+                      "execPortType" : "IO",
+                      "typeSpec" : "Execute"
+                      },
+                    {
+                      "objectType" : "ExecPort",
+                      "name" : "index",
+                      "nodePortType" : "Out",
+                      "execPortType" : "In",
+                      "typeSpec" : "Index"
+                      },
+                    {
+                      "objectType" : "ExecPort",
+                      "name" : "count",
+                      "nodePortType" : "Out",
+                      "execPortType" : "In",
+                      "typeSpec" : "UInt32"
+                      },
+                    {
+                      "objectType" : "ExecPort",
+                      "name" : "u",
+                      "nodePortType" : "In",
+                      "execPortType" : "Out",
+                      "typeSpec" : "Scalar"
+                      }
+                    ],
+                  "extDeps" : {},
+                  "code" : "dfgEntry
+{
+  if (count > 1)  u = index / Float32(count - 1);
+  else            u = 0;
+}
+"
+                  }
+                }
+              ],
+            "connections" : {
+              "index" : [
+                "GetSegment_1.index",
+                "calc_u.index"
+                ],
+              "multipede" : [
+                "GetSegment_1.this"
+                ],
+              "segmentCount" : [
+                "calc_u.count"
+                ],
+              "body.index" : [
+                "SetSegment_1.index"
+                ],
+              "body.newSegment" : [
+                "SetSegment_1.segment"
+                ],
+              "GetSegment_1.this" : [
+                "SetSegment_1.this"
+                ],
+              "GetSegment_1.segment" : [
+                "body.originalSegment"
+                ],
+              "SetSegment_1.exec" : [
+                "exec"
+                ],
+              "calc_u.index" : [
+                "body.index"
+                ],
+              "calc_u.count" : [
+                "body.count"
+                ],
+              "calc_u.u" : [
+                "body.u"
+                ]
+              }
+            }
+          }
+        ],
+      "executable" : "Fabric.Core.Control.ForLoop",
+      "presetGUID" : "3F6896C3844799D09EA3F8C78850EC3B"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":1343.23448539,\"y\":98.368534565}"
+        },
+      "name" : "PassIO_2",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "name" : "exec",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "value",
+          "nodePortType" : "IO"
+          }
+        ],
+      "executable" : "Fabric.Compounds.Data.PassIO",
+      "presetGUID" : "11D3886FBE4057E4D8EF4CE1639CB453"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":799.84534061,\"y\":98.214548111}"
+        },
+      "name" : "GetSegmentCount_1",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "name" : "exec",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "this",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "result",
+          "nodePortType" : "Out"
+          }
+        ],
+      "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegmentCount",
+      "presetGUID" : "EACCB5924F81223EF47A94B04B441A9B"
+      }
+    ],
+  "connections" : {
+    "multipede" : [
+      "GetSegmentCount_1.this"
+      ],
+    "ForLoop_1.body.multipede" : [
+      "PassIO_2.exec"
+      ],
+    "PassIO_2.value" : [
+      "multipede"
+      ],
+    "GetSegmentCount_1.this" : [
+      "ForLoop_1.body.multipede",
+      "PassIO_2.value"
+      ],
+    "GetSegmentCount_1.result" : [
+      "ForLoop_1.count",
+      "ForLoop_1.body.segmentCount"
+      ]
+    },
+  "requiredPresets" : {
+    "Fabric.ProductionSamples.Multipede.Multipede.Compounds.ModifyInPlace" : {
+      "objectType" : "Graph",
+      "metadata" : {
+        "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+        "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+        "uiGraphZoom" : "{\n  \"value\" : 1.0\n  }",
+        "uiHeaderColor" : "{\n  \"r\" : 233,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+        "uiGraphPan" : "{\n  \"x\" : -397.0399169921875,\n  \"y\" : 5.705284118652344\n  }"
+        },
+      "title" : "ModifyInPlace",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "defaultValues" : {
+            "Execute" : {}
+            },
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "multipede",
+          "nodePortType" : "IO",
+          "defaultValues" : {
+            "PolygonMesh" : null,
+            "Multipede" : null
+            },
+          "execPortType" : "IO",
+          "typeSpec" : "Multipede"
+          }
+        ],
+      "extDeps" : {
+        "Multipede" : "*"
+        },
+      "presetGUID" : "677A8C0754C2FBC422B5BB55EAFDEFF8",
+      "nodes" : [
+        {
+          "objectType" : "Inst",
+          "metadata" : {
+            "uiGraphPos" : "{\"x\":1107.18690562,\"y\":172.374871969}"
+            },
+          "name" : "ForLoop_1",
+          "ports" : [
+            {
+              "objectType" : "InstPort",
+              "name" : "exec",
+              "nodePortType" : "IO"
+              },
+            {
+              "objectType" : "InstPort",
+              "name" : "count",
+              "nodePortType" : "In"
+              }
+            ],
+          "blocks" : [
+            {
+              "name" : "body",
+              "objectType" : "InstBlock",
+              "execBlockRelPath" : "body",
+              "ports" : [
+                {
+                  "objectType" : "InstBlockPort",
+                  "name" : "multipede",
+                  "nodePortType" : "In",
+                  "defaultValues" : {
+                    "Multipede" : null
+                    },
+                  "outsidePortType" : "In"
+                  },
+                {
+                  "objectType" : "InstBlockPort",
+                  "name" : "segmentCount",
+                  "nodePortType" : "In",
+                  "outsidePortType" : "In"
+                  }
+                ],
+              "exec" : {
+                "objectType" : "Graph",
+                "metadata" : {
+                  "uiGraphZoom" : "{\n  \"value\" : 1.0\n  }",
+                  "uiGraphPan" : "{\n  \"x\" : 87.5,\n  \"y\" : -347.0\n  }"
+                  },
+                "title" : "",
+                "ports" : [
+                  {
+                    "objectType" : "ExecPort",
+                    "name" : "multipede",
+                    "nodePortType" : "Out",
+                    "execPortType" : "In",
+                    "typeSpec" : "Multipede"
+                    },
+                  {
+                    "objectType" : "ExecPort",
+                    "name" : "segmentCount",
+                    "nodePortType" : "Out",
+                    "execPortType" : "In",
+                    "typeSpec" : "UInt32"
+                    }
+                  ],
+                "fixedPorts" : [
+                  {
+                    "objectType" : "ExecFixedPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO",
+                    "outsidePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "ExecFixedPort",
+                    "name" : "index",
+                    "nodePortType" : "Out",
+                    "outsidePortType" : "In"
+                    }
+                  ],
+                "blocks" : [
+                  {
+                    "objectType" : "ExecBlock",
+                    "metadata" : {
+                      "uiGraphPos" : "{\"x\":533.0,\"y\":500.0}",
+                      "uiNodeColor" : "{\n  \"r\" : 193,\n  \"g\" : 189,\n  \"b\" : 138\n  }",
+                      "uiTextColor" : "{\n  \"r\" : 20,\n  \"g\" : 20,\n  \"b\" : 20\n  }"
+                      },
+                    "name" : "body",
+                    "ports" : [
+                      {
+                        "objectType" : "ExecBlockPort",
+                        "name" : "index",
+                        "nodePortType" : "In",
+                        "outsidePortType" : "In",
+                        "typeSpec" : "Index"
+                        },
+                      {
+                        "objectType" : "ExecBlockPort",
+                        "name" : "count",
+                        "nodePortType" : "In",
+                        "defaultValues" : {
+                          "UInt32" : 0
+                          },
+                        "outsidePortType" : "In",
+                        "typeSpec" : "UInt32"
+                        },
+                      {
+                        "objectType" : "ExecBlockPort",
+                        "name" : "u",
+                        "nodePortType" : "In",
+                        "outsidePortType" : "In",
+                        "typeSpec" : "Scalar"
+                        },
+                      {
+                        "objectType" : "ExecBlockPort",
+                        "name" : "originalSegment",
+                        "nodePortType" : "In",
+                        "outsidePortType" : "In",
+                        "typeSpec" : "MultipedeSegment"
+                        },
+                      {
+                        "objectType" : "ExecBlockPort",
+                        "name" : "newSegment",
+                        "nodePortType" : "Out",
+                        "defaultValues" : {
+                          "MultipedeSegment" : null
+                          },
+                        "outsidePortType" : "Out",
+                        "typeSpec" : "MultipedeSegment"
+                        }
+                      ],
+                    "defaultExec" : {
+                      "objectType" : "Graph",
+                      "metadata" : {
+                        "uiGraphZoom" : "{\n  \"value\" : 1.0\n  }",
+                        "uiGraphPan" : "{\n  \"x\" : -134.1842651367188,\n  \"y\" : -40.49382019042969\n  }"
+                        },
+                      "title" : "",
+                      "ports" : [],
+                      "fixedPorts" : [
+                        {
+                          "objectType" : "ExecFixedPort",
+                          "name" : "index",
+                          "nodePortType" : "Out",
+                          "outsidePortType" : "In"
+                          },
+                        {
+                          "objectType" : "ExecFixedPort",
+                          "name" : "count",
+                          "nodePortType" : "Out",
+                          "outsidePortType" : "In"
+                          },
+                        {
+                          "objectType" : "ExecFixedPort",
+                          "name" : "u",
+                          "nodePortType" : "Out",
+                          "outsidePortType" : "In"
+                          },
+                        {
+                          "objectType" : "ExecFixedPort",
+                          "name" : "originalSegment",
+                          "nodePortType" : "Out",
+                          "outsidePortType" : "In"
+                          },
+                        {
+                          "objectType" : "ExecFixedPort",
+                          "name" : "newSegment",
+                          "nodePortType" : "In",
+                          "outsidePortType" : "Out"
+                          }
+                        ],
+                      "extDeps" : {},
+                      "nodes" : [
+                        {
+                          "objectType" : "Inst",
+                          "metadata" : {
+                            "uiGraphPos" : "{\"x\":875.184263408,\"y\":214.493814766}"
+                            },
+                          "name" : "PassIO_2",
+                          "ports" : [
+                            {
+                              "objectType" : "InstPort",
+                              "name" : "exec",
+                              "nodePortType" : "IO"
+                              },
+                            {
+                              "objectType" : "InstPort",
+                              "name" : "value",
+                              "nodePortType" : "IO"
+                              }
+                            ],
+                          "executable" : "Fabric.Compounds.Data.PassIO",
+                          "presetGUID" : "11D3886FBE4057E4D8EF4CE1639CB453"
+                          }
+                        ],
+                      "connections" : {
+                        "originalSegment" : [
+                          "PassIO_2.value"
+                          ],
+                        "PassIO_2.value" : [
+                          "newSegment"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                "extDeps" : {},
+                "nodes" : [
+                  {
+                    "objectType" : "Inst",
+                    "metadata" : {
+                      "uiGraphPos" : "{\"x\":253.0,\"y\":403.0}"
+                      },
+                    "name" : "GetSegment_1",
+                    "ports" : [
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "exec",
+                        "nodePortType" : "IO"
+                        },
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "this",
+                        "nodePortType" : "In"
+                        },
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "index",
+                        "nodePortType" : "In"
+                        },
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "segment",
+                        "nodePortType" : "Out"
+                        }
+                      ],
+                    "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegment",
+                    "presetGUID" : "77AA6398D685E692868B3E6A2E586793"
+                    },
+                  {
+                    "objectType" : "Inst",
+                    "metadata" : {
+                      "uiGraphPos" : "{\"x\":857.0,\"y\":403.0}"
+                      },
+                    "name" : "SetSegment_1",
+                    "ports" : [
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "exec",
+                        "nodePortType" : "IO"
+                        },
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "this",
+                        "nodePortType" : "IO"
+                        },
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "index",
+                        "nodePortType" : "In"
+                        },
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "segment",
+                        "nodePortType" : "In"
+                        }
+                      ],
+                    "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SetSegment",
+                    "presetGUID" : "BE07B786B8F42913EECC09F2C75D6053"
+                    },
+                  {
+                    "objectType" : "Inst",
+                    "metadata" : {
+                      "uiGraphPos" : "{\"x\":254.5,\"y\":500.0}"
+                      },
+                    "name" : "calc_u",
+                    "ports" : [
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "exec",
+                        "nodePortType" : "IO"
+                        },
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "index",
+                        "nodePortType" : "In"
+                        },
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "count",
+                        "nodePortType" : "In"
+                        },
+                      {
+                        "objectType" : "InstPort",
+                        "name" : "u",
+                        "nodePortType" : "Out"
+                        }
+                      ],
+                    "definition" : {
+                      "objectType" : "Func",
+                      "metadata" : {
+                        "uiTextColor" : "{\n  \"r\" : 20,\n  \"g\" : 20,\n  \"b\" : 20\n  }",
+                        "uiNodeColor" : "{\n  \"r\" : 121,\n  \"g\" : 134,\n  \"b\" : 143\n  }"
+                        },
+                      "title" : "func",
+                      "ports" : [
+                        {
+                          "objectType" : "ExecPort",
+                          "name" : "exec",
+                          "nodePortType" : "IO",
+                          "execPortType" : "IO",
+                          "typeSpec" : "Execute"
+                          },
+                        {
+                          "objectType" : "ExecPort",
+                          "name" : "index",
+                          "nodePortType" : "Out",
+                          "execPortType" : "In",
+                          "typeSpec" : "Index"
+                          },
+                        {
+                          "objectType" : "ExecPort",
+                          "name" : "count",
+                          "nodePortType" : "Out",
+                          "execPortType" : "In",
+                          "typeSpec" : "UInt32"
+                          },
+                        {
+                          "objectType" : "ExecPort",
+                          "name" : "u",
+                          "nodePortType" : "In",
+                          "execPortType" : "Out",
+                          "typeSpec" : "Scalar"
+                          }
+                        ],
+                      "extDeps" : {},
+                      "code" : "dfgEntry
+{
+  if (count > 1)  u = index / Float32(count - 1);
+  else            u = 0;
+}
+"
+                      }
+                    }
+                  ],
+                "connections" : {
+                  "index" : [
+                    "GetSegment_1.index",
+                    "calc_u.index"
+                    ],
+                  "multipede" : [
+                    "GetSegment_1.this"
+                    ],
+                  "segmentCount" : [
+                    "calc_u.count"
+                    ],
+                  "body.index" : [
+                    "SetSegment_1.index"
+                    ],
+                  "body.newSegment" : [
+                    "SetSegment_1.segment"
+                    ],
+                  "GetSegment_1.this" : [
+                    "SetSegment_1.this"
+                    ],
+                  "GetSegment_1.segment" : [
+                    "body.originalSegment"
+                    ],
+                  "SetSegment_1.exec" : [
+                    "exec"
+                    ],
+                  "calc_u.index" : [
+                    "body.index"
+                    ],
+                  "calc_u.count" : [
+                    "body.count"
+                    ],
+                  "calc_u.u" : [
+                    "body.u"
+                    ]
+                  }
+                }
+              }
+            ],
+          "executable" : "Fabric.Core.Control.ForLoop",
+          "presetGUID" : "3F6896C3844799D09EA3F8C78850EC3B"
+          },
+        {
+          "objectType" : "Inst",
+          "metadata" : {
+            "uiGraphPos" : "{\"x\":1343.23448539,\"y\":98.368534565}"
+            },
+          "name" : "PassIO_2",
+          "ports" : [
+            {
+              "objectType" : "InstPort",
+              "name" : "exec",
+              "nodePortType" : "IO"
+              },
+            {
+              "objectType" : "InstPort",
+              "name" : "value",
+              "nodePortType" : "IO"
+              }
+            ],
+          "executable" : "Fabric.Compounds.Data.PassIO",
+          "presetGUID" : "11D3886FBE4057E4D8EF4CE1639CB453"
+          },
+        {
+          "objectType" : "Inst",
+          "metadata" : {
+            "uiGraphPos" : "{\"x\":799.84534061,\"y\":98.214548111}"
+            },
+          "name" : "GetSegmentCount_1",
+          "ports" : [
+            {
+              "objectType" : "InstPort",
+              "name" : "exec",
+              "nodePortType" : "IO"
+              },
+            {
+              "objectType" : "InstPort",
+              "name" : "this",
+              "nodePortType" : "In"
+              },
+            {
+              "objectType" : "InstPort",
+              "name" : "result",
+              "nodePortType" : "Out"
+              }
+            ],
+          "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegmentCount",
+          "presetGUID" : "EACCB5924F81223EF47A94B04B441A9B"
+          }
+        ],
+      "connections" : {
+        "multipede" : [
+          "GetSegmentCount_1.this"
+          ],
+        "ForLoop_1.body.multipede" : [
+          "PassIO_2.exec"
+          ],
+        "PassIO_2.value" : [
+          "multipede"
+          ],
+        "GetSegmentCount_1.this" : [
+          "ForLoop_1.body.multipede",
+          "PassIO_2.value"
+          ],
+        "GetSegmentCount_1.result" : [
+          "ForLoop_1.count",
+          "ForLoop_1.body.segmentCount"
+          ]
+        }
+      },
+    "Fabric.Core.Control.ForLoop" : {
+      "objectType" : "Func",
+      "title" : "ForLoop",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "defaultValues" : {
+            "Execute" : {}
+            },
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "metadata" : {
+            "uiPersistValue" : "true"
+            },
+          "name" : "count",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Count" : 3
+            },
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          }
+        ],
+      "blocks" : [
+        {
+          "objectType" : "ExecBlock",
+          "name" : "body",
+          "ports" : [
+            {
+              "objectType" : "ExecBlockPort",
+              "name" : "exec",
+              "nodePortType" : "IO",
+              "outsidePortType" : "IO",
+              "typeSpec" : "Execute"
+              },
+            {
+              "objectType" : "ExecBlockPort",
+              "name" : "index",
+              "nodePortType" : "In",
+              "outsidePortType" : "In",
+              "typeSpec" : "Index"
+              }
+            ],
+          "defaultExec" : {
+            "objectType" : "Graph",
+            "title" : "",
+            "ports" : [],
+            "fixedPorts" : [
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "exec",
+                "nodePortType" : "IO",
+                "outsidePortType" : "IO"
+                },
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "index",
+                "nodePortType" : "Out",
+                "outsidePortType" : "In"
+                }
+              ],
+            "extDeps" : {},
+            "nodes" : [],
+            "connections" : {}
+            }
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "3F6896C3844799D09EA3F8C78850EC3B",
+      "code" : "
+dfgEntry {
+  for ($TYPE$ index = 0; index < count; ++index)
+    dfgPullBlockPort('body.exec', index);
+}
+"
+      },
+    "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegment" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+        "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+        "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+        "uiTooltip" : "Supported types:\n  this: Multipede\n  index: SInt32\n  segment: MultipedeSegment\n"
+        },
+      "title" : "GetSegment",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "this",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "Multipede"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "index",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "SInt32"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "segment",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "MultipedeSegment"
+          }
+        ],
+      "extDeps" : {
+        "Multipede" : "*"
+        },
+      "presetGUID" : "77AA6398D685E692868B3E6A2E586793",
+      "code" : "require Multipede;
+
+dfgEntry {
+  this.getSegment(index, segment);
+}
+"
+      },
+    "Fabric.ProductionSamples.Multipede.Multipede.Core.SetSegment" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+        "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+        "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+        "uiTooltip" : "Supported types:\n  this: Multipede\n  index: SInt32\n  segment: MultipedeSegment\n"
+        },
+      "title" : "SetSegment",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "this",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Multipede"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "index",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "SInt32"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "segment",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "MultipedeSegment"
+          }
+        ],
+      "extDeps" : {
+        "Multipede" : "*"
+        },
+      "presetGUID" : "BE07B786B8F42913EECC09F2C75D6053",
+      "code" : "require Multipede;
+
+dfgEntry {
+  this.setSegment(index, segment);
+}
+"
+      },
+    "Fabric.Compounds.Data.PassIO" : {
+      "objectType" : "Func",
+      "title" : "PassIO",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "defaultValues" : {
+            "Execute" : {}
+            },
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "value",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "$TYPE$"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "11D3886FBE4057E4D8EF4CE1639CB453",
+      "code" : "dfgEntry {
+  // result = a + b;
+}
+"
+      },
+    "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegmentCount" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+        "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+        "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+        "uiTooltip" : "Supported types:\n  this: Multipede\n  result: UInt32\n"
+        },
+      "title" : "GetSegmentCount",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "this",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "Multipede"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "result",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "UInt32"
+          }
+        ],
+      "extDeps" : {
+        "Multipede" : "*"
+        },
+      "presetGUID" : "EACCB5924F81223EF47A94B04B441A9B",
+      "code" : "require Multipede;
+
+dfgEntry {
+  result = this.getSegmentCount();
+}
+"
+      }
+    }
+  }

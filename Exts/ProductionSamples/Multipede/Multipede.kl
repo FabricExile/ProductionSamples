@@ -1,0 +1,1886 @@
+/* _____________________
+    Multipede & friends
+   --------------------- */
+
+require Math;
+require Util;
+require Geometry;
+
+/// \dfgPresetOmit
+const Float32 MULTIPEDESMALLEST = 10e-16;
+
+/// \dfgPresetOmit
+const Float32 MULTIPEDEBIGGEST  = 10e+16;
+
+// *
+// ----*
+// --------*
+// ------------*
+// ----------------*
+// --------------------*
+// -------MultiCurve-------*
+// ----------------------------*
+// --------------------------------*
+
+// MultiCurve's controlpoint structure.
+/// \dfgPresetOmit
+struct MultiCurveCP
+{
+  Vec3   p;   // control point's position.
+  Vec3   v;   // vector from this control point to the next one.
+  Vec3   t;   // control point's normalized tangent vector.
+  Scalar d;   // length of v (= distance to next control point).
+};
+
+// MultiCurve class.
+/// \dfgPresetOmit
+object MultiCurve
+{
+  MultiCurveCP m_cp[];        // array of control points.
+  Float32      m_length;      // length of the curve.
+  Float32      m_lengthInv;   // 1.0 / m_length.
+};
+
+/// Constructor.
+/// \dfgPresetOmit
+function MultiCurve()
+{
+  this.m_cp.resize  (0);
+  this.m_length    = 0;
+  this.m_lengthInv = 1;
+}
+
+/// Constructor.
+/// \dfgPresetOmit
+function MultiCurve(in Vec3 positions[])
+{
+  this.set(positions);
+}
+
+/// set from array of positions.
+/// \dfgPresetOmit
+function MultiCurve.set!(in Vec3 positions[])
+{
+  this.m_cp.resize(positions.size());
+  for (UInt32 i=0;i<positions.size();i++)
+    this.m_cp[i].p = positions[i];
+  this.recalcAll();
+}
+
+/// subdivide curve.
+/// \dfgPresetOmit
+function MultiCurve.subdivide!(in UInt32 numSubdivs)
+{
+  // nothing to do?
+  if (numSubdivs == 0 || this.m_cp.size() <= 1)
+    return;
+
+  // resize array.
+  UInt32 oldSize = this.m_cp.size();
+  UInt32 newSize = oldSize + (oldSize - 1) * numSubdivs;
+  this.m_cp.resize(newSize);
+
+  // set last position.
+  this.m_cp[newSize - 1].p = this.m_cp[oldSize - 1].p;
+
+  // set all other positions.
+  UInt32 oi = oldSize - 1;
+  UInt32 ni = newSize - 1;
+  Float32 f = 1.0 / Float32(numSubdivs + 1);
+  do
+  {
+    oi--;
+    for (SInt32 i=numSubdivs;i>=0;i--)
+    {
+      ni--;
+      this.m_cp[ni].p = this.m_cp[oi].p + i * f * this.m_cp[oi].v;
+    }
+
+  } while (oi);
+
+  // recalculate the rest.
+  this.recalcAll();
+}
+
+// returns the position and tangent for a given u.
+// if u is in the interval [0.0; 1.0] then the result
+// will lay on the curve. For values outside the
+// interval extrapolated values are returned.
+/// \dfgPresetOmit
+function MultiCurve.getAtU?(in Float32 u, out Vec3 position, out Vec3 tangent)
+{
+  /*
+    trivial case.
+  */
+
+  if (this.m_cp.size() == 0)
+  {
+    position.setNull();
+    position.set(1.0, 0.0, 0.0);
+    return;
+  }
+
+  if (this.m_length <= MULTIPEDESMALLEST)
+  {
+    position = this.m_cp[0].p;
+    tangent  = this.m_cp[0].t;
+    return;
+  }
+
+  if (u <= 0)
+  {
+    position = this.m_cp[0].p + u * this.m_length * this.m_cp[0].t;
+    tangent  = this.m_cp[0].t;
+    return;
+  }
+
+  if (u >= 1)
+  {
+    position = this.m_cp[this.m_cp.size() - 1].p + (u - 1) * this.m_length * this.m_cp[this.m_cp.size() - 1].t;
+    tangent  = this.m_cp[this.m_cp.size() - 1].t;
+    return;
+  }
+
+  /*
+    find position and tangent on curve.
+  */
+
+  Float32 du   = u * this.m_length;
+  Float32 dSum = 0;
+
+  for (UInt32 i=0;i<this.m_cp.size();i++)
+  {
+    if (du <= dSum + this.m_cp[i].d)
+    {
+      Float32 f = (du - dSum) / this.m_cp[i].d;
+      position = this.m_cp[i].p + f * this.m_cp[i].v;
+      tangent  = this.m_cp[i].t.linearInterpolate(this.m_cp[i].t, f);
+      break;
+    }
+    dSum += this.m_cp[i].d;
+  }
+}
+
+// returns the position and tangent for a given length, also see getAtU().
+/// \dfgPresetOmit
+function MultiCurve.getAtLength?(in Float32 length, out Vec3 position, out Vec3 tangent)
+{
+  this.getAtU(length * this.m_lengthInv, position, tangent);
+}
+
+/// Recalculate everything.
+/// \dfgPresetOmit
+function MultiCurve.recalcAll!()
+{
+  this.recalcCP();
+  this.recalcLength();
+}
+
+/// Recalculate members of m_pc[].
+/// \dfgPresetOmit
+function MultiCurve.recalcCP!()
+{ 
+  // take care of trivial cases.
+  if (this.m_cp.size() == 0)
+    return;
+  if (this.m_cp.size() == 1)
+  {
+    this.m_cp[0].t.set(1.0, 0.0, 0.0);
+    this.m_cp[0].v.setNull();
+    this.m_cp[0].d = 0;
+    return;
+  }
+
+  // recalculate distances and vectors.
+  Float32 totalLength = 0;
+  for (UInt32 i=0;i<this.m_cp.size()-1;i++)
+  {
+    this.m_cp[i].v = this.m_cp[i + 1].p - this.m_cp[i].p;
+    this.m_cp[i].d = this.m_cp[i].v.length();
+    totalLength   += this.m_cp[i].d;     
+  }
+  this.m_cp[this.m_cp.size() - 1].v.setNull();
+  this.m_cp[this.m_cp.size() - 1].d = 0;
+
+  // recalculate tangents.
+  if (totalLength == 0)
+  {
+    for (UInt32 i=0;i<this.m_cp.size();i++)
+      this.m_cp[i].t.set(1.0, 0.0, 0.0);
+  }
+  else
+  {
+    // first.
+    for (UInt32 i=0;;i++)
+      if (this.m_cp[i].d > 0)
+      {
+        this.m_cp[0].t = this.m_cp[i].v / this.m_cp[i].d;
+        break;
+      }
+
+    // last.
+    for (UInt32 i=this.m_cp.size()-2;;i--)
+    if (this.m_cp[i].d > 0)
+    {
+        this.m_cp[this.m_cp.size() - 1].t = this.m_cp[i].v / this.m_cp[i].d;
+        break;
+    }
+
+    // remaining.
+    Vec3 lastValidTangent = this.m_cp[0].t;
+    for (UInt32 i=1;i<this.m_cp.size()-1;i++)
+    {
+      if (this.m_cp[i].d > 0)
+      {
+        Vec3    t = lastValidTangent + this.m_cp[i].v;
+        Float32 d = t.length();
+        if (d > 0)  this.m_cp[i].t = t / d;
+        else        this.m_cp[i].t.set(1.0, 0.0, 0.0);
+        lastValidTangent = this.m_cp[i].t;
+      }
+      else
+      {
+        this.m_cp[i].t = lastValidTangent;
+      }
+    }
+  }
+}
+
+/// Recalculate m_length.
+/// \dfgPresetOmit
+function MultiCurve.recalcLength!()
+{
+  this.m_length = 0;
+  for (UInt32 i=0;i<this.m_cp.size();i++)
+    this.m_length += this.m_cp[i].d;
+  if (this.m_length > 0)  this.m_lengthInv = 1.0 / this.m_length;
+  else                    this.m_lengthInv = 1.0;
+}
+
+/// Get curve as Lines object.
+/// \dfgPresetOmit
+function MultiCurve.getAsLines?(in Boolean positions, in Boolean tangents, out Lines lines)
+{
+  lines = Lines();
+
+  if (this.m_cp.size() == 0)
+    return;
+
+  if (positions)
+  {
+    Vec3 p[];
+    p.resize(this.m_cp.size());
+
+    for (UInt32 i=0;i<this.m_cp.size();i++)
+      p[i] = this.m_cp[i].p;
+
+    lines.addLineStrip(p);
+  }
+
+  if (tangents)
+  {
+    for (UInt32 i=0;i<this.m_cp.size();i++)
+      lines.addLine(this.m_cp[i].p, this.m_cp[i].p + this.m_cp[i].t);
+  }
+}
+
+// --------------------------------*
+// ----------------------------*
+// ------------------------*
+// --------------------*
+// ----------------*
+// ------------*
+// --------*
+// ----*
+// *
+
+
+
+// *
+// ----*
+// --------*
+// ------------*
+// ----------------*
+// --------------------*
+// ----MultipedeSegment----*
+// ----------------------------*
+// --------------------------------*
+
+// MultipedeSegment class.
+object MultipedeSegment
+{
+  // main members.
+  Xfo center;                         // global.
+  Xfo body;                           // local, center is parent.
+  Xfo legRoot[2];                     // local, body is parent.
+  Xfo legBoneBasePose[2][];           // local, sc.z is bone length.
+  Xfo legBoneBasePoseKraken[2][];     // Kraken-compatible version of the bone base pose.
+  Xfo legEffector[2];                 // global.
+
+  // meshes.
+  PolygonMesh meshBody;               // mesh for the body.
+  PolygonMesh meshLegBone[2][];       // meshes for the leg bones.
+
+  // simulation members.
+  Xfo              centerPrev;                      // previous center xfo.
+  GeometryLocation centerClosestLocation;           // closest location on an obstacle mesh.
+  Vec3             legEffectorStepSize[2];          // step behavior, X/Y/Z: width/height/length of a step.
+  Float32          legEffectorStepSynchStrengthFwd; // step synchronizing strength forward.
+  Float32          legEffectorStepSynchStrengthBwd; // step synchronizing strength backward.
+  Float32          legEffectorStepSynchOffset;      // step synchronizing offset.
+  Float32          legEffectorStepSynchMax;         // step synchronizing maximum.
+  Boolean          legEffectorState[2];             // true: effector is moving, false: effector is on the ground.
+  Float32          legEffectorUnitPos[2];           // if legEffectorState == true: the current unit position of the effector.
+  Vec3             legEffectorUnitPosStart[2];      // if legEffectorState == true: the unit position where the effector movement started.
+  Xfo              legBonePoseSolved[2][];          // the solved bone base pose (transforms are global).
+};
+
+/// Constructor.
+/// \dfgPresetFolder MultipedeSegment/Core/Constants
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment()
+{
+  this.setDefaults();
+}
+
+/// Set all members to default.
+/// \dfgPresetFolder MultipedeSegment/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.setDefaults!()
+{
+  // main.
+
+  this.center.tr.set(0.0, 0.0, 0.0);
+  this.center.sc.set(1.0, 1.0, 1.0);
+  this.center.ori = Quat();
+
+  this.body.tr.set(0.0, 1.2, 0.0);
+  this.body.sc.set(1.0);
+  this.body.ori = Quat();
+
+  this.legRoot[0].tr.set( 1.0, -0.2, 0.0);
+  this.legRoot[1].tr.set(-1.0, -0.2, 0.0);
+  this.legRoot[0].sc.set(0.2);
+  this.legRoot[1].sc.set(0.2);
+  this.legRoot[0].ori = Quat();
+  this.legRoot[1].ori = Quat();
+
+  Float32 legBoneLength[];
+  legBoneLength.push(1.5);
+  legBoneLength.push(1.0);
+  legBoneLength.push(0.5);
+  this.setLegBoneBasePose(0, legBoneLength);
+  this.setLegBoneBasePose(1, legBoneLength);
+
+  this.legEffector[0].tr.set( 3.0, 0.0, 0.0);
+  this.legEffector[1].tr.set(-3.0, 0.0, 0.0);
+  this.legEffector[0].sc.set(0.2);
+  this.legEffector[1].sc.set(0.2);
+  this.legEffector[0].ori = Quat();
+  this.legEffector[1].ori = Quat();
+ 
+  // meshes.
+
+  this.meshBody = null;
+  this.meshLegBone[0].resize(this.legBoneBasePose[0].size());
+  this.meshLegBone[1].resize(this.legBoneBasePose[1].size());
+
+  // simulation.
+
+  this.legEffectorStepSize[0].x = this.body.sc.z * 3.5;
+  this.legEffectorStepSize[0].y = this.body.sc.z * 1.0;
+  this.legEffectorStepSize[0].z = this.body.sc.z * 2.0;
+  this.legEffectorStepSize[1].x = this.body.sc.z * 3.5;
+  this.legEffectorStepSize[1].y = this.body.sc.z * 1.0;
+  this.legEffectorStepSize[1].z = this.body.sc.z * 2.0;
+
+  this.legEffectorStepSynchStrengthFwd = 0.60;
+  this.legEffectorStepSynchStrengthBwd = 0.05;
+  this.legEffectorStepSynchOffset      = 0.30;
+  this.legEffectorStepSynchMax         = 0.08;
+
+  this.centerPrev                 = this.center;
+  this.legEffectorState[0]        = false;
+  this.legEffectorState[1]        = false;
+  this.legEffectorUnitPos[0]      = 0;
+  this.legEffectorUnitPos[1]      = 0;
+  this.legEffectorUnitPosStart[0].setNull();
+  this.legEffectorUnitPosStart[1].setNull();
+}
+
+/// Get the leg effectors' volumes (= ellipsoids defined via Xfos).
+/// \dfgPresetOmit
+function MultipedeSegment.getLegEffectorVolumes?(out Xfo xfo0, out Xfo xfo1)
+{
+  Xfo body  = this.body;
+  Xfo root0 = this.legRoot[0];
+  Xfo root1 = this.legRoot[1];
+
+  // make the root positions lay on the center's XZ plane.
+  body .tr.y = 0;
+  root0.tr.y = 0;
+  root1.tr.y = 0;
+
+  Mat44 bodySolved = this.center.toMat44() * body.toMat44();
+  xfo0 = bodySolved * root0.toMat44();
+  xfo1 = bodySolved * root1.toMat44();
+
+  // use the legEffectorStepSize as scaling.
+  xfo0.sc  = this.legEffectorStepSize[0];
+  xfo1.sc  = this.legEffectorStepSize[1];
+
+  // use the center's oriention.
+  xfo0.ori = this.center.ori;
+  xfo1.ori = this.center.ori;
+}
+
+/// Set legBoneBasePose[index][] based on array of bone lengths.
+/// \dfgPresetOmit
+function MultipedeSegment.setLegBoneBasePose!(in SInt32 index, in Float32 boneLength[])
+{
+  Vec3 boneScale[];
+  boneScale.resize(boneLength.size());
+  for (UInt32 i=0;i<boneLength.size();i++)
+  {
+    boneScale[i].x = boneLength[i] * 0.5;
+    boneScale[i].y = boneLength[i] * 0.5;
+    boneScale[i].z = boneLength[i];
+  }
+  this.setLegBoneBasePose(index, boneScale);
+}
+
+/// Set LegBoneBasePose[index][] based on array of bone scalings (z scale is bone length).
+/// \dfgPresetOmit
+function MultipedeSegment.setLegBoneBasePose!(in SInt32 index, in Vec3 boneScale[])
+{
+  // trivial cases.
+  if (index < 0 || index > 1)
+    return;
+  if (boneScale.size() == 0)
+  {
+    this.legBoneBasePose      [index].resize(0);
+    this.legBoneBasePoseKraken[index].resize(0);
+    this.legBonePoseSolved    [index].resize(0);
+    this.meshLegBone          [index].resize(0);
+    return;
+  }
+
+  // resize base pose and mesh arrays.
+  this.legBoneBasePose      [index].resize(boneScale.size());
+  this.legBoneBasePoseKraken[index].resize(boneScale.size() + 1);
+  this.meshLegBone          [index].resize(boneScale.size());
+
+  // set base scaling from lengths.
+  for (UInt32 i=0;i<boneScale.size();i++)
+    this.legBoneBasePose[index][i].sc.set(Math_max(MULTIPEDESMALLEST, boneScale[i].x),
+                                          Math_max(MULTIPEDESMALLEST, boneScale[i].y),
+                                          Math_max(MULTIPEDESMALLEST, boneScale[i].z));
+
+  // set base orientations.
+  for (UInt32 i=0;i<boneScale.size();i++)
+    this.legBoneBasePose[index][i].ori.setFromAxisAndAngle(Vec3(1.0, 0.0, 0.0), i * (HALF_PI / (boneScale.size() - 1)));
+
+  // set positions.
+  this.legBoneBasePose[index][0].tr.setNull();
+  for (UInt32 i=1;i<boneScale.size();i++)
+    this.legBoneBasePose[index][i].tr = this.legBoneBasePose[index][i - 1].transformVector(Vec3(0.0, 0.0, 1.0));
+
+  // fill Kraken-compatible array.
+  for (UInt32 i=0;i<boneScale.size();i++)
+    this.legBoneBasePoseKraken[index][i].set(this.legBoneBasePose[index][i].ori,
+                                             this.legBoneBasePose[index][i].tr,
+                                             Vec3(1.0, 1.0, 1.0));
+  this.legBoneBasePoseKraken[index][boneScale.size()].set(Quat(),
+                                                          this.legBoneBasePose[index][boneScale.size() - 1].transformVector(Vec3(0.0, 0.0, 1.0)),
+                                                          Vec3(1.0, 1.0, 1.0));
+}
+
+/// Solves the legBoneBasePose[index][] and stores the result is in legBonePoseSolved[index].
+/// \dfgPresetOmit
+function MultipedeSegment.solveLegBones!(in SInt32 index)
+{
+  // trivial cases.
+  if (index < 0 || index > 1)
+    return;
+  if (this.legBoneBasePose[index].size() + 1 != this.legBoneBasePoseKraken[index].size())
+  {
+    this.legBonePoseSolved[index].resize(0);
+    return;
+  }
+
+  // solve IK.
+  {
+    // calculate global root xfo.
+    Mat44 bodySolved = this.center.toMat44() * this.body.toMat44();
+    Xfo xfoRoot = bodySolved * this.legRoot[index].toMat44();
+
+    // prepare the IK solver parameters.
+    Vec3    goalPosition = this.legEffector[index].tr - xfoRoot.tr;
+    Vec3    upVPosition  = xfoRoot.transformVector(Vec3(0.0, 1.0, 0.0)) - xfoRoot.tr;
+    Vec3    upVector     = Vec3(0.0, 1.0, 0.0);
+    Float32 rigScale     = 1.0;
+
+    // solve bones (inverse kinematics).
+    this.legBonePoseSolved[index] = solveNBoneIKWithUpVector(this.legBoneBasePoseKraken[index], goalPosition, upVPosition, upVector, rigScale);
+
+    // remove the last element (it's a Kraken thing and we don't need it).
+    this.legBonePoseSolved[index].resize(this.legBoneBasePose[index].size());
+
+    // copy the scalings from the base pose over to the solved
+    // bones and move the bones to the global root's position. 
+    for (UInt32 i=0;i<this.legBonePoseSolved[index].size();i++)
+    {
+      this.legBonePoseSolved[index][i].sc = this.legBoneBasePose[index][i].sc;
+      this.legBonePoseSolved[index][i].tr += xfoRoot.tr;
+    }
+  }
+}
+
+/// GETTER (body Xfo)
+/// \dfgPresetFolder MultipedeSegment/Getters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.getCenter?(out Xfo xfo)
+{
+  xfo = this.center;
+}
+
+/// SETTER (body Xfo)
+/// \dfgPresetFolder MultipedeSegment/Setters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.setCenter!(in Xfo xfo)
+{
+  this.center = xfo;
+}
+
+/// GETTER (body Xfo)
+/// \dfgPresetFolder MultipedeSegment/Getters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.getBody?(out Quat orientation, out Vec3 position, out Vec3 scale)
+{
+  orientation = this.body.ori;
+  position    = this.body.tr;
+  scale       = this.body.sc;
+}
+
+/// SETTER (body Xfo)
+/// \dfgPresetFolder MultipedeSegment/Setters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault position {"x":0, "y":1.2, "z":0}
+/// \dfgPresetDefault scale {"x":1, "y":1, "z":1}
+/// \dfgPresetRange scale (0.001, 2)
+function MultipedeSegment.setBody!(in Quat orientation, in Vec3 position, in Vec3 scale)
+{
+  this.body = Xfo(orientation, position, scale);
+}
+
+/// GETTER (body mesh)
+/// \dfgPresetFolder MultipedeSegment/Getters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.getMeshBody?(out PolygonMesh mesh)
+{
+  mesh = this.meshBody;
+}
+
+/// SETTER (body mesh)
+/// \dfgPresetFolder MultipedeSegment/Setters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.setMeshBody!(in PolygonMesh mesh)
+{
+  this.meshBody = mesh;
+}
+
+/// GETTER (leg roots)
+/// \dfgPresetFolder MultipedeSegment/Getters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.getLegRoots?(out Xfo root0, out Xfo root1)
+{
+  root0 = this.legRoot[0];
+  root1 = this.legRoot[1];
+}
+
+/// SETTER (leg roots)
+/// \dfgPresetFolder MultipedeSegment/Setters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.setLegRoots!(in Xfo root0, in Xfo root1)
+{
+  this.legRoot[0] = makeLegalXfo(root0);
+  this.legRoot[1] = makeLegalXfo(root1);
+}
+
+/// GETTER (leg bone lengths)
+/// \dfgPresetFolder MultipedeSegment/Getters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.getLegBoneLengths?(out Float32 boneLengths0[], out Float32 boneLengths1[])
+{
+  boneLengths0.resize(this.legBoneBasePose[0].size());
+  for (UInt32 i=0;i<boneLengths0.size();i++)
+    boneLengths0[i] = this.legBoneBasePose[0][i].sc.z;
+
+  boneLengths1.resize(this.legBoneBasePose[1].size());
+  for (UInt32 i=0;i<boneLengths1.size();i++)
+    boneLengths1[i] = this.legBoneBasePose[1][i].sc.z;
+}
+
+/// SETTER (leg bone lengths)
+/// \dfgPresetFolder MultipedeSegment/Setters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.setLegBoneLengths!(in Float32 boneLengths0[], in Float32 boneLengths1[])
+{
+  this.setLegBoneBasePose(0, boneLengths0);
+  this.setLegBoneBasePose(1, boneLengths1);
+}
+
+/// GETTER (leg bone scales)
+/// \dfgPresetFolder MultipedeSegment/Getters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.getLegBoneScales?(out Vec3 boneScales0[], out Vec3 boneScales1[])
+{
+  boneScales0.resize(this.legBoneBasePose[0].size());
+  for (UInt32 i=0;i<boneScales0.size();i++)
+    boneScales0[i] = this.legBoneBasePose[0][i].sc;
+
+  boneScales1.resize(this.legBoneBasePose[1].size());
+  for (UInt32 i=0;i<boneScales1.size();i++)
+    boneScales1[i] = this.legBoneBasePose[1][i].sc;
+}
+
+/// SETTER (leg bone scales)
+/// \dfgPresetFolder MultipedeSegment/Setters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.setLegBoneScales!(in Vec3 boneScales0[], in Vec3 boneScales1[])
+{
+  this.setLegBoneBasePose(0, boneScales0);
+  this.setLegBoneBasePose(1, boneScales1);
+}
+
+/// GETTER (leg bone meshes)
+/// \dfgPresetFolder MultipedeSegment/Getters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.getMeshLegBones?(out PolygonMesh meshes0[], out PolygonMesh meshes1[])
+{
+  meshes0.resize(this.meshLegBone[0].size());
+  for (UInt32 i=0;i<meshes0.size();i++)
+    meshes0[i] = this.meshLegBone[0][i];
+
+  meshes1.resize(this.meshLegBone[1].size());
+  for (UInt32 i=0;i<meshes1.size();i++)
+    meshes1[i] = this.meshLegBone[1][i];
+}
+
+/// SETTER (leg bone meshes)
+/// \dfgPresetFolder MultipedeSegment/Setters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.setMeshLegBones!(in PolygonMesh meshes0[], in PolygonMesh meshes1[])
+{
+  UInt32 numMin;
+
+  numMin = Math_min(this.meshLegBone[0].size(), meshes0.size());
+  for (UInt32 i=0;i<numMin;i++)                           this.meshLegBone[0][i] = meshes0[i];
+  for (UInt32 i=numMin;i<this.meshLegBone[0].size();i++)  this.meshLegBone[0][i] = null;
+
+  numMin = Math_min(this.meshLegBone[1].size(), meshes1.size());
+  for (UInt32 i=0;i<numMin;i++)                           this.meshLegBone[1][i] = meshes1[i];
+  for (UInt32 i=numMin;i<this.meshLegBone[1].size();i++)  this.meshLegBone[1][i] = null;
+}
+
+/// GETTER (leg effector step sizes)
+/// \dfgPresetFolder MultipedeSegment/Getters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.getLegEffectorStepSizes?(out Vec3 stepSize0, out Vec3 stepSize1)
+{
+  stepSize0 = this.legEffectorStepSize[0];
+  stepSize1 = this.legEffectorStepSize[1];
+}
+
+/// SETTER (leg effector step sizes)
+/// \dfgPresetFolder MultipedeSegment/Setters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault stepSize0 {"x":3.5, "y":1, "z":2}
+/// \dfgPresetRange stepSize0 (0.01, 10)
+/// \dfgPresetDefault stepSize1 {"x":3.5, "y":1, "z":2}
+/// \dfgPresetRange stepSize1 (0.01, 10)
+function MultipedeSegment.setLegEffectorStepSizes!(in Vec3 stepSize0, in Vec3 stepSize1)
+{
+  this.legEffectorStepSize[0].x = Math_max(0.001, stepSize0.x);
+  this.legEffectorStepSize[0].y = Math_max(0.001, stepSize0.y);
+  this.legEffectorStepSize[0].z = Math_max(0.001, stepSize0.z);
+  this.legEffectorStepSize[1].x = Math_max(0.001, stepSize1.x);
+  this.legEffectorStepSize[1].y = Math_max(0.001, stepSize1.y);
+  this.legEffectorStepSize[1].z = Math_max(0.001, stepSize1.z);
+}
+
+/// GETTER (leg effector step synchronizations)
+/// \dfgPresetFolder MultipedeSegment/Getters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.getLegEffectorStepSynchronizations?(out Float32 strengthForward, out Float32 strengthBackward, out Float32 offset, out Float32 max)
+{
+  strengthForward  = this.legEffectorStepSynchStrengthFwd;
+  strengthBackward = this.legEffectorStepSynchStrengthBwd;
+  offset           = this.legEffectorStepSynchOffset;
+  max              = this.legEffectorStepSynchMax;
+}
+
+/// SETTER (leg effector step synchronizations)
+/// \dfgPresetFolder MultipedeSegment/Getters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetRange strengthForward (0.0, 1.0)
+/// \dfgPresetDefault strengthForward 0.6
+/// \dfgPresetRange strengthBackward (0.0, 1.0)
+/// \dfgPresetDefault strengthBackward 0.05
+/// \dfgPresetRange offset (0.0, 1.0)
+/// \dfgPresetDefault offset 0.3
+/// \dfgPresetRange max (0.0, 1.0)
+/// \dfgPresetDefault max 0.08
+function MultipedeSegment.setLegEffectorStepSynchronizations!(in Float32 strengthForward, in Float32 strengthBackward, in Float32 offset, in Float32 max)
+{
+  this.legEffectorStepSynchStrengthFwd = Math_max(0.0, Math_min(1.0, strengthForward));
+  this.legEffectorStepSynchStrengthBwd = Math_max(0.0, Math_min(1.0, strengthBackward));
+  this.legEffectorStepSynchOffset      = Math_max(0.0, Math_min(1.0, offset));
+  this.legEffectorStepSynchMax         = Math_max(0.0, Math_min(1.0, max));
+}
+
+/// GETTER (leg effector)
+/// \dfgPresetFolder MultipedeSegment/Getters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.getLegEffector?(out Xfo effector0, out Xfo effector1)
+{
+  effector0 = this.legEffector[0];
+  effector1 = this.legEffector[1];
+}
+
+/// SETTER (leg effector)
+/// \dfgPresetFolder MultipedeSegment/Setters
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function MultipedeSegment.setLegEffector!(in Xfo effector0, in Xfo effector1)
+{
+  this.legEffector[0] = makeLegalXfo(effector0);
+  this.legEffector[1] = makeLegalXfo(effector1);
+}
+
+// --------------------------------*
+// ----------------------------*
+// ------------------------*
+// --------------------*
+// ----------------*
+// ------------*
+// --------*
+// ----*
+// *
+
+
+
+// *
+// ----*
+// --------*
+// ------------*
+// ----------------*
+// --------------------*
+// --------Multipede-------*
+// ----------------------------*
+// --------------------------------*
+
+// Multipede class.
+object Multipede
+{
+  MultipedeSegment  seg[];              // array of MultipedeSegments.
+  Vec3              headPosition;       // equals this.seg[0].center.tr after calling this.solve().
+  PolygonMesh       meshObstacle;       // obstacle mesh. If empty then the default world XZ plane is used.
+
+  PolygonMesh       meshDefaultBody;    // the default mesh for the bodies.
+  PolygonMesh       meshDefaultLegBone; // the default mesh for the leg bones.
+};
+
+/// Constructor.
+/// \dfgPresetFolder Multipede/Core/Constants
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault numSegments 16
+/// \dfgPresetRange numSegments (1, 32)
+function Multipede(in UInt32 numSegments)
+{
+  this.setDefaults();
+
+  this.seg.reserve(numSegments);
+  for (UInt32 i=0;i<numSegments;i++)
+    this.seg.push(MultipedeSegment());
+  
+  if (this.seg.size() >= 3)
+  {
+    Float32 f = PI / (this.seg.size() - 1);
+    for (UInt32 i=0;i<this.seg.size();i++)
+      this.seg[i].center.sc.set(0.7 + 0.3 * pow(Math_max(0.0, sin(i * f)), 0.5));
+  }
+  
+  for (UInt32 i=1;i<this.seg.size();i++)
+  {
+    this.seg[i].center.tr.z = this.seg[i - 1].center.tr.z - (this.seg[i - 1].center.sc.z + this.seg[i].center.sc.z);
+    this.seg[i].legEffector[0].tr.z = this.seg[i].center.tr.z;
+    this.seg[i].legEffector[1].tr.z = this.seg[i].center.tr.z;
+  }
+
+  for (UInt32 i=0;i<this.seg.size();i++)
+  {
+    this.seg[i].legEffector[0].tr.x *= this.seg[i].center.sc.x;
+    this.seg[i].legEffector[1].tr.x *= this.seg[i].center.sc.x;
+  }
+
+  if (this.seg.size())
+    this.headPosition = this.seg[0].center.tr;
+}
+
+/// Set all members to default.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function Multipede.setDefaults!()
+{
+  this.seg.resize(0);
+
+  this.headPosition.setNull();
+
+  this.setObstacleMesh(PolygonMesh());
+
+  this.meshDefaultBody = PolygonMesh();
+  this.meshDefaultBody.addCuboid(Xfo(), 2.0, 2.0, 2.0, true, true);
+
+  this.meshDefaultLegBone = PolygonMesh();
+  this.meshDefaultLegBone.addCuboid(Xfo(Quat(), Vec3(0.0, 0.0, 0.5), Vec3(1.0, 1.0, 1.0)), 1.0, 1.0, 1.0, true, true);
+}
+
+/// Multipede[].
+/// \dfgPresetFolder Multipede/Core/Constants
+/// \dfgPresetTitle Multipede[]
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault count 0
+/// \dfgPresetRange count (0, 100)
+/// \dfgPresetDefault numSegments 16
+/// \dfgPresetRange numSegments (1, 32)
+function Multipede[] MultipedeArray(in UInt32 count, in UInt32 numSegments)
+{
+  Multipede array[];
+  array.resize(count);
+  for (UInt32 i=0;i<count;i++)
+    array[i] = Multipede(numSegments);
+  return array;
+}
+
+/// Get obstacle mesh.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function Multipede.getObstacleMesh?(out PolygonMesh mesh)
+{
+  mesh = this.meshObstacle;
+}
+
+/// Set obstacle mesh.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function Multipede.setObstacleMesh!(in PolygonMesh mesh)
+{
+  if (mesh != null && mesh.polygonCount() > 0)
+  {
+    this.meshObstacle = mesh;
+    if (!this.meshObstacle.hasAttribute("normals"))
+    this.meshObstacle.recomputePointNormals(0);
+  }
+  else
+  {
+    this.meshObstacle = PolygonMesh();
+    this.meshObstacle.addPlane(Xfo(), 1000, 1000, 10, 10);
+    this.meshObstacle.recomputePointNormals(0);
+  }
+}
+
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function UInt32 Multipede.getSegmentCount?()
+{
+  return this.seg.size();
+}
+
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault segmentIndex -1
+function UInt32 Multipede.getCenterCount?(in SInt32 segmentIndex)
+{
+  return this.seg.size();
+}
+
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault segmentIndex -1
+function UInt32 Multipede.getBodyCount?(in SInt32 segmentIndex)
+{
+  return this.seg.size();
+}
+
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault segmentIndex -1
+function UInt32 Multipede.getLegRootCount?(in SInt32 segmentIndex)
+{
+  return 2 * this.seg.size();
+}
+
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault segmentIndex -1
+function UInt32 Multipede.getLegBonePoseSolvedCount?(in SInt32 segmentIndex)
+{
+  UInt32 count = 0;
+  for (UInt32 i=0;i<this.seg.size();i++)
+  {
+    count += this.seg[i].legBonePoseSolved[0].size();
+    count += this.seg[i].legBonePoseSolved[1].size();
+  }
+  return count;
+}
+
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault segmentIndex -1
+function UInt32 Multipede.getLegEffectorCount?(in SInt32 segmentIndex)
+{
+  return 2 * this.seg.size();
+}
+
+/// Returns a Xfo representation of the multipede.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault muteAll false
+/// \dfgPresetDefault centers true
+/// \dfgPresetDefault bodies true
+/// \dfgPresetDefault legRoots true
+/// \dfgPresetDefault legBones true
+/// \dfgPresetDefault legEffectors true
+function Multipede.getXfoRepresentation?(in Boolean muteAll, in Boolean centers, in Boolean bodies, in Boolean legRoots, in Boolean legBones, in Boolean legEffectors, out Xfo xfos[])
+{
+  if (muteAll)
+  {
+    xfos.resize(0);
+    return;
+  }
+
+  UInt32 numXfos = 0;
+  if (centers)        numXfos += this.getCenterCount           (-1);
+  if (bodies)         numXfos += this.getBodyCount             (-1);
+  if (legRoots)       numXfos += this.getLegRootCount          (-1);
+  if (legBones)       numXfos += this.getLegBonePoseSolvedCount(-1);
+  if (legEffectors)   numXfos += this.getLegEffectorCount      (-1);
+
+  xfos.reserve(numXfos);
+
+  for (UInt32 i=0;i<this.seg.size();i++)
+  {
+    if (centers)
+    {
+      xfos.push(this.seg[i].center);
+    }
+    if (bodies)
+    {
+      xfos.push(this.seg[i].center.toMat44() * this.seg[i].body.toMat44());
+    }
+    if (legRoots)
+    {
+      Mat44 bodySolved = this.seg[i].center.toMat44() * this.seg[i].body.toMat44();
+      xfos.push(bodySolved * this.seg[i].legRoot[0].toMat44());
+      xfos.push(bodySolved * this.seg[i].legRoot[1].toMat44());
+    }
+    if (legBones)
+    {
+      for (UInt32 k=0;k<2;k++)
+        for (UInt32 j=0;j<this.seg[i].legBonePoseSolved[k].size();j++)
+          xfos.push(this.seg[i].legBonePoseSolved[k][j]);
+    }
+    if (legEffectors)
+    {
+      xfos.push(this.seg[i].legEffector[0]);
+      xfos.push(this.seg[i].legEffector[1]);
+    }
+  }
+}
+
+/// Returns a Xfo representation of an array of multipedes.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetTitle GetXfoRepresentation[]
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault muteAll false
+/// \dfgPresetDefault centers true
+/// \dfgPresetDefault bodies true
+/// \dfgPresetDefault legRoots true
+/// \dfgPresetDefault legBones true
+/// \dfgPresetDefault legEffectors true
+function Xfo[] getXfoRepresentationArray(in Multipede multipedes[], in Boolean muteAll, in Boolean centers, in Boolean bodies, in Boolean legRoots, in Boolean legBones, in Boolean legEffectors)
+{
+  Xfo result[];
+
+  if (muteAll)
+    return result;
+
+  for (UInt32 i=0;i<multipedes.size();i++)
+  {
+    Xfo xfos[];
+    multipedes[i].getXfoRepresentation(muteAll, centers, bodies, legRoots, legBones, legEffectors, xfos);
+    result += xfos;
+  }
+
+  return result;
+}
+
+/// Adds a line representation of the multipede to the io lines object.
+/// \dfgPresetOmit
+function Multipede.getLinesRepresentation?(in Boolean connectingLines, in Boolean centers, in Boolean bodies, in Boolean legRoots, in Boolean legBones, in Boolean legEffectors, in Boolean legEffectorVolumes, in UInt32 detail, in SInt32 segmentIndex, io Lines lines)
+{
+  if (lines == null)
+    return;
+
+  Boolean _connectingLines = connectingLines;
+
+  UInt32 numXfos = 0;
+  if (centers)        numXfos += this.getCenterCount           (segmentIndex);
+  if (bodies)         numXfos += this.getBodyCount             (segmentIndex);
+  if (legRoots)       numXfos += this.getLegRootCount          (segmentIndex);
+  if (legBones)       numXfos += this.getLegBonePoseSolvedCount(segmentIndex);
+  if (legEffectors)   numXfos += this.getLegEffectorCount      (segmentIndex);
+
+  Vec3 bodyPositions[];
+  Vec3 legRootPositions[2][];
+  if (_connectingLines)
+  {
+    if (segmentIndex < 0 )
+    {
+      bodyPositions      .reserve(this.getBodyCount(-1));
+      legRootPositions[0].reserve(this.getLegRootCount(-1) / 2);
+      legRootPositions[1].reserve(this.getLegRootCount(-1) / 2);
+    }
+    else
+    {
+      this.getLinesRepresentation(_connectingLines, false, false, false, false, false, false, detail, -1, lines);
+      _connectingLines = false;
+    }
+  }
+
+  for (UInt32 i=0;i<this.seg.size();i++)
+  {
+    if (segmentIndex >= 0 && i != segmentIndex)
+      continue;
+
+    if (centers)
+    {
+      lines.addAxes(this.seg[i].center, 1.0);
+    }
+
+    if (bodies || _connectingLines)
+    {
+      Xfo xfo(this.seg[i].center.toMat44() * this.seg[i].body.toMat44());
+      if (bodies)            lines.addSphere(xfo, 1.0, detail);
+      if (_connectingLines)  bodyPositions.push(xfo.tr);
+    }
+
+    if (legRoots || _connectingLines)
+    {
+      Mat44 bodySolved = this.seg[i].center.toMat44() * this.seg[i].body.toMat44();
+      Xfo xfo0(bodySolved * this.seg[i].legRoot[0].toMat44());
+      Xfo xfo1(bodySolved * this.seg[i].legRoot[1].toMat44());
+      if (legRoots)
+      {
+        lines.addSphere(xfo0, 1.0, detail);
+        lines.addSphere(xfo1, 1.0, detail);
+      }
+      if (_connectingLines)
+      {
+        legRootPositions[0].push(xfo0.tr);
+        legRootPositions[1].push(xfo1.tr);
+      }
+    }
+
+    if (legBones || _connectingLines)
+    {
+      if (legRoots)
+      {
+        for (UInt32 k=0;k<2;k++)
+          for (UInt32 j=0;j<this.seg[i].legBonePoseSolved[k].size();j++)
+            lines.addBone(this.seg[i].legBonePoseSolved[k][j], detail);
+      }
+      if (_connectingLines)
+      {
+        Vec3 p[];
+        for (UInt32 k=0;k<2;k++)
+        {
+          p.resize(this.seg[i].legBonePoseSolved[k].size() + 1);
+          for (UInt32 j=0;j<this.seg[i].legBonePoseSolved[k].size();j++)
+            p[j] = this.seg[i].legBonePoseSolved[k][j].tr;
+          p[p.size() - 1] = this.seg[i].legEffector[k].tr;
+          lines.addLineStrip(p);
+        }
+      }
+    }
+
+    if (legEffectors)
+    {
+      lines.addAxes(this.seg[i].legEffector[0], 1.0);
+      lines.addAxes(this.seg[i].legEffector[1], 1.0);
+    }
+
+    if (legEffectorVolumes)
+    {
+      // get the volumes' transforms.
+      Xfo xfo0;
+      Xfo xfo1;
+      this.seg[i].getLegEffectorVolumes(xfo0, xfo1);
+
+      // draw XZ areas.
+      lines.addLine(xfo0.transformVector(Vec3(0.0, 0.0, +1.0)), xfo0.transformVector(Vec3(0.0, 0.0, -1.0)));
+      lines.addLine(xfo1.transformVector(Vec3(0.0, 0.0, +1.0)), xfo1.transformVector(Vec3(0.0, 0.0, -1.0)));
+      lines.addArc(xfo0, 1.0, Vec2(0,  PI),     Math_max(7, detail));
+      lines.addArc(xfo1, 1.0, Vec2(PI, TWO_PI), Math_max(7, detail));
+    }
+  }
+
+  lines.addLineStrip(bodyPositions);
+  lines.addLineStrip(legRootPositions[0]);
+  lines.addLineStrip(legRootPositions[1]);
+}
+
+/// Returns a line representation of the multipede.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault muteAll false
+/// \dfgPresetDefault connectingLines true
+/// \dfgPresetDefault centers false
+/// \dfgPresetDefault bodies false
+/// \dfgPresetDefault legRoots false
+/// \dfgPresetDefault legBones false
+/// \dfgPresetDefault legEffectors false
+/// \dfgPresetDefault legEffectorVolumes false
+/// \dfgPresetDefault detail 12
+/// \dfgPresetDefault segmentIndex -1
+/// \dfgPresetRange detail (1, 32)
+function Multipede.getLinesRepresentation?(in Boolean muteAll, in Boolean connectingLines, in Boolean centers, in Boolean bodies, in Boolean legRoots, in Boolean legBones, in Boolean legEffectors, in Boolean legEffectorVolumes, in UInt32 detail, in SInt32 segmentIndex, out Lines lines)
+{
+  lines = Lines();
+
+  if (muteAll)
+    return;
+
+  this.getLinesRepresentation(connectingLines, centers, bodies, legRoots, legBones, legEffectors, legEffectorVolumes, detail, segmentIndex, lines);
+}
+
+/// Returns a line representation of an array of multipedes.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault muteAll false
+/// \dfgPresetDefault connectingLines true
+/// \dfgPresetDefault centers false
+/// \dfgPresetDefault bodies false
+/// \dfgPresetDefault legRoots false
+/// \dfgPresetDefault legBones false
+/// \dfgPresetDefault legEffectors false
+/// \dfgPresetDefault legEffectorVolumes false
+/// \dfgPresetDefault detail 12
+/// \dfgPresetRange detail (1, 32)
+function Lines getLinesRepresentationArray(in Multipede multipedes[], in Boolean muteAll, in Boolean connectingLines, in Boolean centers, in Boolean bodies, in Boolean legRoots, in Boolean legBones, in Boolean legEffectors, in Boolean legEffectorVolumes, in UInt32 detail)
+{
+  Lines result = Lines();
+
+  if (muteAll)
+    return result;
+
+  for (UInt32 i=0;i<multipedes.size();i++)
+    multipedes[i].getLinesRepresentation(connectingLines, centers, bodies, legRoots, legBones, legEffectors, legEffectorVolumes, detail, -1, result);
+
+  return result;
+}
+
+/// Returns a polygon mesh representation of the multipede.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault muteAll false
+/// \dfgPresetDefault bodies true
+/// \dfgPresetDefault legBones true
+/// \dfgPresetDefault mode 0
+/// \dfgPresetCombo mode ("All segments", "First segment", "Last segment", "All segments except first and last", "Array of segment indices")
+function Multipede.getMeshRepresentation?(in Boolean muteAll, in Boolean bodies, in Boolean legBones, in SInt32 mode, in SInt32 segmentIndices[], out PolygonMesh mesh)
+{
+  // init.
+  mesh = PolygonMesh();
+  if (muteAll)
+    return;
+  Xfo xfo[];
+  xfo.resize(1);
+
+  // create array of segment indices.
+  SInt32 indices[];
+  {
+    if (mode <= 0)                            // mode: all segments.
+    {
+      indices.resize(this.seg.size());
+      for (SInt32 i=0;i<indices.size();i++)
+        indices[i] = i;
+    }
+    if (mode == 1 && this.seg.size() > 0)     // mode: first segment.
+    {
+      indices.resize(1);
+      indices[0] = 0;
+    }
+    if (mode == 2 && this.seg.size() > 0)     // mode: last segment.
+    {
+      indices.resize(1);
+      indices[0] = this.seg.size() - 1;
+    }
+    if (mode == 3 && this.seg.size() > 2)     // mode: all segments except first and last.
+    {
+      indices.resize(this.seg.size() - 2);
+      for (SInt32 i=0;i<indices.size();i++)
+        indices[i] = i + 1;
+    }
+    if (mode >= 4)                            // mode: array of segment indices.
+    {
+      indices = segmentIndices;
+    }
+  }
+
+  for (UInt32 i=0;i<indices.size();i++)
+  {
+    if (indices[i] < 0 || indices[i] >= this.seg.size())
+      continue;
+
+    if (bodies)
+    {
+      xfo[0] = this.seg[indices[i]].center.toMat44() * this.seg[indices[i]].body.toMat44();
+      if   (this.seg[indices[i]].meshBody == null)  mesh.mergeMeshClones(this.meshDefaultBody,          xfo, true);
+      else                                          mesh.mergeMeshClones(this.seg[indices[i]].meshBody, xfo, true);
+    }
+
+    if (legBones)
+    {
+      for (UInt32 k=0;k<2;k++)
+        for (UInt32 j=0;j<this.seg[indices[i]].legBonePoseSolved[k].size();j++)
+        {
+          xfo[0] = this.seg[indices[i]].legBonePoseSolved[k][j];
+          if   (this.seg[indices[i]].meshLegBone[k][j] == null)   mesh.mergeMeshClones(this.meshDefaultLegBone,                xfo, true);
+          else                                                    mesh.mergeMeshClones(this.seg[indices[i]].meshLegBone[k][j], xfo, true);
+        }
+    }
+  }
+}
+
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function Multipede.getHeadPosition?(out Vec3 headPosition)
+{
+  headPosition = this.headPosition;
+}
+
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault maxDistance 0.5
+/// \dfgPresetRange maxDistance (0.01, 5)
+function Multipede.setHeadPosition!(in Vec3 headPosition, in Float32 maxDistance)
+{
+  Vec3 v = headPosition - this.headPosition;
+  Float32 vLen = v.length();
+  if (vLen > MULTIPEDESMALLEST && vLen > maxDistance)
+    this.headPosition += maxDistance * v / vLen;
+  else
+    this.headPosition = headPosition;
+}
+
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function Multipede.getSegment?(in SInt32 index, out MultipedeSegment segment)
+{
+  if (this != null && index >= 0 && index < this.seg.size())
+    segment = this.seg[index];
+}
+
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function Multipede.setSegment!(in SInt32 index, in MultipedeSegment segment)
+{
+  if (this != null && index >= 0 && index < this.seg.size())
+    this.seg[index] = segment;
+}
+
+/// Solve the spine.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault mute false
+function Multipede.solveSpine!(in Boolean mute)
+{
+  // nothing to do?
+  if (mute || this.seg.size() == 0)
+    return;
+
+  // invalid obstacle mesh?
+  if (this.meshObstacle == null || this.meshObstacle.polygonCount() == 0)
+  {
+    report("Warning: the multipede obstacle mesh is empty or invalid.");
+    return;
+  }
+
+  // prepare the spatial query and allocate the temporary query object.
+  this.meshObstacle.prepareForSpatialQueries(2 * this.getCenterCount(-1), null);
+  Ref<SpatialQuery> query = this.meshObstacle.beginSpatialQuery();
+
+  // solve.
+  {
+    // set previous centers to current one.
+    for (UInt32 i=0;i<this.seg.size();i++)
+      this.seg[i].centerPrev = this.seg[i].center;
+
+    // solve the 0-th segment's center position.
+    this.seg[0].center.tr = this.headPosition;
+    this.seg[0].centerClosestLocation = query.getClosest(this.seg[0].center.tr, Vec3(1.0, 1.0, 1.0), SCALAR_INFINITE);
+    this.seg[0].center.tr = this.meshObstacle.getPositionAtLocation(this.seg[0].centerClosestLocation);
+
+    // solve the rest if we have two or more segments.
+    if (this.seg.size() > 1)
+    {
+      // create curve from current center positions.
+      Vec3 centerPositions[];
+      centerPositions.resize(this.seg.size());
+      for (UInt32 i=0;i<this.seg.size();i++)
+        centerPositions[i] = this.seg[i].center.tr;
+      MultiCurve curve(centerPositions);
+
+      // solve centers.
+      if (curve.m_length > MULTIPEDESMALLEST)
+      {
+        // positions.
+        Vec3 p;
+        Vec3 t;
+        Float32 d = 0;
+        for (UInt32 i=0;i<this.seg.size()-1;i++)
+        {
+          curve.getAtLength(d, p, t);
+          this.seg[i].centerClosestLocation = query.getClosest(p, Vec3(1.0, 1.0, 1.0), SCALAR_INFINITE);
+          this.seg[i].center.tr = this.meshObstacle.getPositionAtLocation(this.seg[i].centerClosestLocation);
+          d += this.seg[i].body.sc.z + this.seg[i + 1].body.sc.z;
+        }
+        curve.getAtLength(d, p, t);
+        this.seg[this.seg.size() - 1].centerClosestLocation = query.getClosest(p, Vec3(1.0, 1.0, 1.0), SCALAR_INFINITE);
+        this.seg[this.seg.size() - 1].center.tr = this.meshObstacle.getPositionAtLocation(this.seg[this.seg.size() - 1].centerClosestLocation);
+     
+        // orientations.
+        for (UInt32 i=0;i<this.seg.size();i++)
+          centerPositions[i] = this.seg[i].center.tr;
+        curve.set(centerPositions);
+        for (UInt32 i=0;i<this.seg.size();i++)
+        {
+          Vec3 upVector = this.meshObstacle.getNormalAtLocation(this.seg[i].centerClosestLocation);
+          this.seg[i].center.ori.setFromDirectionAndUpvector(-curve.m_cp[i].t, upVector);
+        }
+      }
+
+      // ensure headPosition is up to date.
+      this.headPosition = this.seg[0].center.tr;
+    }
+  }
+
+  // release the temporary query object.
+  this.meshObstacle.endSpatialQuery(query);
+}
+
+/// Solve the leg effectors.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault mute false
+function Multipede.solveLegEffectors!(in Boolean mute)
+{
+  // nothing to do?
+  if (mute || this.seg.size() == 0)
+    return;
+
+  // invalid obstacle mesh?
+  if (this.meshObstacle == null || this.meshObstacle.polygonCount() == 0)
+  {
+    report("Warning: the multipede obstacle mesh is empty or invalid.");
+    return;
+  }
+
+  // prepare the spatial query and allocate the temporary query object.
+  this.meshObstacle.prepareForSpatialQueries(this.getLegEffectorCount(-1), null);
+  Ref<SpatialQuery> query = this.meshObstacle.beginSpatialQuery();
+
+  // solve.
+  for (UInt32 i=0;i<this.seg.size();i++)
+  {
+    /* note: positions and velocities will all be local to the volumes,
+             meaning that all calculations happen in a unit sphere. */
+
+    // get effector volumes.
+    Xfo xfoVol[2];
+    this.seg[i].getLegEffectorVolumes(xfoVol[0], xfoVol[1]);
+
+    // get the matrices of the volumes.
+    Mat44 m[2];
+    Mat44 mInv[2];
+    m[0]    = xfoVol[0].toMat44();
+    m[1]    = xfoVol[1].toMat44();
+    mInv[0] = m[0].inverse();
+    mInv[1] = m[1].inverse();
+
+    // calculate the local center's velocities.
+    Vec3 vel[2];
+    Float32 speed[2];
+    vel[0]   = mInv[0] * (xfoVol[0].tr + (this.seg[i].center.tr - this.seg[i].centerPrev.tr));
+    vel[1]   = mInv[1] * (xfoVol[1].tr + (this.seg[i].center.tr - this.seg[i].centerPrev.tr));
+    speed[0] = vel[0].length();
+    speed[1] = vel[1].length();
+
+    // calculate the local leg effector position.
+    Vec3 pos[2];
+    pos[0] = mInv[0] * this.seg[i].legEffector[0].tr;
+    pos[1] = mInv[1] * this.seg[i].legEffector[1].tr;
+
+    // calculate new leg effector positions.
+    for (UInt32 k=0;k<2;k++)
+    {
+      // on the ground?
+      if (this.seg[i].legEffectorState[k] == false)
+      {
+        Vec3 p = pos[k] - vel[k];
+        // if the effector is no longer in a valid region
+        // of the unit sphere then change its state to "moving".
+        if (   (k == 0 && p.x < -0.1)
+            || (k == 1 && p.x > +0.1)
+            ||  p.length() > 1.0)
+        {
+          this.seg[i].legEffectorState[k]        = true;
+          this.seg[i].legEffectorUnitPos[k]      = 0;
+          this.seg[i].legEffectorUnitPosStart[k] = pos[k];
+        }
+      }
+
+      // moving.
+      if (this.seg[i].legEffectorState[k] == true)
+      {
+        Float32 unitPos = this.seg[i].legEffectorUnitPos[k] + speed[k];
+
+        // synch the effector with previous segment's effector.
+        if (   i > 0                                          // not the 0-th segment.
+            && this.seg[i - 1].legEffectorState[k]            // prev effector is moving.
+            && this.seg[i - 1].legBoneBasePose[k].size() > 1  // prev leg is legal.
+           )
+        {
+          Float32 unitPosTarget = this.seg[i - 1].legEffectorUnitPos[k] - this.seg[i].legEffectorStepSynchOffset;
+          Float32 addToUnitPos;
+          if (unitPos < unitPosTarget)  addToUnitPos = this.seg[i].legEffectorStepSynchStrengthFwd * (unitPosTarget - unitPos);
+          else                          addToUnitPos = this.seg[i].legEffectorStepSynchStrengthBwd * (unitPosTarget - unitPos);
+          addToUnitPos = Math_max(-this.seg[i].legEffectorStepSynchMax, Math_min(this.seg[i].legEffectorStepSynchMax, addToUnitPos));
+          unitPos      = Math_max(0.0, unitPos + addToUnitPos);
+        }
+
+        // calculate new effector unit pos and state.
+        Vec3    unitPosMid = (k == 0 ? Vec3(+0.5, 1.0, 0.0) : Vec3(-0.5, 1.0, 0.0));
+        if (unitPos < 0.5)
+        {
+          pos[k] = this.seg[i].legEffectorUnitPosStart[k].linearInterpolate(unitPosMid, 2 * unitPos);
+          this.seg[i].legEffectorUnitPos[k] = unitPos;
+        }
+        else
+        {
+          Vec3 unitPosEnd = (k == 0 ? Vec3(+0.5, 0.0, 0.5) : Vec3(-0.5, 0.0, 0.5));
+          unitPosEnd = mInv[k] * this.meshObstacle.getPositionAtLocation(query.getClosest(m[k] * unitPosEnd, Vec3(1.0, 1.0, 1.0), SCALAR_INFINITE));
+          if (unitPos < 1.0)
+          {
+            pos[k] = unitPosMid.linearInterpolate(unitPosEnd, 2 * (unitPos - 0.5));
+            this.seg[i].legEffectorUnitPos[k] = unitPos;
+          }
+          else
+          {
+            this.seg[i].legEffectorState[k] = false;
+            pos[k] = unitPosEnd;
+          }
+        }
+      }
+
+      // set new position.
+      this.seg[i].legEffector[k].tr = m[k] * pos[k];
+    }
+  }
+
+  // align orientations.
+  for (UInt32 i=0;i<this.seg.size();i++)
+  {
+    this.seg[i].legEffector[0].ori = this.seg[i].center.ori;
+    this.seg[i].legEffector[1].ori = this.seg[i].center.ori;
+  }
+
+  // release the temporary query object.
+  this.meshObstacle.endSpatialQuery(query);
+}
+
+/// Solve the leg bones.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+/// \dfgPresetDefault mute false
+function Multipede.solveLegBones!(in Boolean mute)
+{
+  // nothing to do?
+  if (mute || this.seg.size() == 0)
+    return;
+
+  // solve.
+  for (UInt32 i=0;i<this.seg.size();i++)
+  {
+    this.seg[i].solveLegBones(0);
+    this.seg[i].solveLegBones(1);
+  }
+}
+
+// --------------------------------*
+// ----------------------------*
+// ------------------------*
+// --------------------*
+// ----------------*
+// ------------*
+// --------*
+// ----*
+// *
+
+// *
+// ----*
+// --------*
+// ------------*
+// ----------------*
+// --------------------*
+// --Ripped-Kraken-Solver--*
+// -(thanks to Eric Thivierge)-*
+// --------------------------------*
+
+// *
+// ----*
+// --------*
+// ------------*
+// ----------------*
+// --------------------*
+// ---------helpers--------*
+// ----------------------------*
+// --------------------------------*
+
+/// Adds a bone to this Lines object.
+/// \dfgPresetOmit
+function Lines.addBone!(in Xfo xfo, UInt32 detail)
+{
+  Xfo t = xfo;
+  t.tr.setNull();
+  t.set(t.ori, xfo.tr + t.transformVector(Vec3(0.0, 0.0, 0.5)), t.sc);
+  this.addSphere(t, 0.5, detail);
+}
+
+/// Returns a legal Xfo from the input Xfo.
+/// \dfgPresetOmit
+function Xfo makeLegalXfo(in Xfo xfo)
+{
+  Quat orientationSafe;
+  Float32 orientationLength = xfo.ori.length();
+  if (orientationLength > MULTIPEDESMALLEST)
+  {
+    if (abs(orientationLength - 1) < 0.0001)  orientationSafe = xfo.ori;
+    else                                      orientationSafe = xfo.ori.unit();
+  }
+  Vec3 scaleSafe = xfo.sc.clamp(MULTIPEDESMALLEST, MULTIPEDEBIGGEST);
+  return Xfo(orientationSafe, xfo.tr, scaleSafe);
+ }
+
+/// Square.
+/// \dfgPresetOmit
+function Scalar sq(Scalar v) {
+  return v * v;
+}
+
+/// N-bone solver from Kraken (thanks to Eric Thivierge).
+/// \dfgPresetOmit
+function Xfo[] solveNBoneIK(
+  in Xfo basePose[],
+  in Vec3 goalPosition,
+  in Scalar rigScale
+) {
+
+  Scalar boneLengths[];
+  Vec3 boneVectors[];
+  Xfo ikpose[];
+  Scalar remainingChainLength = 0;
+  boneLengths.resize(basePose.size());
+  boneVectors.resize(basePose.size());
+  ikpose.resize(basePose.size());
+  for (Integer i = 0; i < basePose.size()-1; i++) {
+    ikpose[i] = basePose[i];
+    // Note: Scaling of bones is currently not supported.
+    boneVectors[i] = basePose[i].inverse().transformVector(basePose[i+1].tr);
+    boneLengths[i] = boneVectors[i].length() * rigScale;
+    remainingChainLength += abs(boneLengths[i] /* basePose[i].sc.x*/);
+  }
+
+  Vec3 chainRootPos = basePose[0].tr;
+  Integer lastBoneIndex = basePose.size()-1;
+  Vec3 fkChainTip = basePose[lastBoneIndex].tr;
+
+  // Apply the soft limit to the distance to the IK goal
+  Vec3 vecToIkGoal = goalPosition - chainRootPos;
+  Scalar distToIkGoal = vecToIkGoal.length();
+  Quat chainOffsetRotation;
+
+  for (Integer i = 0; i < basePose.size()-1; i++) {
+    Vec3 vecToFkChainTip;
+    Xfo boneXfo;
+    Integer boneIndex = i;
+    boneXfo = basePose[i];
+    if (i == 0) {
+      vecToFkChainTip = fkChainTip - boneXfo.tr;
+    }
+    else {
+      // Transform the bone position by the overall chain offset.
+      vecToFkChainTip = fkChainTip - (chainRootPos + (chainOffsetRotation.rotateVector((boneXfo.tr - chainRootPos))));
+
+      // Calculate a new pose position based on the parent bones new orientation
+      boneXfo.tr = ikpose[i-1].transformVector(boneVectors[i-1]);
+    }
+    Scalar distToFkChainTip = vecToFkChainTip.length();
+    vecToFkChainTip *= 1.0 / distToFkChainTip;
+
+    vecToIkGoal = goalPosition - boneXfo.tr;
+    distToIkGoal = vecToIkGoal.length();
+    vecToIkGoal *= 1.0 / distToIkGoal; // normalize the vector
+    Scalar boneLength = abs(boneLengths[i] /* boneXfo.sc.x*/);
+
+    if (i == 0) {
+      // For the first bone calculate and store the overall chain offset towards the ik target
+      chainOffsetRotation.setFrom2Vectors(vecToFkChainTip, vecToIkGoal);
+
+      fkChainTip = boneXfo.tr + (vecToIkGoal * distToFkChainTip);
+      boneXfo.ori = chainOffsetRotation * boneXfo.ori;
+    }
+    else {
+      // Apply the chain offset, and apply any incremental correction.
+      // This additional correction is required due to a new bone position based on the new parent orientation
+      Quat boneOffsetRotation;
+      boneOffsetRotation.setFrom2Vectors(vecToFkChainTip, vecToIkGoal);
+      boneXfo.ori = boneOffsetRotation * chainOffsetRotation * boneXfo.ori;
+    }
+
+    // Based on the bone index, select an appropriate method to solve
+    if (i <= (basePose.size() - 3)) {
+      // Remove the current bones length from the chain.
+      remainingChainLength -= boneLength;
+      Vec3 boneLengthVector;
+      //if(boneLengths[i] < 0.0 /* || boneXfo.sc.x < 0.0*/)
+      //  boneLengthVector = boneXfo.ori.rotateVector(Vec3(-1.0, 0.0, 0.0));
+      //else
+        boneLengthVector = boneXfo.ori.rotateVector(boneVectors[i].unit());
+
+      // this is the current angle of the bone.
+      Scalar fkBoneAngle = acos(Math_clamp(boneLengthVector.dot(vecToIkGoal), -1.0, 1.0));
+
+      if(fkBoneAngle < 0.0001){
+        // If the bone is already pointing directly at the target, we can't work with it.
+        // in debug mode, report and error...
+        continue;
+      }
+
+      Vec3 bendAxis = vecToIkGoal.cross(boneLengthVector);
+      bendAxis.setUnit();
+      Scalar ikBoneAngle;
+
+      if (i == (basePose.size() - 3)) {
+        // Use trigonometry to determine the ikBoneAngle
+        // Law of cosines. a = BoneLength; b = Child BoneLength; c = Distance to the Ik Goal;
+        ikBoneAngle = acos(Math_clamp((sq(boneLength) + sq(distToIkGoal) - sq(remainingChainLength)) / (2.0 * boneLength * distToIkGoal), - 1.0, 1.0));
+      }
+      else {
+        Scalar maxFkBoneAngle, maxIkBoneAngle;
+
+        // distance from the bone tip to the ik gloal
+        if (distToFkChainTip > remainingChainLength) {
+          // Using the law of cosines, calculate the maximum angle of this bone using the fk Chain tip
+          maxFkBoneAngle = acos(Math_clamp((sq(boneLength) + sq(distToFkChainTip) - sq(remainingChainLength)) / (2.0 * boneLength * distToFkChainTip), - 1.0, 1.0));
+        }
+        else {
+          // Add on the remaining chain length as radians.
+          maxFkBoneAngle = acos(Math_clamp((boneLength * 0.5) / remainingChainLength, 0.0, 1.0));
+          maxFkBoneAngle += (remainingChainLength - distToFkChainTip) / boneLength;
+        }
+
+        // distance from the bone tip to the ik gloal
+        if (distToIkGoal > remainingChainLength) {
+          // Using the law of cosines, calculate the maximum angle of this bone using the fk Chain tip
+          maxIkBoneAngle = acos(Math_clamp((sq(boneLength) + sq(distToIkGoal) - sq(remainingChainLength)) / (2.0 * boneLength * distToIkGoal), - 1.0, 1.0));
+        }
+        else {
+          // Add on the remaining chain length as radians.
+          maxIkBoneAngle = acos(Math_clamp((boneLength * 0.5) / remainingChainLength, 0.0, 1.0));
+          maxIkBoneAngle += (remainingChainLength - distToIkGoal) / boneLength;
+        }
+
+        ikBoneAngle = maxIkBoneAngle * (fkBoneAngle / maxFkBoneAngle);
+      }
+
+      // Subtract off the current angle the bone has with the vecToIkGoal to keep the delta
+      Scalar deltaBoneAngle = (ikBoneAngle - fkBoneAngle);
+
+      // Apply the rotation to the current bones
+      Quat offset;
+      offset.setFromAxisAndAngle(bendAxis, deltaBoneAngle);
+      boneXfo.ori = offset * boneXfo.ori;
+
+    }
+
+    ikpose[boneIndex] = boneXfo;
+  }
+  ikpose[lastBoneIndex].tr = ikpose[lastBoneIndex-1].transformVector(boneVectors[lastBoneIndex-1]);
+  return ikpose;
+}
+
+/// N-bone solver with up vector from Kraken (thanks to Eric Thivierge).
+/// \dfgPresetOmit
+function Xfo[] solveNBoneIKWithUpVector(
+  in Xfo basePose[],
+  in Vec3 goalPosition,
+  in Vec3 upVPosition,
+  in Vec3 upVector,
+  in Scalar rigScale
+) {
+  Vec3 chainRootPos = basePose[0].tr;
+  Integer lastBoneIndex = basePose.size()-1;
+  Vec3 fkChainTip = basePose[lastBoneIndex].tr;
+  Vec3 vecToFkChainTip = (fkChainTip - chainRootPos).unit();
+  Vec3 vecToIkGoal = (goalPosition - chainRootPos).unit();
+
+  Quat chainOffsetRotation;
+  chainOffsetRotation.setFrom2Vectors(vecToFkChainTip, vecToIkGoal);
+
+  // Compute the current upvector of the chain using the first joints xfo.
+  Vec3 fkChainUp = (chainOffsetRotation * basePose[0].ori).rotateVector(upVector);
+  Vec3 vecToUpVPos = upVPosition - chainRootPos;
+
+  // project the vectors onto the plane defined by the root and root to goal vector
+  vecToUpVPos = (vecToUpVPos - (vecToUpVPos.dot(vecToIkGoal) * vecToIkGoal)).unit();
+  fkChainUp = (fkChainUp - (fkChainUp.dot(vecToIkGoal) * vecToIkGoal)).unit();
+
+
+  Scalar angle = fkChainUp.angleTo(vecToUpVPos);
+  if( fkChainUp.cross(vecToUpVPos).dot(vecToIkGoal) < 0.0 )
+    angle = -angle;
+
+  // Apply the upvector alignment to the chain rotation.
+  Quat upVectorOffset;
+  upVectorOffset.setFromAxisAndAngle(vecToIkGoal, angle);
+  chainOffsetRotation = upVectorOffset * chainOffsetRotation;
+
+  // compute a new aligned chain that includes the re-orientation using the upvector.
+  Xfo alignedPose[];
+  alignedPose.resize(basePose.size());
+  for (Integer i = 0; i < basePose.size(); i++) {
+    alignedPose[i] = basePose[i];
+    alignedPose[i].ori = chainOffsetRotation * basePose[i].ori;
+    if(i==0)
+      alignedPose[i].tr = chainRootPos;
+    else
+      alignedPose[i].tr = alignedPose[i-1].transformVector(basePose[i-1].inverse().transformVector(basePose[i].tr));
+  }
+
+  // Now solve the chain like normal.
+  return solveNBoneIK(alignedPose, goalPosition, rigScale);
+}
+
+// --------------------------------*
+// ----------------------------*
+// ------------------------*
+// --------------------*
+// ----------------*
+// ------------*
+// --------*
+// ----*
+// *
+
+

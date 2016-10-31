@@ -1,0 +1,97 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+    "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+    "uiTooltip" : "Returns a polygon mesh representation of the multipede.\n\nSupported types:\n  this: Multipede\n  muteAll: Boolean\n  bodies: Boolean\n  legBones: Boolean\n  mode: SInt32\n  segmentIndices: SInt32[]\n  mesh: PolygonMesh\n"
+    },
+  "title" : "GetMeshRepresentation",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "this",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "Multipede"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "muteAll",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : false
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "bodies",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : true
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "legBones",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : true
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiCombo" : "(\"All segments\", \"First segment\", \"Last segment\", \"All segments except first and last\", \"Array of segment indices\")"
+        },
+      "name" : "mode",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "SInt32" : 0
+        },
+      "execPortType" : "In",
+      "typeSpec" : "SInt32"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "segmentIndices",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "SInt32[]"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 51,\n  \"g\" : 1,\n  \"b\" : 106\n  }"
+        },
+      "name" : "mesh",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "PolygonMesh"
+      }
+    ],
+  "extDeps" : {
+    "Multipede" : "*"
+    },
+  "presetGUID" : "A773651CC7614861A54140BD431F4947",
+  "code" : "require Multipede;
+
+dfgEntry {
+  this.getMeshRepresentation(muteAll, bodies, legBones, mode, segmentIndices, mesh);
+}
+"
+  }

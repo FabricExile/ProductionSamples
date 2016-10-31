@@ -1,0 +1,54 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+    "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+    "uiTooltip" : "Supported types:\n  this: Multipede\n  segmentIndex: SInt32\n  result: UInt32\n"
+    },
+  "title" : "GetLegRootCount",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "this",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "Multipede"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "segmentIndex",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "SInt32" : -1
+        },
+      "execPortType" : "In",
+      "typeSpec" : "SInt32"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "result",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "UInt32"
+      }
+    ],
+  "extDeps" : {
+    "Multipede" : "*"
+    },
+  "presetGUID" : "D70F24D04AA9D3F9D0710327237B9E22",
+  "code" : "require Multipede;
+
+dfgEntry {
+  result = this.getLegRootCount(segmentIndex);
+}
+"
+  }

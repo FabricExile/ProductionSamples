@@ -1,0 +1,57 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+    "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+    "uiTooltip" : "SETTER (leg bone meshes)\n\nSupported types:\n  this: MultipedeSegment\n  meshes0: PolygonMesh[]\n  meshes1: PolygonMesh[]\n"
+    },
+  "title" : "SetMeshLegBones",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "this",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "MultipedeSegment"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 51,\n  \"g\" : 1,\n  \"b\" : 106\n  }"
+        },
+      "name" : "meshes0",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "PolygonMesh[]"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 51,\n  \"g\" : 1,\n  \"b\" : 106\n  }"
+        },
+      "name" : "meshes1",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "PolygonMesh[]"
+      }
+    ],
+  "extDeps" : {
+    "Multipede" : "*"
+    },
+  "presetGUID" : "F36D4A14DDB575FA818681098EF8F39B",
+  "code" : "require Multipede;
+
+dfgEntry {
+  this.setMeshLegBones(meshes0, meshes1);
+}
+"
+  }
