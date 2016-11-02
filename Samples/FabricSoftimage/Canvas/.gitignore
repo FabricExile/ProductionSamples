@@ -2,8 +2,11 @@
 # Copyright (c) 2010-2016, Fabric Software Inc. All rights reserved.
 #
 
-# ignore XSI caches
+# ignore everything in backup.
+/Backup/*/
+
+# ignore all files in cache.
 /Cache/*.*
 
-# ignore user folders in system
+# ignore user folders in system.
 /system/*/
