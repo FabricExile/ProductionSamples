@@ -3,4 +3,7 @@
 #
 
 # ignore XSI caches
-Cache/*.cache*
+/Cache/*.*
+
+# ignore user folders in system
+/system/*/
