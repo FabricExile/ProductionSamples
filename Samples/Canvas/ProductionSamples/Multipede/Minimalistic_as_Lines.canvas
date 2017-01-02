@@ -4,12 +4,12 @@
     "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.3199187517166138,\n    \"y\" : -0.7369351387023926,\n    \"z\" : 0.5989111661911011,\n    \"t\" : 18.17201042175293\n    },\n  \"row1\" : {\n    \"x\" : -4.371738214103971e-06,\n    \"y\" : 0.6289438605308533,\n    \"z\" : 0.7809193134307861,\n    \"t\" : 23.98879623413086\n    },\n  \"row2\" : {\n    \"x\" : -0.9524404406547546,\n    \"y\" : -0.2475348263978958,\n    \"z\" : 0.2011668533086777,\n    \"t\" : 4.835444927215576\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
     "timeline_start" : "1",
     "timeline_loopMode" : "1",
-    "uiGraphZoom" : "{\n  \"value\" : 0.3634611964225769\n  }",
+    "uiGraphZoom" : "{\n  \"value\" : 0.2882366478443146\n  }",
     "timeline_simMode" : "0",
     "camera_focalDistance" : "29.62772560119629",
     "timeline_current" : "5",
     "timeline_end" : "250",
-    "uiGraphPan" : "{\n  \"x\" : 731.7600749049634,\n  \"y\" : 237.0073539808745\n  }"
+    "uiGraphPan" : "{\n  \"x\" : 756.0365104973562,\n  \"y\" : 187.9546023951034\n  }"
     },
   "title" : "",
   "ports" : [
@@ -69,7 +69,7 @@
     {
       "objectType" : "Set",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":-868.332880497,\"y\":311.079305887}"
+        "uiGraphPos" : "{\"x\":-868.332885742,\"y\":309.482019782}"
         },
       "name" : "set",
       "ports" : [
@@ -119,7 +119,7 @@
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":961.56464076,\"y\":-180.797774315}",
+        "uiGraphPos" : "{\n  \"x\" : 961.5646833181381,\n  \"y\" : -180.7977543473244\n  }",
         "uiCollapsedState" : "1"
         },
       "name" : "If_1",
@@ -194,7 +194,7 @@
     {
       "objectType" : "Set",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":794.174076796,\"y\":-135.657790184}",
+        "uiGraphPos" : "{\"x\":793.39855957,\"y\":-133.330968797}",
         "uiCollapsedState" : "2"
         },
       "name" : "set_2",
@@ -211,7 +211,7 @@
       "objectType" : "Get",
       "metadata" : {
         "uiComment" : "the variable containing\nour multipede",
-        "uiGraphPos" : "{\"x\":-869.6013131140001,\"y\":257.326864481}",
+        "uiGraphPos" : "{\"x\":-870.399966061,\"y\":255.729578376}",
         "uiCommentExpanded" : "true"
         },
       "name" : "get_2",
@@ -798,7 +798,7 @@
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":520.714233398,\"y\":-183.388883591}",
+        "uiGraphPos" : "{\"x\":519.9387207029999,\"y\":-181.062063158}",
         "uiCollapsedState" : "0"
         },
       "name" : "Multipede_1",
@@ -1018,8 +1018,8 @@
       "objectType" : "User",
       "metadata" : {
         "uiTitle" : "solve the spine, the leg effectors and the leg bones",
-        "uiGraphPos" : "{\n  \"x\" : -74.87016844749451,\n  \"y\" : 323.6331565380096\n  }",
-        "uiGraphSize" : "{\"w\":587.149597168,\"h\":149.664978027}"
+        "uiGraphPos" : "{\"x\":-94.7007827759,\"y\":323.633148193}",
+        "uiGraphSize" : "{\"w\":606.979919434,\"h\":149.664978027}"
         },
       "name" : "backDrop_8",
       "ports" : []
@@ -3904,7 +3904,7 @@ dfgEntry {
       "code" : "require InlineDrawing;
 
 dfgEntry {
-  this.drawLines(name, color, specular, specFactor, transform, lines, dummyResult, instance);
+ if(this) this.drawLines(name, color, specular, specFactor, transform, lines, dummyResult, instance);
 }
 "
       }
