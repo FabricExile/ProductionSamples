@@ -4,12 +4,12 @@
     "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : -0.03613604605197907,\n    \"y\" : -0.8518401384353638,\n    \"z\" : 0.524891197681427,\n    \"t\" : 18.4416618347168\n    },\n  \"row1\" : {\n    \"x\" : -7.785720868014323e-07,\n    \"y\" : 0.5228389501571655,\n    \"z\" : 0.8562914729118347,\n    \"t\" : 30.21053504943848\n    },\n  \"row2\" : {\n    \"x\" : -1.004140138626099,\n    \"y\" : 0.03065484762191773,\n    \"z\" : -0.01888994313776493,\n    \"t\" : -1.743006467819214\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
     "timeline_start" : "1",
     "timeline_loopMode" : "1",
-    "uiGraphZoom" : "{\n  \"value\" : 0.385035514831543\n  }",
+    "uiGraphZoom" : "{\n  \"value\" : 0.3676773607730866\n  }",
     "timeline_simMode" : "0",
     "camera_focalDistance" : "34.32106781005859",
     "timeline_current" : "28",
     "timeline_end" : "250",
-    "uiGraphPan" : "{\n  \"x\" : 724.8306300568511,\n  \"y\" : 249.7589647269924\n  }"
+    "uiGraphPan" : "{\n  \"x\" : 730.4058871256038,\n  \"y\" : 238.4993393337554\n  }"
     },
   "title" : "",
   "ports" : [
@@ -69,7 +69,7 @@
     {
       "objectType" : "Set",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":-868.332880497,\"y\":311.079305887}"
+        "uiGraphPos" : "{\"x\":-868.332885742,\"y\":309.191027522}"
         },
       "name" : "set",
       "ports" : [
@@ -194,7 +194,7 @@
     {
       "objectType" : "Set",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":794.174076796,\"y\":-135.657790184}",
+        "uiGraphPos" : "{\"x\":792.700305223,\"y\":-133.447247386}",
         "uiCollapsedState" : "2"
         },
       "name" : "set_2",
@@ -211,7 +211,7 @@
       "objectType" : "Get",
       "metadata" : {
         "uiComment" : "the variable containing\nour multipede",
-        "uiGraphPos" : "{\"x\":-869.6013131140001,\"y\":257.326864481}",
+        "uiGraphPos" : "{\"x\":-869.601318359,\"y\":255.438586116}",
         "uiCommentExpanded" : "true"
         },
       "name" : "get_2",
@@ -798,7 +798,7 @@
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":520.714233398,\"y\":-183.388883591}",
+        "uiGraphPos" : "{\"x\":519.240466356,\"y\":-181.178341746}",
         "uiCollapsedState" : "0"
         },
       "name" : "Multipede_1",
@@ -1119,7 +1119,7 @@
           }
         ],
       "executable" : "Fabric.Exts.InlineDrawing.Display.DrawMesh",
-      "presetGUID" : "59E079DAED6CF13C89D28C7720F48B18"
+      "presetGUID" : "925A6215D7B31A1C29753452A6A7C35C"
       },
     {
       "objectType" : "User",
@@ -3542,7 +3542,7 @@ dfgEntry {
         "InlineDrawing" : "*",
         "Geometry" : "*"
         },
-      "presetGUID" : "59E079DAED6CF13C89D28C7720F48B18",
+      "presetGUID" : "925A6215D7B31A1C29753452A6A7C35C",
       "nodes" : [
         {
           "objectType" : "Inst",
@@ -3787,7 +3787,7 @@ dfgEntry {
       "code" : "require InlineDrawing;
 
 dfgEntry {
-  this.drawPolygonMesh(name, color, specular, specFactor, transform, mesh, wireFrame, doubleSided, dummyResult, instance);
+  if(this) this.drawPolygonMesh(name, color, specular, specFactor, transform, mesh, wireFrame, doubleSided, dummyResult, instance);
 }
 "
       },

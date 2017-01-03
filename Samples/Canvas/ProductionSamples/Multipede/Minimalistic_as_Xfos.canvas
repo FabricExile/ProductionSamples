@@ -1,15 +1,15 @@
 {
   "objectType" : "Graph",
   "metadata" : {
-    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : -0.2348883002996445,\n    \"y\" : -0.4494717121124268,\n    \"z\" : 0.8660591840744019,\n    \"t\" : 42.5843620300293\n    },\n  \"row1\" : {\n    \"x\" : 1.602031034053653e-06,\n    \"y\" : 0.8866944313049316,\n    \"z\" : 0.4643906056880951,\n    \"t\" : 23.51679992675781\n    },\n  \"row2\" : {\n    \"x\" : -0.9769299030303955,\n    \"y\" : 0.1080702841281891,\n    \"z\" : -0.2082303762435913,\n    \"t\" : -11.2146167755127\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
+    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : -0.2348883002996445,\n    \"y\" : -0.4494717419147492,\n    \"z\" : 0.8660591244697571,\n    \"t\" : 42.5843620300293\n    },\n  \"row1\" : {\n    \"x\" : 1.557114273964544e-06,\n    \"y\" : 0.8866944313049316,\n    \"z\" : 0.4643906652927399,\n    \"t\" : 23.51679992675781\n    },\n  \"row2\" : {\n    \"x\" : -0.9769299626350403,\n    \"y\" : 0.1080702319741249,\n    \"z\" : -0.2082303762435913,\n    \"t\" : -11.2146167755127\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
     "timeline_start" : "1",
     "timeline_loopMode" : "1",
-    "uiGraphZoom" : "{\n  \"value\" : 0.385035514831543\n  }",
+    "uiGraphZoom" : "{\n  \"value\" : 0.3676773607730866\n  }",
     "timeline_simMode" : "0",
     "camera_focalDistance" : "48.80381011962891",
     "timeline_current" : "28",
     "timeline_end" : "250",
-    "uiGraphPan" : "{\n  \"x\" : 724.8306300568511,\n  \"y\" : 249.7589647269924\n  }"
+    "uiGraphPan" : "{\n  \"x\" : 730.4978064657971,\n  \"y\" : 238.4993393337554\n  }"
     },
   "title" : "",
   "ports" : [
@@ -69,7 +69,7 @@
     {
       "objectType" : "Set",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":-868.332880497,\"y\":311.079305887}"
+        "uiGraphPos" : "{\"x\":-868.832885742,\"y\":310.079315186}"
         },
       "name" : "set",
       "ports" : [
@@ -194,7 +194,7 @@
     {
       "objectType" : "Set",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":794.174076796,\"y\":-135.657790184}",
+        "uiGraphPos" : "{\"x\":793.1284173730001,\"y\":-133.566603422}",
         "uiCollapsedState" : "2"
         },
       "name" : "set_2",
@@ -211,7 +211,7 @@
       "objectType" : "Get",
       "metadata" : {
         "uiComment" : "the variable containing\nour multipede",
-        "uiGraphPos" : "{\"x\":-869.6013131140001,\"y\":257.326864481}",
+        "uiGraphPos" : "{\"x\":-870.101318359,\"y\":256.326873779}",
         "uiCommentExpanded" : "true"
         },
       "name" : "get_2",
@@ -798,7 +798,7 @@
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":520.714233398,\"y\":-183.388883591}",
+        "uiGraphPos" : "{\"x\":519.668578506,\"y\":-181.297697783}",
         "uiCollapsedState" : "0"
         },
       "name" : "Multipede_1",
@@ -1064,7 +1064,7 @@
           }
         ],
       "executable" : "Fabric.Exts.InlineDrawing.Display.DrawXfoArray",
-      "presetGUID" : "524A45D7B01EF01D5D5CC26943208611"
+      "presetGUID" : "0D8E054CA3BBA11164FD66792B3C8511"
       },
     {
       "objectType" : "Inst",
@@ -3471,7 +3471,7 @@ dfgEntry {
       "extDeps" : {
         "InlineDrawing" : "*"
         },
-      "presetGUID" : "524A45D7B01EF01D5D5CC26943208611",
+      "presetGUID" : "0D8E054CA3BBA11164FD66792B3C8511",
       "nodes" : [
         {
           "objectType" : "Inst",
@@ -3923,7 +3923,7 @@ dfgEntry {
       "code" : "require InlineDrawing;
 
 dfgEntry {
-  this.drawAxesInstances(name, transforms, dummyResult, instance);
+  if(this) this.drawAxesInstances(name, transforms, dummyResult, instance);
 }
 "
       },
