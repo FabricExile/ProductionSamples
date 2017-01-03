@@ -729,6 +729,41 @@ function UInt32 Multipede.getLegEffectorCount?(in SInt32 segmentIndex)
   return 2 * this.seg.size();
 }
 
+/// Returns the (rough) bounding sphere for the multipede.
+/// If no bounding sphere could be calculated then
+/// the center is (0, 0, 0) and the radius -1.
+/// \dfgPresetFolder Multipede/Core
+/// \dfgPresetColor Color(155, 155, 155)
+/// \dfgPresetHeaderColor Color(100, 120, 90)
+/// \dfgPresetTextColor Color(10, 10, 10)
+function Multipede.getBoundingSphere?(out Vec3 center, out Float32 radius)
+{
+  // nothing to do?
+  if (this.seg.size() == 0)
+  {
+    center.setNull();
+    radius = -1.0;
+    return;
+  }
+
+  // calculate bounding box.
+  Vec3 bboxMin = this.seg[0].center.tr;
+  Vec3 bboxMax = bboxMin;
+  for (UInt32 i=0;i<this.seg.size();i++)
+  {
+    bboxMin = Math_min(bboxMin, this.seg[i].center.tr);
+    bboxMin = Math_min(bboxMin, this.seg[i].legEffector[0].tr);
+    bboxMin = Math_min(bboxMin, this.seg[i].legEffector[1].tr);
+    bboxMax = Math_max(bboxMax, this.seg[i].center.tr);
+    bboxMax = Math_max(bboxMax, this.seg[i].legEffector[0].tr);
+    bboxMax = Math_max(bboxMax, this.seg[i].legEffector[1].tr);
+  }
+
+  // calculate bounding sphere from box.
+  center = 0.5 * (bboxMin + bboxMax);
+  radius = center.distanceTo(bboxMin);
+}
+
 /// Returns a Xfo representation of the multipede.
 /// \dfgPresetFolder Multipede/Core
 /// \dfgPresetColor Color(155, 155, 155)
