@@ -1,16 +1,16 @@
 {
   "objectType" : "Graph",
   "metadata" : {
-    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.762978732585907,\n    \"y\" : -0.6267658472061157,\n    \"z\" : 0.1602307260036469,\n    \"t\" : 8.522714614868164\n    },\n  \"row1\" : {\n    \"x\" : 1.789012458175421e-06,\n    \"y\" : 0.2476083785295487,\n    \"z\" : 0.9693143367767334,\n    \"t\" : 78.93927001953125\n    },\n  \"row2\" : {\n    \"x\" : -0.6471787095069885,\n    \"y\" : -0.7389127016067505,\n    \"z\" : 0.1889035701751709,\n    \"t\" : 18.55028533935547\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
+    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.03733663633465767,\n    \"y\" : -0.7310957908630371,\n    \"z\" : 0.6816279292106628,\n    \"t\" : 122.6446075439453\n    },\n  \"row1\" : {\n    \"x\" : 3.667475994006963e-06,\n    \"y\" : 0.6818168759346008,\n    \"z\" : 0.7319125533103943,\n    \"t\" : 128.9109039306641\n    },\n  \"row2\" : {\n    \"x\" : -0.9997914433479309,\n    \"y\" : -0.02729985862970352,\n    \"z\" : 0.02545768208801746,\n    \"t\" : 6.163394927978516\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
     "timeline_start" : "1",
     "timeline_loopMode" : "1",
-    "uiGraphZoom" : "{\n  \"value\" : 0.1144458577036858\n  }",
+    "uiGraphZoom" : "{\n  \"value\" : 0.8734285235404968\n  }",
     "timeline_simMode" : "0",
-    "camera_focalDistance" : "91.06437683105469",
-    "timeline_current" : "802",
+    "camera_focalDistance" : "188.9131774902344",
+    "timeline_current" : "1",
     "timeline_timerInterval" : "20",
     "timeline_end" : "2000",
-    "uiGraphPan" : "{\n  \"x\" : 841.1857787538174,\n  \"y\" : 81.67293085598703\n  }"
+    "uiGraphPan" : "{\n  \"x\" : 1516.192781073938,\n  \"y\" : 294.3985414524508\n  }"
     },
   "title" : "",
   "ports" : [
@@ -603,7 +603,7 @@
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":-202.443267822,\"y\":1080.92944336}"
+        "uiGraphPos" : "{\"x\":-202.443267822,\"y\":973.198002815}"
         },
       "name" : "Simulate",
       "ports" : [
@@ -736,7 +736,7 @@
     {
       "objectType" : "Get",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":-362.443267822,\"y\":1080.92944336}"
+        "uiGraphPos" : "{\"x\":-362.443267822,\"y\":973.198002815}"
         },
       "name" : "get_2",
       "ports" : [
@@ -2630,7 +2630,7 @@ dfgEntry
               "name" : "strength",
               "nodePortType" : "In",
               "defaultValues" : {
-                "Scalar" : 1
+                "Scalar" : 0.5
                 },
               "outsidePortType" : "In"
               }
@@ -4286,7 +4286,7 @@ dfgEntry
               "name" : "minSpeed",
               "nodePortType" : "In",
               "defaultValues" : {
-                "Scalar" : 0.5
+                "Scalar" : 2
                 },
               "outsidePortType" : "In"
               },
@@ -4295,7 +4295,7 @@ dfgEntry
               "name" : "maxSpeed",
               "nodePortType" : "In",
               "defaultValues" : {
-                "Scalar" : 5
+                "Scalar" : 10
                 },
               "outsidePortType" : "In"
               }
@@ -6147,7 +6147,7 @@ dfgEntry
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":-158.706825256,\"y\":1182.93847656}",
+        "uiGraphPos" : "{\"x\":-158.706817627,\"y\":1075.20776844}",
         "uiCollapsedState" : "1"
         },
       "name" : "drawing",
@@ -6851,8 +6851,8 @@ dfgEntry
       "objectType" : "Inst",
       "metadata" : {
         "uiComment" : "VELOCITY\n(flocking)",
-        "uiGraphPos" : "{\"x\":-524.378112793,\"y\":286.105072021}",
-        "uiCollapsedState" : "2",
+        "uiGraphPos" : "{\"x\":-524.921081543,\"y\":208.046732426}",
+        "uiCollapsedState" : "1",
         "uiCommentExpanded" : "true"
         },
       "name" : "Flocking",
@@ -6872,7 +6872,7 @@ dfgEntry
           "name" : "flockingStrength",
           "nodePortType" : "In",
           "defaultValues" : {
-            "Scalar" : 1
+            "Scalar" : 0.3330000042915344
             }
           },
         {
@@ -6880,7 +6880,7 @@ dfgEntry
           "name" : "viewConeDistance",
           "nodePortType" : "In",
           "defaultValues" : {
-            "Scalar" : 5
+            "Scalar" : 15
             }
           },
         {
@@ -6888,7 +6888,7 @@ dfgEntry
           "name" : "viewConeDegrees",
           "nodePortType" : "In",
           "defaultValues" : {
-            "Scalar" : 270
+            "Scalar" : 225
             }
           },
         {
@@ -6937,7 +6937,7 @@ dfgEntry
           "name" : "privacyStrength",
           "nodePortType" : "In",
           "defaultValues" : {
-            "Scalar" : 4
+            "Scalar" : 2
             }
           },
         {
@@ -6955,6 +6955,19 @@ dfgEntry
           "defaultValues" : {
             "Scalar" : 0.75
             }
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "useBoundingSpheres",
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "Boolean" : true
+            }
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "boundingSpheres",
+          "nodePortType" : "In"
           }
         ],
       "definition" : {
@@ -7000,7 +7013,7 @@ dfgEntry
           {
             "objectType" : "ExecPort",
             "metadata" : {
-              "uiRange" : "(0, 10)"
+              "uiRange" : "(0, 30)"
               },
             "name" : "viewConeDistance",
             "nodePortType" : "Out",
@@ -7099,6 +7112,20 @@ dfgEntry
             "nodePortType" : "Out",
             "execPortType" : "In",
             "typeSpec" : "Scalar"
+            },
+          {
+            "objectType" : "ExecPort",
+            "name" : "useBoundingSpheres",
+            "nodePortType" : "Out",
+            "execPortType" : "In",
+            "typeSpec" : "Boolean"
+            },
+          {
+            "objectType" : "ExecPort",
+            "name" : "boundingSpheres",
+            "nodePortType" : "Out",
+            "execPortType" : "In",
+            "typeSpec" : "Vec4[]"
             }
           ],
         "extDeps" : {
@@ -7109,7 +7136,7 @@ dfgEntry
           {
             "objectType" : "Inst",
             "metadata" : {
-              "uiGraphPos" : "{\"x\":719.090332031,\"y\":306.22857666}"
+              "uiGraphPos" : "{\"x\":739.090332031,\"y\":310.22857666}"
               },
             "name" : "code",
             "ports" : [
@@ -7176,6 +7203,16 @@ dfgEntry
               {
                 "objectType" : "InstPort",
                 "name" : "in_cohesionStrength",
+                "nodePortType" : "In"
+                },
+              {
+                "objectType" : "InstPort",
+                "name" : "in_useBoundingSpheres",
+                "nodePortType" : "In"
+                },
+              {
+                "objectType" : "InstPort",
+                "name" : "boundingSpheres",
                 "nodePortType" : "In"
                 }
               ],
@@ -7277,6 +7314,20 @@ dfgEntry
                   "nodePortType" : "Out",
                   "execPortType" : "In",
                   "typeSpec" : "Scalar"
+                  },
+                {
+                  "objectType" : "ExecPort",
+                  "name" : "in_useBoundingSpheres",
+                  "nodePortType" : "Out",
+                  "execPortType" : "In",
+                  "typeSpec" : "Boolean"
+                  },
+                {
+                  "objectType" : "ExecPort",
+                  "name" : "boundingSpheres",
+                  "nodePortType" : "Out",
+                  "execPortType" : "In",
+                  "typeSpec" : "Vec4[]"
                   }
                 ],
               "extDeps" : {
@@ -7310,17 +7361,18 @@ dfgEntry
   if (attrPointSizes        == null)  {  report(\"warning: pointcloud has no attribute 'pointSizes'\");         return;  }
 
   // correct and check input parameters.
-  Scalar flockingStrength        = Math_max(0.0, Math_min(1.0, in_flockingStrength));
-  Scalar viewConeDistance        = Math_max(0.0, in_viewConeDistance);
-  Scalar viewCone                = Math_degToRad(Math_max(0.0, Math_min(180.0, 0.5 * in_viewConeDegrees)));
-  Scalar viewConeFalloff         = Math_max(0.0, Math_min(0.5 * viewCone, Math_degToRad(0.5 * in_viewConeDegreesFalloff)));
-  UInt32 maxNeighbors            = Math_min(256, Math_max(0, in_maxNeighbors));
-  Scalar ignoreSmallerNeighbors  = Math_max(0.0, Math_min(1.0, in_ignoreSmallerNeighbors));
-  Scalar distanceToNeighbors     = Math_max(0.0, in_distanceToNeighbors);
-  Scalar privacyDistance         = Math_max(0.000001, in_privacyDistance);
-  Scalar privacyStrength         = Math_max(0.0, in_privacyStrength);
-  Scalar velocityAlignement      = Math_max(0.0, Math_min(1.0, in_velocityAlignement));
-  Scalar cohesionStrength        = Math_max(0.0, Math_min(1.0, in_cohesionStrength));
+  Scalar  flockingStrength        = Math_max(0.0, Math_min(1.0, in_flockingStrength));
+  Scalar  viewConeDistance        = Math_max(0.0, in_viewConeDistance);
+  Scalar  viewCone                = Math_degToRad(Math_max(0.0, Math_min(180.0, 0.5 * in_viewConeDegrees)));
+  Scalar  viewConeFalloff         = Math_max(0.0, Math_min(0.5 * viewCone, Math_degToRad(0.5 * in_viewConeDegreesFalloff)));
+  UInt32  maxNeighbors            = Math_min(256, Math_max(0, in_maxNeighbors));
+  Scalar  ignoreSmallerNeighbors  = Math_max(0.0, Math_min(1.0, in_ignoreSmallerNeighbors));
+  Scalar  distanceToNeighbors     = Math_max(0.0, in_distanceToNeighbors);
+  Scalar  privacyDistance         = Math_max(0.000001, in_privacyDistance);
+  Scalar  privacyStrength         = Math_max(0.0, in_privacyStrength);
+  Scalar  velocityAlignement      = Math_max(0.0, Math_min(1.0, in_velocityAlignement));
+  Scalar  cohesionStrength        = Math_max(0.0, Math_min(1.0, in_cohesionStrength));
+  Boolean useBoundingSpheres      = (in_useBoundingSpheres && boundingSpheres.size() == pointcloud.pointCount());
   if (   flockingStrength <= 0
       || viewConeDistance <= 0
       || viewCone         <= 0
@@ -7339,9 +7391,33 @@ dfgEntry
   // ________
   // | main |
   {
+    // build a temporary Points object from
+    // the array of boudning spheres.
+    Points pointsBoundingSpheres = Points();
+    if (useBoundingSpheres)
+    {
+      pointsBoundingSpheres.addPoints(numPoints);
+      pointsBoundingSpheres.getOrCreateSizesAttribute();
+      for (UInt32 i=0;i<numPoints;i++)
+      {
+        Float32 x = boundingSpheres[i].x;
+        Float32 y = boundingSpheres[i].y;
+        Float32 z = boundingSpheres[i].z;
+        Float32 t = boundingSpheres[i].t;
+        pointsBoundingSpheres.setPosition(i, Vec3(x, y, z));
+        pointsBoundingSpheres.setSize(i, t);
+      }
+      pointsBoundingSpheres.incrementPositionsVersion();
+      pointsBoundingSpheres.incrementSizesVersion();
+    }
+    
+    // create the reference at the Points object
+    // that will be used for the spatial query.
+    Ref<Points> pointsRefForSpacialQuery = (pointsBoundingSpheres.pointCount() > 0 ? pointsBoundingSpheres : pointcloud);
+  
     // prepare the spatial query.
-    pointcloud.prepareForSpatialQueries(numPoints, null);
-    Ref<SpatialQuery> query = pointcloud.beginSpatialQuery();
+    pointsRefForSpacialQuery.prepareForSpatialQueries(numPoints, null);
+    Ref<SpatialQuery> query = pointsRefForSpacialQuery.beginSpatialQuery();
 
     // calculate flocking velocities and store them in newPointVelocities[].
     UInt32 nIndices  [];
@@ -7365,7 +7441,7 @@ dfgEntry
           if (index != i)
           {
             nIndices  [numIndices] = index;
-            nVectors  [numIndices] = attrPositions.values[index] - attrPositions.values[i];
+            nVectors  [numIndices] = pointsRefForSpacialQuery.getPosition(index) - attrPositions.values[i];
             nDistances[numIndices] = nVectors[numIndices].length();
             numIndices++;
           }
@@ -7383,7 +7459,7 @@ dfgEntry
           if (index != i)
           {
             nIndices  [numIndices] = index;
-            nVectors  [numIndices] = attrPositions.values[index] - attrPositions.values[i];
+            nVectors  [numIndices] = pointsRefForSpacialQuery.getPosition(index) - attrPositions.values[i];
             nDistances[numIndices] = nVectors[numIndices].length();
             numIndices++;
             j++;
@@ -7395,7 +7471,7 @@ dfgEntry
           UInt32 index = query.getQueriedElement(j);
           if (index != i)
           {
-            Vec3   nVector   = attrPositions.values[index] - attrPositions.values[i];
+            Vec3   nVector   = pointsRefForSpacialQuery.getPosition(index) - attrPositions.values[i];
             Scalar nDistance = nVector.length();
             if (nDistance >= nDistances[numIndices - 1])
             {
@@ -7544,7 +7620,7 @@ dfgEntry
     }
 
     // clean up.
-    pointcloud.endSpatialQuery(query);
+    pointsRefForSpacialQuery.endSpatialQuery(query);
   }
     
   // replace current point velocities with new ones.
@@ -7593,6 +7669,12 @@ dfgEntry
           "cohesionStrength" : [
             "code.in_cohesionStrength"
             ],
+          "useBoundingSpheres" : [
+            "code.in_useBoundingSpheres"
+            ],
+          "boundingSpheres" : [
+            "code.boundingSpheres"
+            ],
           "code.pointcloud" : [
             "pointcloud"
             ]
@@ -7602,7 +7684,7 @@ dfgEntry
     {
       "objectType" : "Get",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":-684.378112793,\"y\":286.105072021}",
+        "uiGraphPos" : "{\"x\":-688.514822245,\"y\":211.516880035}",
         "uiCollapsedState" : "2"
         },
       "name" : "get_10",
@@ -11897,7 +11979,7 @@ dfgEntry
     {
       "objectType" : "Get",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":-104.092006087,\"y\":1457.44018483}"
+        "uiGraphPos" : "{\"x\":-171.677020073,\"y\":1362.82060909}"
         },
       "name" : "get",
       "ports" : [
@@ -11912,7 +11994,7 @@ dfgEntry
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":95.4700819254,\"y\":1466.31689382}"
+        "uiGraphPos" : "{\"x\":27.885014534,\"y\":1371.69731808}"
         },
       "name" : "ModifyInPlace_1",
       "ports" : [
@@ -12202,7 +12284,7 @@ dfgEntry
             "objectType" : "Graph",
             "metadata" : {
               "uiGraphZoom" : "{\n  \"value\" : 0.7587137222290039\n  }",
-              "uiGraphPan" : "{\n  \"x\" : 435.9560130771133,\n  \"y\" : 404.032864068191\n  }"
+              "uiGraphPan" : "{\n  \"x\" : 435.9560130771133,\n  \"y\" : 375.032864068191\n  }"
               },
             "title" : "",
             "ports" : [
@@ -16130,7 +16212,10 @@ dfgEntry
                   {
                     "objectType" : "InstPort",
                     "name" : "bit",
-                    "nodePortType" : "In"
+                    "nodePortType" : "In",
+                    "defaultValues" : {
+                      "UInt32" : 0
+                      }
                     },
                   {
                     "objectType" : "InstPort",
@@ -17970,7 +18055,7 @@ dfgEntry
                         "name" : "outMin",
                         "nodePortType" : "In",
                         "defaultValues" : {
-                          "Scalar" : 0.8199999928474426
+                          "Scalar" : 0.4300000071525574
                           },
                         "outsidePortType" : "In"
                         },
@@ -17979,7 +18064,7 @@ dfgEntry
                         "name" : "outMax",
                         "nodePortType" : "In",
                         "defaultValues" : {
-                          "Scalar" : 0.5699999928474426
+                          "Scalar" : 2.97000002861023
                           },
                         "outsidePortType" : "In"
                         }
@@ -19405,7 +19490,7 @@ dfgEntry
     {
       "objectType" : "Get",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":-100.285823226,\"y\":1525.55383229}",
+        "uiGraphPos" : "{\"x\":-167.87085247,\"y\":1430.93425655}",
         "uiCollapsedState" : "0"
         },
       "name" : "get_3",
@@ -19436,7 +19521,7 @@ dfgEntry
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":589.043693542,\"y\":1415.62036896}",
+        "uiGraphPos" : "{\"x\":521.458882332,\"y\":1321.00078487}",
         "uiCollapsedState" : "1"
         },
       "name" : "DrawLines_1",
@@ -19498,7 +19583,7 @@ dfgEntry
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":356.254886627,\"y\":1398.88486481}",
+        "uiGraphPos" : "{\"x\":288.669728279,\"y\":1304.26531124}",
         "uiCollapsedState" : "1"
         },
       "name" : "EmptyDrawingHandle_1",
@@ -19520,7 +19605,7 @@ dfgEntry
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":302.831784725,\"y\":1466.57614505}",
+        "uiGraphPos" : "{\"x\":235.246693611,\"y\":1371.95659542}",
         "uiCollapsedState" : "1"
         },
       "name" : "GetLinesRepresentationArray_1",
@@ -19805,7 +19890,7 @@ dfgEntry
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":39.5945277214,\"y\":2349.12716436}"
+        "uiGraphPos" : "{\"x\":147.730621338,\"y\":1774.65269709}"
         },
       "name" : "Modify_1",
       "ports" : [
@@ -19948,7 +20033,7 @@ dfgEntry
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":39.2789683342,\"y\":2465.21188116}"
+        "uiGraphPos" : "{\"x\":147.415054321,\"y\":1890.7369256}"
         },
       "name" : "GetSphere_1",
       "ports" : [
@@ -19960,7 +20045,10 @@ dfgEntry
         {
           "objectType" : "InstPort",
           "name" : "radius",
-          "nodePortType" : "In"
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "Scalar" : 0.1000000014901161
+            }
           },
         {
           "objectType" : "InstPort",
@@ -19979,7 +20067,7 @@ dfgEntry
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":51.0064234734,\"y\":2260.65792608}"
+        "uiGraphPos" : "{\"x\":159.142501831,\"y\":1686.18394709}"
         },
       "name" : "EmptyDrawingHandle",
       "ports" : [
@@ -20000,7 +20088,7 @@ dfgEntry
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":281.035262585,\"y\":2303.16134405}",
+        "uiGraphPos" : "{\"x\":389.171470642,\"y\":1728.68712091}",
         "uiCollapsedState" : "1"
         },
       "name" : "DrawPolygonMeshInstances_1",
@@ -20086,9 +20174,221 @@ dfgEntry
     {
       "objectType" : "Get",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":-229.005081654,\"y\":2355.53634405}"
+        "uiGraphPos" : "{\"x\":-33.1377639771,\"y\":1764.08165216}"
         },
       "name" : "get_5",
+      "ports" : [
+        {
+          "objectType" : "GetPort",
+          "name" : "value",
+          "nodePortType" : "Out"
+          }
+        ],
+      "varPath" : "multipedes"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":-834.247732401,\"y\":210.46692276}",
+        "uiCollapsedState" : "1"
+        },
+      "name" : "Modify_2",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "name" : "exec",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "array",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "result",
+          "nodePortType" : "Out"
+          }
+        ],
+      "blocks" : [
+        {
+          "name" : "modify",
+          "objectType" : "InstBlock",
+          "execBlockRelPath" : "ForLoop_1.body.modify",
+          "ports" : [],
+          "exec" : {
+            "objectType" : "Graph",
+            "metadata" : {
+              "uiGraphPan" : "{\n  \"x\" : 58.0,\n  \"y\" : -62.0\n  }"
+              },
+            "title" : "",
+            "ports" : [],
+            "fixedPorts" : [
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "index",
+                "nodePortType" : "Out",
+                "outsidePortType" : "In"
+                },
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "inValue",
+                "nodePortType" : "Out",
+                "outsidePortType" : "In"
+                },
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "outValue",
+                "nodePortType" : "In",
+                "outsidePortType" : "Out"
+                }
+              ],
+            "extDeps" : {},
+            "nodes" : [
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":352.0,\"y\":232.0}"
+                  },
+                "name" : "GetBoundingSphere_1",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "this",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "center",
+                    "nodePortType" : "Out"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "radius",
+                    "nodePortType" : "Out"
+                    }
+                  ],
+                "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetBoundingSphere",
+                "presetGUID" : "F4BC3F93EDF025B7D93A9495D8978F3D"
+                },
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":812.0,\"y\":210.0}"
+                  },
+                "name" : "ComposeVec4_1",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "x",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "y",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "z",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "t",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "result",
+                    "nodePortType" : "Out"
+                    }
+                  ],
+                "executable" : "Fabric.Exts.Math.Vec4.ComposeVec4",
+                "presetGUID" : "0E5D7A20B8FC73FDBB0DEC76E3A6A471"
+                },
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":617.0,\"y\":188.0}"
+                  },
+                "name" : "DecomposeVec3_1",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "value",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "x",
+                    "nodePortType" : "Out"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "y",
+                    "nodePortType" : "Out"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "z",
+                    "nodePortType" : "Out"
+                    }
+                  ],
+                "executable" : "Fabric.Exts.Math.Vec3.DecomposeVec3",
+                "presetGUID" : "1CFCF896589BEC79A7F1F822BD7A7D42"
+                }
+              ],
+            "connections" : {
+              "inValue" : [
+                "GetBoundingSphere_1.this"
+                ],
+              "GetBoundingSphere_1.center" : [
+                "DecomposeVec3_1.value"
+                ],
+              "GetBoundingSphere_1.radius" : [
+                "ComposeVec4_1.t"
+                ],
+              "ComposeVec4_1.result" : [
+                "outValue"
+                ],
+              "DecomposeVec3_1.x" : [
+                "ComposeVec4_1.x"
+                ],
+              "DecomposeVec3_1.y" : [
+                "ComposeVec4_1.y"
+                ],
+              "DecomposeVec3_1.z" : [
+                "ComposeVec4_1.z"
+                ]
+              }
+            }
+          }
+        ],
+      "executable" : "Fabric.Compounds.Blocks.Array.Modify",
+      "presetGUID" : "211EC119321D70A59703EADED903EADF"
+      },
+    {
+      "objectType" : "Get",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":-1010.62364793,\"y\":210.677066803}"
+        },
+      "name" : "get_11",
       "ports" : [
         {
           "objectType" : "GetPort",
@@ -20201,6 +20501,9 @@ dfgEntry
     "ModifyInPlace_7.array" : [
       "set_2.value"
       ],
+    "ModifyInPlace_7.modify.obstacleMesh" : [
+      "DrawMesh_2.mesh"
+      ],
     "get_3.value" : [
       "ModifyInPlace_1.modify.particles"
       ],
@@ -20222,10 +20525,6 @@ dfgEntry
     "DrawMesh_2.drawThis" : [
       "exec"
       ],
-    "RecomputeNormals_1.result" : [
-      "DrawMesh_2.mesh",
-      "ModifyInPlace_7.modify.obstacleMesh"
-      ],
     "TurbulizeGeometry_1.result" : [
       "RecomputeNormals_1.mesh"
       ],
@@ -20243,6 +20542,12 @@ dfgEntry
       ],
     "get_5.value" : [
       "Modify_1.array"
+      ],
+    "Modify_2.result" : [
+      "Flocking.boundingSpheres"
+      ],
+    "get_11.value" : [
+      "Modify_2.array"
       ]
     },
   "requiredPresets" : {
@@ -28509,6 +28814,86 @@ dfgEntry {
   this.getBoundingSphere(center, radius);
 }
 "
+      },
+    "Fabric.Exts.Math.Vec4.ComposeVec4" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec4.html"
+        },
+      "title" : "-> Vec4",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "x",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Scalar" : 0
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Scalar"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "y",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Scalar" : 0
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Scalar"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "z",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Scalar" : 0
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Scalar"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "t",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Scalar" : 0
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Scalar"
+          },
+        {
+          "objectType" : "ExecPort",
+          "metadata" : {
+            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
+            },
+          "name" : "result",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "Vec4"
+          }
+        ],
+      "extDeps" : {
+        "Math" : "*"
+        },
+      "presetGUID" : "0E5D7A20B8FC73FDBB0DEC76E3A6A471",
+      "code" : "require Math;
+
+dfgEntry {
+  result.x = x;
+  result.y = y;
+  result.z = z;
+  result.t = t;
+}
+"
       }
     },
   "args" : [
@@ -28518,7 +28903,7 @@ dfgEntry {
       },
     {
       "type" : "UInt32",
-      "value" : 13
+      "value" : 32
       },
     {
       "type" : "DrawingHandle",
