@@ -5,7 +5,7 @@
     "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
     "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
     "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
-    "uiTooltip" : "Returns a line representation of the multipede.\n\nSupported types:\n  this: Multipede\n  muteAll: Boolean\n  connectingLines: Boolean\n  centers: Boolean\n  bodies: Boolean\n  legRoots: Boolean\n  legBones: Boolean\n  legEffectors: Boolean\n  legEffectorVolumes: Boolean\n  detail: UInt32\n  segmentIndex: SInt32\n  lines: Lines\n"
+    "uiTooltip" : "Returns a line representation of the multipede.\n\nSupported types:\n  this: Multipede\n  muteAll: Boolean\n  connectingLines: Boolean\n  centers: Boolean\n  bodies: Boolean\n  legRoots: Boolean\n  legBones: Boolean\n  legEffectors: Boolean\n  legEffectorVolumes: Boolean\n  boundingSphere: Boolean\n  detail: UInt32\n  segmentIndex: SInt32\n  lines: Lines\n"
     },
   "title" : "GetLinesRepresentation",
   "ports" : [
@@ -105,6 +105,16 @@
       },
     {
       "objectType" : "ExecPort",
+      "name" : "boundingSphere",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : false
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "ExecPort",
       "metadata" : {
         "uiRange" : "(1, 32)"
         },
@@ -140,11 +150,11 @@
   "extDeps" : {
     "Multipede" : "*"
     },
-  "presetGUID" : "0EE7332808C201D126B2092DB64EC6BF",
+  "presetGUID" : "F524616EF2D2C758938C86A434EDB734",
   "code" : "require Multipede;
 
 dfgEntry {
-  this.getLinesRepresentation(muteAll, connectingLines, centers, bodies, legRoots, legBones, legEffectors, legEffectorVolumes, detail, segmentIndex, lines);
+  this.getLinesRepresentation(muteAll, connectingLines, centers, bodies, legRoots, legBones, legEffectors, legEffectorVolumes, boundingSphere, detail, segmentIndex, lines);
 }
 "
   }

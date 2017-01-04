@@ -979,10 +979,11 @@ function Multipede.getLinesRepresentation?(in Boolean connectingLines, in Boolea
 /// \dfgPresetDefault legBones false
 /// \dfgPresetDefault legEffectors false
 /// \dfgPresetDefault legEffectorVolumes false
+/// \dfgPresetDefault boundingSphere false
 /// \dfgPresetDefault detail 12
 /// \dfgPresetDefault segmentIndex -1
 /// \dfgPresetRange detail (1, 32)
-function Multipede.getLinesRepresentation?(in Boolean muteAll, in Boolean connectingLines, in Boolean centers, in Boolean bodies, in Boolean legRoots, in Boolean legBones, in Boolean legEffectors, in Boolean legEffectorVolumes, in UInt32 detail, in SInt32 segmentIndex, out Lines lines)
+function Multipede.getLinesRepresentation?(in Boolean muteAll, in Boolean connectingLines, in Boolean centers, in Boolean bodies, in Boolean legRoots, in Boolean legBones, in Boolean legEffectors, in Boolean legEffectorVolumes, in Boolean boundingSphere, in UInt32 detail, in SInt32 segmentIndex, out Lines lines)
 {
   lines = Lines();
 
@@ -990,6 +991,14 @@ function Multipede.getLinesRepresentation?(in Boolean muteAll, in Boolean connec
     return;
 
   this.getLinesRepresentation(connectingLines, centers, bodies, legRoots, legBones, legEffectors, legEffectorVolumes, detail, segmentIndex, lines);
+  if (boundingSphere)
+  {
+    Vec3 center;
+    Float32 radius;
+    this.getBoundingSphere(center, radius);
+    if (radius >= 0)
+      lines.addSphere(center, radius, 3 * detail);
+  }
 }
 
 /// Returns a line representation of an array of multipedes.
