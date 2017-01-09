@@ -1,0 +1,6 @@
+{
+  "dfgPresets": {
+    "dir": "DFG",
+    "presetPath": "Fabric.ProductionSamples.Particles"
+    }
+}
