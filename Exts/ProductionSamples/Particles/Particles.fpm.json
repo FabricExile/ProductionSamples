@@ -1,4 +1,7 @@
 {
+  "code": [
+    "Particles.kl"
+  ],
   "dfgPresets": {
     "dir": "DFG",
     "presetPath": "Fabric.ProductionSamples.Particles"
