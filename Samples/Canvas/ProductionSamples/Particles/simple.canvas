@@ -1,16 +1,17 @@
 {
   "objectType" : "Graph",
   "metadata" : {
-    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.07727985829114914,\n    \"y\" : -0.8843137621879578,\n    \"z\" : 0.4607848525047302,\n    \"t\" : 36.2525634765625\n    },\n  \"row1\" : {\n    \"x\" : 4.442714725882979e-06,\n    \"y\" : 0.4619680643081665,\n    \"z\" : 0.8873434066772461,\n    \"t\" : 72.19362640380859\n    },\n  \"row2\" : {\n    \"x\" : -0.9974993467330933,\n    \"y\" : -0.06850890815258026,\n    \"z\" : 0.0357026495039463,\n    \"t\" : 4.63556718826294\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
+    "timeline_timerFps" : "60.0",
+    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.8665011525154114,\n    \"y\" : -0.1575639396905899,\n    \"z\" : 0.4746622443199158,\n    \"t\" : 195.9019622802734\n    },\n  \"row1\" : {\n    \"x\" : 6.425536412280053e-06,\n    \"y\" : 0.949079692363739,\n    \"z\" : 0.3153151869773865,\n    \"t\" : 114.5898284912109\n    },\n  \"row2\" : {\n    \"x\" : -0.500152587890625,\n    \"y\" : -0.2729631960391998,\n    \"z\" : 0.8223438858985901,\n    \"t\" : 319.9127197265625\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
     "timeline_start" : "1",
     "timeline_loopMode" : "1",
-    "uiGraphZoom" : "{\n  \"value\" : 1.0\n  }",
+    "uiGraphZoom" : "{\n  \"value\" : 1.138442039489746\n  }",
     "timeline_simMode" : "0",
-    "camera_focalDistance" : "91.87502288818359",
+    "camera_focalDistance" : "419.07421875",
     "timeline_current" : "1",
     "timeline_timerInterval" : "20",
     "timeline_end" : "2000",
-    "uiGraphPan" : "{\n  \"x\" : 2247.554931640625,\n  \"y\" : 352.1057434082031\n  }"
+    "uiGraphPan" : "{\n  \"x\" : 1233.258022903713,\n  \"y\" : -381.7572780414911\n  }"
     },
   "title" : "",
   "ports" : [
@@ -7530,7 +7531,7 @@ dfgEntry
               "name" : "stickToFloor",
               "nodePortType" : "In",
               "defaultValues" : {
-                "Scalar" : 1
+                "Scalar" : 0
                 },
               "outsidePortType" : "In"
               }
@@ -9459,7 +9460,7 @@ dfgEntry
               "name" : "posY",
               "nodePortType" : "In",
               "defaultValues" : {
-                "Scalar" : 1
+                "Scalar" : 20
                 },
               "outsidePortType" : "In"
               },
@@ -9486,7 +9487,7 @@ dfgEntry
               "name" : "sizeRandom",
               "nodePortType" : "In",
               "defaultValues" : {
-                "Scalar" : 0.5
+                "Scalar" : 1
                 },
               "outsidePortType" : "In"
               }
@@ -9495,7 +9496,7 @@ dfgEntry
             "objectType" : "Graph",
             "metadata" : {
               "uiGraphZoom" : "{\n  \"value\" : 0.9851052165031433\n  }",
-              "uiGraphPan" : "{\n  \"x\" : 3.321319580078125,\n  \"y\" : -481.7755126953125\n  }"
+              "uiGraphPan" : "{\n  \"x\" : -357.6786804199219,\n  \"y\" : -830.7755126953125\n  }"
               },
             "title" : "",
             "ports" : [
@@ -13219,6 +13220,9 @@ dfgEntry
     "get_6.value" : [
       "ModifyInPlace_3.pointcloud"
       ],
+    "Merge4_3.result" : [
+      "Merge4_1.e0"
+      ],
     "ModifyInPlace_4.pointcloud" : [
       "Merge4_3.e1"
       ],
@@ -13349,7 +13353,7 @@ dfgEntry {
     "Fabric.Exts.FabricInterfaces.Execute.Merge4" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
         "uiTooltip" : "\n\n Supported by Execute"
         },
       "title" : "Merge4",
@@ -13544,7 +13548,7 @@ dfgEntry {
     "Fabric.Exts.Characters.Func.IncrementVersion" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Characters/Skeleton.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Characters/Skeleton.html",
         "uiTooltip" : "Increments the version of the skeleton.\nskeleton to become invalid.\n\n Supported by Skeleton,Pose,Character"
         },
       "title" : "IncrementVersion",
@@ -13579,7 +13583,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Quat.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Quat.html",
         "uiTooltip" : "Set the quat to represent the direction as the Z axis\nand the upvector pointing along the XY plane.\n\n Supported by Quat"
         },
       "title" : "SetFromDirectionAndUpvector",
@@ -13695,7 +13699,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec2.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec2.html",
         "uiTooltip" : "Returns true if this vector is the same as another one\n(given a precision)\n\n Supported by Vec2,Vec3,Vec4,Mat22,Mat33,Mat44,Euler,Quat"
         },
       "title" : "AlmostEqual",
@@ -13751,7 +13755,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/RGB.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/RGB.html",
         "uiTooltip" : "Returns the product of this RGB color and a scalar\n\n Supported by RGB,RGBA,ARGB,Color,Vec2,Vec3,Vec4,Mat22,Mat33,Mat44,Quat"
         },
       "title" : "MultiplyScalar",
@@ -13940,7 +13944,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec2.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec2.html",
         "uiTooltip" : "Returns the length of this vector\n\n Supported by Vec2,Vec3,Vec4,Quat"
         },
       "title" : "Length",
@@ -14078,7 +14082,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec2.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec2.html",
         "uiTooltip" : "\n\n Supported by Vec2,Vec2_d,Vec2_i,Vec3,Vec3_d,Vec3_i,Vec4,Vec4_d,Vec4_i"
         },
       "title" : "Normalize",
@@ -14233,7 +14237,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "removes all contents from the DrawingHandle\n\n Supported by DrawingHandle"
         },
       "title" : "Clear",
@@ -14267,7 +14271,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawPoints" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "helper function to draw a points object given a color + a single transform\n\n Supported by DrawingHandle"
         },
       "title" : "DrawPoints",
@@ -14651,7 +14655,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawAxesInstances" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "helper function to draw axes at given transforms\n\n Supported by DrawingHandle"
         },
       "title" : "DrawAxesInstances",
@@ -14721,7 +14725,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Xfo.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Xfo.html"
         },
       "title" : "Xfo[] ->",
       "ports" : [
@@ -14828,7 +14832,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Xfo.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Xfo.html"
         },
       "title" : "-> Xfo[]",
       "ports" : [
@@ -14945,7 +14949,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/RGB.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/RGB.html",
         "uiTooltip" : "Returns the product of this RGB color and a scalar\n\n Supported by RGB,RGBA,ARGB,Color,Vec2,Vec3,Vec4,Mat22,Mat33,Mat44,Quat"
         },
       "title" : "MultiplyScalar[]",
@@ -15244,7 +15248,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawPolygonMeshInstances" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "helper function to draw a mesh given a color + an array of transforms\n\n Supported by DrawingHandle"
         },
       "title" : "DrawPolygonMeshInstances",
@@ -15741,7 +15745,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.PolygonMesh" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Constructor.\n\n Supported by PolygonMesh"
         },
       "title" : "PolygonMesh",
@@ -15792,7 +15796,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.Func.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/GeometryAttributes.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/GeometryAttributes.html",
         "uiTooltip" : "Removes all attributes, and resets attribute value array sizes to 0.\n\n Supported by GeometryAttributes,BaseGeometry,Points,Lines,PolygonMesh"
         },
       "title" : "Clear",
@@ -15826,7 +15830,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.AddCone" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Appends a transformed cone to this mesh.\nBefore applying the transformation, cone's base will be centered at Y = -`height` / 2, and the tip will be at Y = `height` / 2.\n\nSet the point positions\nbuild the topology\nset positions and normals\nNow set the attrbute values\nNow set the attrbute values\n\n Supported by PolygonMesh"
         },
       "title" : "AddCone",
@@ -16149,7 +16153,7 @@ dfgEntry
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Xfo.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Xfo.html",
         "uiTooltip" : "Setter from single channels, the rotation being in degrees\n\n Supported by Xfo"
         },
       "title" : "XfoFromScalars",
@@ -16487,7 +16491,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.AddSphere" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Appends a transformed sphere to this mesh.\nBefore applying the transformation, it will be centered at the origin.\n\nbuild the topology\nbuild the fan at the first pole.\nbuild the fan at the second pole.\nset positions and normals\nset uvs\nset the uvs on the the fan at the first pole.\n\n Supported by PolygonMesh"
         },
       "title" : "AddSphere",
@@ -16594,7 +16598,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec3.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec3.html"
         },
       "title" : "-> Vec3",
       "ports" : [
@@ -16663,7 +16667,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec3.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec3.html"
         },
       "title" : "Vec3 ->",
       "ports" : [
@@ -16787,7 +16791,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Color.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Color.html"
         },
       "title" : "Color ->",
       "ports" : [
@@ -17099,7 +17103,7 @@ dfgEntry {
     "Fabric.Exts.FabricInterfaces.Execute.Merge" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
         "uiTooltip" : "\n\n Supported by Execute"
         },
       "title" : "Merge",
