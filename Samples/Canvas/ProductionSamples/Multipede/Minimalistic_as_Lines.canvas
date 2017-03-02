@@ -1112,6 +1112,11 @@
           },
         {
           "objectType" : "InstPort",
+          "name" : "boundingSphere",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
           "name" : "detail",
           "nodePortType" : "In"
           },
@@ -1127,7 +1132,7 @@
           }
         ],
       "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetLinesRepresentation",
-      "presetGUID" : "0EE7332808C201D126B2092DB64EC6BF"
+      "presetGUID" : "F524616EF2D2C758938C86A434EDB734"
       },
     {
       "objectType" : "Inst",
@@ -1566,7 +1571,7 @@ dfgEntry {
     "Fabric.Exts.Manipulation.ManipHandle.ManipHandle" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "constructor taking a name\n\nSupported types:\n  name: String\n  result: ManipHandle\n"
         },
       "title" : "ManipHandle",
@@ -1610,7 +1615,7 @@ dfgEntry {
     "Fabric.Exts.Manipulation.ManipHandle.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "clears the content of the ManipHandle\n\nSupported types:\n  this: ManipHandle\n"
         },
       "title" : "Clear",
@@ -2265,7 +2270,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.RecomputePointNormals" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Recomputes all point normals and introduces normal splits if adjacent polygons' normals differ by more than `hardAngleRadians` radians.\nAll previously stored point normals will be overwritten.\nThe computed normal value is the average of neighbor polygons' :kl-ref:`PolygonMesh.generatePolygonNormal` (or a subset of these if there is a split).\n\n Supported by PolygonMesh"
         },
       "title" : "RecomputePointNormals",
@@ -2387,7 +2392,7 @@ dfgEntry {
     "Fabric.Exts.Manipulation.ManipHandle.AddPositionPlanarManip" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "Registers a single position manipulator if it doesn't exist yet\n\nSupported types:\n  this: ManipHandle\n  name: String\n  mesh: PolygonMesh\n  pos: Vec3\n  color: Color\n  size: Scalar\n  normal: Vec3\n  parentInstance: InlineInstance\n  portToDrive: String\n  hostGraphName: String\n  instance: InlineInstance\n"
         },
       "title" : "AddPositionPlanarManip",
@@ -2524,7 +2529,7 @@ dfgEntry {
     "Fabric.Exts.Manipulation.ManipHandle.AddPositionManip" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "Registers a single position manipulator if it doesn't exist yet\n\nSupported types:\n  this: ManipHandle\n  name: String\n  mesh: PolygonMesh\n  pos: Vec3\n  color: Color\n  size: Scalar\n  parentInstance: InlineInstance\n  portToDrive: String\n  hostGraphName: String\n  instance: InlineInstance\n"
         },
       "title" : "AddPositionManip",
@@ -2950,7 +2955,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.PolygonMesh" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Constructor.\n\n Supported by PolygonMesh"
         },
       "title" : "PolygonMesh",
@@ -3001,7 +3006,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.Func.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/GeometryAttributes.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/GeometryAttributes.html",
         "uiTooltip" : "Removes all attributes, and resets attribute value array sizes to 0.\n\n Supported by GeometryAttributes,BaseGeometry,Points,Lines,PolygonMesh"
         },
       "title" : "Clear",
@@ -3035,7 +3040,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.AddCuboid" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Appends a transformed cuboid (cube with specified size) to this mesh.\nBefore applying the transformation, the cuboid is centered at the origin,\nand has a range of [-x/2 .. x/2, -y/2 .. y/2, -z/2 .. z/2].\n\nSet Points Normals\nFace 0 (+Z)\nFace 1 (-Z)\nFace 2 (+Y)\nFace 3 (-Y)\nFace 4 (+X)\nFace 5 (-X)\nSet Uvs\nFace 0 (+Z)\nFace 1 (-Z)\nFace 2 (+Y)\nFace 3 (-Y)\nFace 4 (+X)\nFace 5 (-X)\n\n Supported by PolygonMesh"
         },
       "title" : "AddCuboid",
@@ -3141,7 +3146,7 @@ dfgEntry {
     "Fabric.Exts.FabricInterfaces.Execute.Merge" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
         "uiTooltip" : "\n\n Supported by Execute"
         },
       "title" : "Merge",
@@ -3496,7 +3501,7 @@ dfgEntry {
         "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
         "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
         "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
-        "uiTooltip" : "Returns a line representation of the multipede.\n\nSupported types:\n  this: Multipede\n  muteAll: Boolean\n  connectingLines: Boolean\n  centers: Boolean\n  bodies: Boolean\n  legRoots: Boolean\n  legBones: Boolean\n  legEffectors: Boolean\n  legEffectorVolumes: Boolean\n  detail: UInt32\n  segmentIndex: SInt32\n  lines: Lines\n"
+        "uiTooltip" : "Returns a line representation of the multipede.\n\nSupported types:\n  this: Multipede\n  muteAll: Boolean\n  connectingLines: Boolean\n  centers: Boolean\n  bodies: Boolean\n  legRoots: Boolean\n  legBones: Boolean\n  legEffectors: Boolean\n  legEffectorVolumes: Boolean\n  boundingSphere: Boolean\n  detail: UInt32\n  segmentIndex: SInt32\n  lines: Lines\n"
         },
       "title" : "GetLinesRepresentation",
       "ports" : [
@@ -3596,6 +3601,16 @@ dfgEntry {
           },
         {
           "objectType" : "ExecPort",
+          "name" : "boundingSphere",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Boolean" : false
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Boolean"
+          },
+        {
+          "objectType" : "ExecPort",
           "metadata" : {
             "uiRange" : "(1, 32)"
             },
@@ -3631,11 +3646,11 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "0EE7332808C201D126B2092DB64EC6BF",
+      "presetGUID" : "F524616EF2D2C758938C86A434EDB734",
       "code" : "require Multipede;
 
 dfgEntry {
-  this.getLinesRepresentation(muteAll, connectingLines, centers, bodies, legRoots, legBones, legEffectors, legEffectorVolumes, detail, segmentIndex, lines);
+  this.getLinesRepresentation(muteAll, connectingLines, centers, bodies, legRoots, legBones, legEffectors, legEffectorVolumes, boundingSphere, detail, segmentIndex, lines);
 }
 "
       },
@@ -3763,7 +3778,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "removes all contents from the DrawingHandle\n\n Supported by DrawingHandle"
         },
       "title" : "Clear",
@@ -3797,7 +3812,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawLines" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "helper function to draw a lines object given a color + a single transform\n\n Supported by DrawingHandle"
         },
       "title" : "DrawLines",

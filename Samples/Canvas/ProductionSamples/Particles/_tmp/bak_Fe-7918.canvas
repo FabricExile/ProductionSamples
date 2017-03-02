@@ -37,6 +37,11 @@
           },
         {
           "objectType" : "InstPort",
+          "name" : "mute",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
           "name" : "value",
           "nodePortType" : "In"
           }
@@ -147,6 +152,16 @@
           },
         {
           "objectType" : "ExecPort",
+          "name" : "mute",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Boolean" : false
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Boolean"
+          },
+        {
+          "objectType" : "ExecPort",
           "name" : "value",
           "nodePortType" : "Out",
           "execPortType" : "In",
@@ -157,7 +172,8 @@
       "presetGUID" : "E9448726588111C443C34B2F3D9B0172",
       "code" : "
 dfgEntry {
-	report(value);
+  if(!mute)
+	 report(value);
 }
 "
       }

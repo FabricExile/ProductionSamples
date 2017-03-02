@@ -1296,6 +1296,12 @@
                       "name" : "index",
                       "nodePortType" : "Out",
                       "outsidePortType" : "In"
+                      },
+                    {
+                      "objectType" : "ExecFixedPort",
+                      "name" : "count",
+                      "nodePortType" : "Out",
+                      "outsidePortType" : "In"
                       }
                     ],
                   "blocks" : [
@@ -2990,6 +2996,12 @@ dfgEntry
                     {
                       "objectType" : "ExecFixedPort",
                       "name" : "index",
+                      "nodePortType" : "Out",
+                      "outsidePortType" : "In"
+                      },
+                    {
+                      "objectType" : "ExecFixedPort",
+                      "name" : "count",
                       "nodePortType" : "Out",
                       "outsidePortType" : "In"
                       }
@@ -4876,6 +4888,12 @@ dfgEntry
                       "name" : "index",
                       "nodePortType" : "Out",
                       "outsidePortType" : "In"
+                      },
+                    {
+                      "objectType" : "ExecFixedPort",
+                      "name" : "count",
+                      "nodePortType" : "Out",
+                      "outsidePortType" : "In"
                       }
                     ],
                   "blocks" : [
@@ -6363,7 +6381,6 @@ dfgEntry
                 "nodePortType" : "Out"
                 }
               ],
-            "executable" : "Fabric.Compounds.Debug.Display.DrawXfoArray",
             "presetGUID" : "524A45D7B01EF01D5D5CC26943208611"
             },
           {
@@ -6535,7 +6552,6 @@ dfgEntry
                 "nodePortType" : "Out"
                 }
               ],
-            "executable" : "Fabric.Compounds.PolygonMesh.Display.DrawMeshInstances",
             "presetGUID" : "81CA9564EF41D7CC3A3EFDF59D63E57B"
             },
           {
@@ -8261,6 +8277,12 @@ dfgEntry
                     {
                       "objectType" : "ExecFixedPort",
                       "name" : "index",
+                      "nodePortType" : "Out",
+                      "outsidePortType" : "In"
+                      },
+                    {
+                      "objectType" : "ExecFixedPort",
+                      "name" : "count",
                       "nodePortType" : "Out",
                       "outsidePortType" : "In"
                       }
@@ -10477,6 +10499,12 @@ dfgEntry
                       "name" : "index",
                       "nodePortType" : "Out",
                       "outsidePortType" : "In"
+                      },
+                    {
+                      "objectType" : "ExecFixedPort",
+                      "name" : "count",
+                      "nodePortType" : "Out",
+                      "outsidePortType" : "In"
                       }
                     ],
                   "blocks" : [
@@ -11862,7 +11890,7 @@ dfgEntry
           }
         ],
       "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.Constants.MultipedeArray",
-      "presetGUID" : "CF1C61FC9D3B6559786C30AB82691F82"
+      "presetGUID" : "7672F0990D580CCE7ED2A767E57DB2FC"
       },
     {
       "objectType" : "Get",
@@ -11987,7 +12015,7 @@ dfgEntry
                     }
                   ],
                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SetHeadPosition",
-                "presetGUID" : "F64AED9416D66C136C9B0488F0CC3821"
+                "presetGUID" : "CC21270C367DEB0BDADFC401B7866B7F"
                 },
               {
                 "objectType" : "Inst",
@@ -12013,7 +12041,7 @@ dfgEntry
                     }
                   ],
                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SolveSpine",
-                "presetGUID" : "A54BFD3AA3BE48BF860EA78DE26D2FBB"
+                "presetGUID" : "1D05F4F630A2D07DFBD792CA4EAB088D"
                 },
               {
                 "objectType" : "Inst",
@@ -12039,7 +12067,7 @@ dfgEntry
                     }
                   ],
                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SolveLegEffectors",
-                "presetGUID" : "88E9E45D7EB06D98E51C10E95FC09801"
+                "presetGUID" : "3A46E8B02507C1646732E93CAEF014B8"
                 },
               {
                 "objectType" : "Inst",
@@ -12065,7 +12093,7 @@ dfgEntry
                     }
                   ],
                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SolveLegBones",
-                "presetGUID" : "1FF5569AFCC92F58E579581F1921FD83"
+                "presetGUID" : "351A5704A6D085D904914F4CE8D3602C"
                 },
               {
                 "objectType" : "Inst",
@@ -12232,7 +12260,7 @@ dfgEntry
                     }
                   ],
                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SetHeadPosition",
-                "presetGUID" : "F64AED9416D66C136C9B0488F0CC3821"
+                "presetGUID" : "CC21270C367DEB0BDADFC401B7866B7F"
                 },
               {
                 "objectType" : "Inst",
@@ -12445,6 +12473,12 @@ dfgEntry
                                 "name" : "index",
                                 "nodePortType" : "Out",
                                 "outsidePortType" : "In"
+                                },
+                              {
+                                "objectType" : "ExecFixedPort",
+                                "name" : "count",
+                                "nodePortType" : "Out",
+                                "outsidePortType" : "In"
                                 }
                               ],
                             "blocks" : [
@@ -12620,7 +12654,7 @@ dfgEntry
                                     }
                                   ],
                                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegment",
-                                "presetGUID" : "77AA6398D685E692868B3E6A2E586793"
+                                "presetGUID" : "6EED215CA7A3A74453806947FF405303"
                                 },
                               {
                                 "objectType" : "Inst",
@@ -12651,7 +12685,7 @@ dfgEntry
                                     }
                                   ],
                                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SetSegment",
-                                "presetGUID" : "BE07B786B8F42913EECC09F2C75D6053"
+                                "presetGUID" : "3588F2D638DC700D207B717A53B6C4AF"
                                 },
                               {
                                 "objectType" : "Inst",
@@ -12815,7 +12849,7 @@ dfgEntry
                           }
                         ],
                       "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegmentCount",
-                      "presetGUID" : "EACCB5924F81223EF47A94B04B441A9B"
+                      "presetGUID" : "645CFAE2EB54B6F380881B24960AB418"
                       }
                     ],
                   "connections" : {
@@ -13397,7 +13431,7 @@ dfgEntry
                               }
                             ],
                           "executable" : "Fabric.ProductionSamples.Multipede.MultipedeSegment.Setters.SetLegEffectorStepSizes",
-                          "presetGUID" : "25DA25CA299DB3264ABF3EC4E2409F86"
+                          "presetGUID" : "ABB844014BA76F188FA88F0237F08E7C"
                           },
                         {
                           "objectType" : "Inst",
@@ -13728,7 +13762,7 @@ dfgEntry
                               }
                             ],
                           "executable" : "Fabric.ProductionSamples.Multipede.MultipedeSegment.Setters.SetLegRoots",
-                          "presetGUID" : "91A60603EFAB5F55FF32B03661DB6EDF"
+                          "presetGUID" : "C05D2D135A33374962258A43BECE6975"
                           },
                         {
                           "objectType" : "Inst",
@@ -13759,7 +13793,7 @@ dfgEntry
                               }
                             ],
                           "executable" : "Fabric.ProductionSamples.Multipede.MultipedeSegment.Setters.SetLegBoneScales",
-                          "presetGUID" : "59588A4731F0D0BB11F996D3FBA7D557"
+                          "presetGUID" : "AD799063D357116AE502EE6E2C332665"
                           },
                         {
                           "objectType" : "Inst",
@@ -14189,6 +14223,12 @@ dfgEntry
                                 "name" : "index",
                                 "nodePortType" : "Out",
                                 "outsidePortType" : "In"
+                                },
+                              {
+                                "objectType" : "ExecFixedPort",
+                                "name" : "count",
+                                "nodePortType" : "Out",
+                                "outsidePortType" : "In"
                                 }
                               ],
                             "blocks" : [
@@ -14364,7 +14404,7 @@ dfgEntry
                                     }
                                   ],
                                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegment",
-                                "presetGUID" : "77AA6398D685E692868B3E6A2E586793"
+                                "presetGUID" : "6EED215CA7A3A74453806947FF405303"
                                 },
                               {
                                 "objectType" : "Inst",
@@ -14395,7 +14435,7 @@ dfgEntry
                                     }
                                   ],
                                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SetSegment",
-                                "presetGUID" : "BE07B786B8F42913EECC09F2C75D6053"
+                                "presetGUID" : "3588F2D638DC700D207B717A53B6C4AF"
                                 },
                               {
                                 "objectType" : "Inst",
@@ -14559,7 +14599,7 @@ dfgEntry
                           }
                         ],
                       "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegmentCount",
-                      "presetGUID" : "EACCB5924F81223EF47A94B04B441A9B"
+                      "presetGUID" : "645CFAE2EB54B6F380881B24960AB418"
                       }
                     ],
                   "connections" : {
@@ -14900,7 +14940,7 @@ dfgEntry
                               }
                             ],
                           "executable" : "Fabric.ProductionSamples.Multipede.MultipedeSegment.Setters.SetBody",
-                          "presetGUID" : "886CA090064D7F5407FA5A672EB09736"
+                          "presetGUID" : "3743C9599C9B81F07CF7412349077192"
                           },
                         {
                           "objectType" : "Inst",
@@ -15546,6 +15586,12 @@ dfgEntry
                                 "name" : "index",
                                 "nodePortType" : "Out",
                                 "outsidePortType" : "In"
+                                },
+                              {
+                                "objectType" : "ExecFixedPort",
+                                "name" : "count",
+                                "nodePortType" : "Out",
+                                "outsidePortType" : "In"
                                 }
                               ],
                             "blocks" : [
@@ -15721,7 +15767,7 @@ dfgEntry
                                     }
                                   ],
                                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegment",
-                                "presetGUID" : "77AA6398D685E692868B3E6A2E586793"
+                                "presetGUID" : "6EED215CA7A3A74453806947FF405303"
                                 },
                               {
                                 "objectType" : "Inst",
@@ -15752,7 +15798,7 @@ dfgEntry
                                     }
                                   ],
                                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SetSegment",
-                                "presetGUID" : "BE07B786B8F42913EECC09F2C75D6053"
+                                "presetGUID" : "3588F2D638DC700D207B717A53B6C4AF"
                                 },
                               {
                                 "objectType" : "Inst",
@@ -15916,7 +15962,7 @@ dfgEntry
                           }
                         ],
                       "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegmentCount",
-                      "presetGUID" : "EACCB5924F81223EF47A94B04B441A9B"
+                      "presetGUID" : "645CFAE2EB54B6F380881B24960AB418"
                       }
                     ],
                   "connections" : {
@@ -15964,7 +16010,7 @@ dfgEntry
                     }
                   ],
                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SolveSpine",
-                "presetGUID" : "A54BFD3AA3BE48BF860EA78DE26D2FBB"
+                "presetGUID" : "1D05F4F630A2D07DFBD792CA4EAB088D"
                 },
               {
                 "objectType" : "Inst",
@@ -15990,7 +16036,7 @@ dfgEntry
                     }
                   ],
                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SolveLegEffectors",
-                "presetGUID" : "88E9E45D7EB06D98E51C10E95FC09801"
+                "presetGUID" : "3A46E8B02507C1646732E93CAEF014B8"
                 },
               {
                 "objectType" : "Inst",
@@ -16016,7 +16062,7 @@ dfgEntry
                     }
                   ],
                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SolveLegBones",
-                "presetGUID" : "1FF5569AFCC92F58E579581F1921FD83"
+                "presetGUID" : "351A5704A6D085D904914F4CE8D3602C"
                 },
               {
                 "objectType" : "Inst",
@@ -16659,7 +16705,7 @@ dfgEntry
                               }
                             ],
                           "executable" : "Fabric.ProductionSamples.Multipede.MultipedeSegment.Setters.SetLegEffectorStepSizes",
-                          "presetGUID" : "25DA25CA299DB3264ABF3EC4E2409F86"
+                          "presetGUID" : "ABB844014BA76F188FA88F0237F08E7C"
                           },
                         {
                           "objectType" : "Inst",
@@ -16990,7 +17036,7 @@ dfgEntry
                               }
                             ],
                           "executable" : "Fabric.ProductionSamples.Multipede.MultipedeSegment.Setters.SetLegRoots",
-                          "presetGUID" : "91A60603EFAB5F55FF32B03661DB6EDF"
+                          "presetGUID" : "C05D2D135A33374962258A43BECE6975"
                           },
                         {
                           "objectType" : "Inst",
@@ -17021,7 +17067,7 @@ dfgEntry
                               }
                             ],
                           "executable" : "Fabric.ProductionSamples.Multipede.MultipedeSegment.Setters.SetLegBoneScales",
-                          "presetGUID" : "59588A4731F0D0BB11F996D3FBA7D557"
+                          "presetGUID" : "AD799063D357116AE502EE6E2C332665"
                           },
                         {
                           "objectType" : "Inst",
@@ -17451,6 +17497,12 @@ dfgEntry
                                 "name" : "index",
                                 "nodePortType" : "Out",
                                 "outsidePortType" : "In"
+                                },
+                              {
+                                "objectType" : "ExecFixedPort",
+                                "name" : "count",
+                                "nodePortType" : "Out",
+                                "outsidePortType" : "In"
                                 }
                               ],
                             "blocks" : [
@@ -17626,7 +17678,7 @@ dfgEntry
                                     }
                                   ],
                                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegment",
-                                "presetGUID" : "77AA6398D685E692868B3E6A2E586793"
+                                "presetGUID" : "6EED215CA7A3A74453806947FF405303"
                                 },
                               {
                                 "objectType" : "Inst",
@@ -17657,7 +17709,7 @@ dfgEntry
                                     }
                                   ],
                                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SetSegment",
-                                "presetGUID" : "BE07B786B8F42913EECC09F2C75D6053"
+                                "presetGUID" : "3588F2D638DC700D207B717A53B6C4AF"
                                 },
                               {
                                 "objectType" : "Inst",
@@ -17821,7 +17873,7 @@ dfgEntry
                           }
                         ],
                       "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegmentCount",
-                      "presetGUID" : "EACCB5924F81223EF47A94B04B441A9B"
+                      "presetGUID" : "645CFAE2EB54B6F380881B24960AB418"
                       }
                     ],
                   "connections" : {
@@ -18162,7 +18214,7 @@ dfgEntry
                               }
                             ],
                           "executable" : "Fabric.ProductionSamples.Multipede.MultipedeSegment.Setters.SetBody",
-                          "presetGUID" : "886CA090064D7F5407FA5A672EB09736"
+                          "presetGUID" : "3743C9599C9B81F07CF7412349077192"
                           },
                         {
                           "objectType" : "Inst",
@@ -18808,6 +18860,12 @@ dfgEntry
                                 "name" : "index",
                                 "nodePortType" : "Out",
                                 "outsidePortType" : "In"
+                                },
+                              {
+                                "objectType" : "ExecFixedPort",
+                                "name" : "count",
+                                "nodePortType" : "Out",
+                                "outsidePortType" : "In"
                                 }
                               ],
                             "blocks" : [
@@ -18983,7 +19041,7 @@ dfgEntry
                                     }
                                   ],
                                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegment",
-                                "presetGUID" : "77AA6398D685E692868B3E6A2E586793"
+                                "presetGUID" : "6EED215CA7A3A74453806947FF405303"
                                 },
                               {
                                 "objectType" : "Inst",
@@ -19014,7 +19072,7 @@ dfgEntry
                                     }
                                   ],
                                 "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.SetSegment",
-                                "presetGUID" : "BE07B786B8F42913EECC09F2C75D6053"
+                                "presetGUID" : "3588F2D638DC700D207B717A53B6C4AF"
                                 },
                               {
                                 "objectType" : "Inst",
@@ -19178,7 +19236,7 @@ dfgEntry
                           }
                         ],
                       "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetSegmentCount",
-                      "presetGUID" : "EACCB5924F81223EF47A94B04B441A9B"
+                      "presetGUID" : "645CFAE2EB54B6F380881B24960AB418"
                       }
                     ],
                   "connections" : {
@@ -19482,7 +19540,7 @@ dfgEntry
           }
         ],
       "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetLinesRepresentationArray",
-      "presetGUID" : "AAA5BA0541ECCA89122B337D8AAD23FD"
+      "presetGUID" : "DE40D66D41E950C57291AFF8FAB1491E"
       },
     {
       "objectType" : "Inst",
@@ -19590,7 +19648,6 @@ dfgEntry
           "nodePortType" : "Out"
           }
         ],
-      "executable" : "Fabric.Compounds.PolygonMesh.Display.DrawMesh",
       "presetGUID" : "59E079DAED6CF13C89D28C7720F48B18"
       }
     ],
@@ -19813,7 +19870,7 @@ dfgEntry {
     "Fabric.Exts.FabricInterfaces.Execute.Merge4" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
         "uiTooltip" : "\n\n Supported by Execute"
         },
       "title" : "Merge4",
@@ -19957,6 +20014,13 @@ dfgEntry {
               "nodePortType" : "In",
               "outsidePortType" : "In",
               "typeSpec" : "Index"
+              },
+            {
+              "objectType" : "ExecBlockPort",
+              "name" : "count",
+              "nodePortType" : "In",
+              "outsidePortType" : "In",
+              "typeSpec" : "$TYPE$"
               }
             ],
           "defaultExec" : {
@@ -19975,6 +20039,12 @@ dfgEntry {
                 "name" : "index",
                 "nodePortType" : "Out",
                 "outsidePortType" : "In"
+                },
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "count",
+                "nodePortType" : "Out",
+                "outsidePortType" : "In"
                 }
               ],
             "extDeps" : {},
@@ -19988,14 +20058,14 @@ dfgEntry {
       "code" : "
 dfgEntry {
   for ($TYPE$ index = 0; index < count; ++index)
-    dfgPullBlockPort('body.exec', index);
+    dfgPullBlockPort('body.exec', index, count);
 }
 "
       },
     "Fabric.Exts.Characters.Func.IncrementVersion" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Characters/Skeleton.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Characters/Skeleton.html",
         "uiTooltip" : "Increments the version of the skeleton.\nskeleton to become invalid.\n\n Supported by Skeleton,Pose,Character"
         },
       "title" : "IncrementVersion",
@@ -20030,7 +20100,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Quat.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Quat.html",
         "uiTooltip" : "Set the quat to represent the direction as the Z axis\nand the upvector pointing along the XY plane.\n\n Supported by Quat"
         },
       "title" : "SetFromDirectionAndUpvector",
@@ -20115,6 +20185,9 @@ dfgEntry {
           },
         {
           "objectType" : "ExecPort",
+          "metadata" : {
+            "uiRange" : "(0, 1)"
+            },
           "name" : "t",
           "nodePortType" : "Out",
           "execPortType" : "In",
@@ -20143,7 +20216,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec2.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec2.html",
         "uiTooltip" : "Returns true if this vector is the same as another one\n(given a precision)\n\n Supported by Vec2,Vec3,Vec4,Mat22,Mat33,Mat44,Euler,Quat"
         },
       "title" : "AlmostEqual",
@@ -20199,7 +20272,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/RGB.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/RGB.html",
         "uiTooltip" : "Returns the product of this RGB color and a scalar\n\n Supported by RGB,RGBA,ARGB,Color,Vec2,Vec3,Vec4,Mat22,Mat33,Mat44,Quat"
         },
       "title" : "MultiplyScalar",
@@ -20388,7 +20461,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec2.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec2.html",
         "uiTooltip" : "Returns the length of this vector\n\n Supported by Vec2,Vec3,Vec4,Quat"
         },
       "title" : "Length",
@@ -20526,7 +20599,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec2.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec2.html",
         "uiTooltip" : "\n\n Supported by Vec2,Vec2_d,Vec2_i,Vec3,Vec3_d,Vec3_i,Vec4,Vec4_d,Vec4_i"
         },
       "title" : "Normalize",
@@ -20681,7 +20754,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "removes all contents from the DrawingHandle\n\n Supported by DrawingHandle"
         },
       "title" : "Clear",
@@ -20715,7 +20788,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawPoints" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "helper function to draw a points object given a color + a single transform\n\n Supported by DrawingHandle"
         },
       "title" : "DrawPoints",
@@ -20787,11 +20860,11 @@ dfgEntry {
       "code" : "require InlineDrawing;
 
 dfgEntry {
-  this.drawPoints(name, transform, points, dummyResult, instance);
+  if(this) this.drawPoints(name, transform, points, dummyResult, instance);
 }
 "
       },
-    "Fabric.Compounds.Debug.Display.DrawXfoArray" : {
+    "GUID:524A45D7B01EF01D5D5CC26943208611" : {
       "objectType" : "Graph",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 120,\n  \"g\" : 130,\n  \"b\" : 144\n  }",
@@ -21099,7 +21172,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawAxesInstances" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "helper function to draw axes at given transforms\n\n Supported by DrawingHandle"
         },
       "title" : "DrawAxesInstances",
@@ -21161,7 +21234,7 @@ dfgEntry {
       "code" : "require InlineDrawing;
 
 dfgEntry {
-  this.drawAxesInstances(name, transforms, dummyResult, instance);
+  if(this) this.drawAxesInstances(name, transforms, dummyResult, instance);
 }
 "
       },
@@ -21169,7 +21242,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Xfo.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Xfo.html"
         },
       "title" : "Xfo[] ->",
       "ports" : [
@@ -21276,7 +21349,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Xfo.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Xfo.html"
         },
       "title" : "-> Xfo[]",
       "ports" : [
@@ -21393,7 +21466,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/RGB.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/RGB.html",
         "uiTooltip" : "Returns the product of this RGB color and a scalar\n\n Supported by RGB,RGBA,ARGB,Color,Vec2,Vec3,Vec4,Mat22,Mat33,Mat44,Quat"
         },
       "title" : "MultiplyScalar[]",
@@ -21517,7 +21590,7 @@ dfgEntry {
 }
 "
       },
-    "Fabric.Compounds.PolygonMesh.Display.DrawMeshInstances" : {
+    "GUID:81CA9564EF41D7CC3A3EFDF59D63E57B" : {
       "objectType" : "Graph",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 120,\n  \"g\" : 130,\n  \"b\" : 144\n  }",
@@ -21692,7 +21765,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawPolygonMeshInstances" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "helper function to draw a mesh given a color + an array of transforms\n\n Supported by DrawingHandle"
         },
       "title" : "DrawPolygonMeshInstances",
@@ -21824,7 +21897,7 @@ dfgEntry {
       "code" : "require InlineDrawing;
 
 dfgEntry {
-  this.drawPolygonMeshInstances(name, color, specular, specFactor, transforms, mesh, wireFrame, doubleSided, dummyResult, instance);
+  if(this) this.drawPolygonMeshInstances(name, color, specular, specFactor, transforms, mesh, wireFrame, doubleSided, dummyResult, instance);
 }
 "
       },
@@ -22189,7 +22262,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.PolygonMesh" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Constructor.\n\n Supported by PolygonMesh"
         },
       "title" : "PolygonMesh",
@@ -22240,7 +22313,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.Func.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/GeometryAttributes.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/GeometryAttributes.html",
         "uiTooltip" : "Removes all attributes, and resets attribute value array sizes to 0.\n\n Supported by GeometryAttributes,BaseGeometry,Points,Lines,PolygonMesh"
         },
       "title" : "Clear",
@@ -22274,7 +22347,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.AddCone" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Appends a transformed cone to this mesh.\nBefore applying the transformation, cone's base will be centered at Y = -`height` / 2, and the tip will be at Y = `height` / 2.\n\nSet the point positions\nbuild the topology\nset positions and normals\nNow set the attrbute values\nNow set the attrbute values\n\n Supported by PolygonMesh"
         },
       "title" : "AddCone",
@@ -22557,7 +22630,7 @@ dfgEntry
         }
       },
     "Fabric.Exts.Geometry.PolygonMesh.ClonePolygonMesh" : {
-      "objectType" : "Graph",
+      "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 214,\n  \"g\" : 191,\n  \"b\" : 103\n  }",
         "uiHeaderColor" : "{\n  \"r\" : 188,\n  \"g\" : 129,\n  \"b\" : 83\n  }"
@@ -22575,7 +22648,8 @@ dfgEntry
           "objectType" : "ExecPort",
           "name" : "value",
           "nodePortType" : "Out",
-          "execPortType" : "In"
+          "execPortType" : "In",
+          "typeSpec" : "PolygonMesh"
           },
         {
           "objectType" : "ExecPort",
@@ -22587,130 +22661,8 @@ dfgEntry
         ],
       "extDeps" : {},
       "presetGUID" : "8480EBBD95E54A412E1471D01B474BA2",
-      "nodes" : [
-        {
-          "objectType" : "Inst",
-          "metadata" : {
-            "uiGraphPos" : "{\"x\": 329, \"y\": 165}"
-            },
-          "name" : "PolygonMesh",
-          "ports" : [
-            {
-              "objectType" : "InstPort",
-              "name" : "exec",
-              "nodePortType" : "IO"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "debugName",
-              "nodePortType" : "In"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "float64Positions",
-              "nodePortType" : "In"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "result",
-              "nodePortType" : "Out"
-              }
-            ],
-          "executable" : "Fabric.Exts.Geometry.PolygonMesh.PolygonMesh",
-          "presetGUID" : "18F3A38BE7497D6BFC18A148A520B66D"
-          },
-        {
-          "objectType" : "Var",
-          "metadata" : {
-            "uiGraphPos" : "{\"x\": 476, \"y\": 176}"
-            },
-          "name" : "mesh",
-          "ports" : [
-            {
-              "objectType" : "VarPort",
-              "name" : "value",
-              "nodePortType" : "IO"
-              }
-            ],
-          "dataType" : "PolygonMesh",
-          "extDep" : "Geometry:*"
-          },
-        {
-          "objectType" : "Inst",
-          "metadata" : {
-            "uiGraphPos" : "{\"x\": 674, \"y\": 115}"
-            },
-          "name" : "CloneMembersTo",
-          "ports" : [
-            {
-              "objectType" : "InstPort",
-              "name" : "exec",
-              "nodePortType" : "IO"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "value",
-              "nodePortType" : "In"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "clonedValue",
-              "nodePortType" : "IO"
-              }
-            ],
-          "executable" : "Fabric.Core.Data.CloneMembersTo",
-          "presetGUID" : "5FCEF4F5EFB2D8F917E415A22FFCDF2C"
-          }
-        ],
-      "connections" : {
-        "value" : [
-          "CloneMembersTo.value"
-          ],
-        "PolygonMesh.result" : [
-          "mesh.value"
-          ],
-        "mesh.value" : [
-          "CloneMembersTo.clonedValue"
-          ],
-        "CloneMembersTo.clonedValue" : [
-          "result"
-          ]
-        }
-      },
-    "Fabric.Core.Data.CloneMembersTo" : {
-      "objectType" : "Func",
-      "metadata" : {
-        "uiNodeColor" : "{\n  \"r\" : 214,\n  \"g\" : 191,\n  \"b\" : 103\n  }",
-        "uiHeaderColor" : "{\n  \"r\" : 188,\n  \"g\" : 129,\n  \"b\" : 83\n  }"
-        },
-      "title" : "CloneMembersTo",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "value",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "$TYPE$"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "clonedValue",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "$TYPE$"
-          }
-        ],
-      "extDeps" : {},
-      "presetGUID" : "5FCEF4F5EFB2D8F917E415A22FFCDF2C",
       "code" : "dfgEntry {
-  value.cloneMembersTo(clonedValue);
+  result = value.clone();
 }
 "
       },
@@ -22718,7 +22670,7 @@ dfgEntry
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Xfo.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Xfo.html",
         "uiTooltip" : "Setter from single channels, the rotation being in degrees\n\n Supported by Xfo"
         },
       "title" : "XfoFromScalars",
@@ -23056,7 +23008,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.AddSphere" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Appends a transformed sphere to this mesh.\nBefore applying the transformation, it will be centered at the origin.\n\nbuild the topology\nbuild the fan at the first pole.\nbuild the fan at the second pole.\nset positions and normals\nset uvs\nset the uvs on the the fan at the first pole.\n\n Supported by PolygonMesh"
         },
       "title" : "AddSphere",
@@ -23163,7 +23115,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec3.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec3.html"
         },
       "title" : "-> Vec3",
       "ports" : [
@@ -23232,7 +23184,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec3.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec3.html"
         },
       "title" : "Vec3 ->",
       "ports" : [
@@ -23299,7 +23251,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec3.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec3.html"
         },
       "title" : "Vec3[]",
       "ports" : [
@@ -23419,7 +23371,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Color.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Color.html"
         },
       "title" : "Color ->",
       "ports" : [
@@ -23731,7 +23683,7 @@ dfgEntry {
     "Fabric.Exts.FabricInterfaces.Execute.Merge" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
         "uiTooltip" : "\n\n Supported by Execute"
         },
       "title" : "Merge",
@@ -23831,7 +23783,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "CF1C61FC9D3B6559786C30AB82691F82",
+      "presetGUID" : "7672F0990D580CCE7ED2A767E57DB2FC",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -23951,6 +23903,12 @@ dfgEntry {
                   {
                     "objectType" : "ExecFixedPort",
                     "name" : "index",
+                    "nodePortType" : "Out",
+                    "outsidePortType" : "In"
+                    },
+                  {
+                    "objectType" : "ExecFixedPort",
+                    "name" : "count",
                     "nodePortType" : "Out",
                     "outsidePortType" : "In"
                     }
@@ -24350,7 +24308,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "F64AED9416D66C136C9B0488F0CC3821",
+      "presetGUID" : "CC21270C367DEB0BDADFC401B7866B7F",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -24396,7 +24354,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "A54BFD3AA3BE48BF860EA78DE26D2FBB",
+      "presetGUID" : "1D05F4F630A2D07DFBD792CA4EAB088D",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -24442,7 +24400,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "88E9E45D7EB06D98E51C10E95FC09801",
+      "presetGUID" : "3A46E8B02507C1646732E93CAEF014B8",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -24488,7 +24446,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "1FF5569AFCC92F58E579581F1921FD83",
+      "presetGUID" : "351A5704A6D085D904914F4CE8D3602C",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -24499,7 +24457,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.Func.GetPosition" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/Points.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/Points.html",
         "uiTooltip" : "Returns the position of a point.\n\n Supported by Points,Lines"
         },
       "title" : "GetPosition",
@@ -24589,7 +24547,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "77AA6398D685E692868B3E6A2E586793",
+      "presetGUID" : "6EED215CA7A3A74453806947FF405303",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -24639,7 +24597,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "BE07B786B8F42913EECC09F2C75D6053",
+      "presetGUID" : "3588F2D638DC700D207B717A53B6C4AF",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -24711,7 +24669,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "EACCB5924F81223EF47A94B04B441A9B",
+      "presetGUID" : "645CFAE2EB54B6F380881B24960AB418",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -24858,7 +24816,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "25DA25CA299DB3264ABF3EC4E2409F86",
+      "presetGUID" : "ABB844014BA76F188FA88F0237F08E7C",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -24972,7 +24930,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "91A60603EFAB5F55FF32B03661DB6EDF",
+      "presetGUID" : "C05D2D135A33374962258A43BECE6975",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -25028,7 +24986,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "59588A4731F0D0BB11F996D3FBA7D557",
+      "presetGUID" : "AD799063D357116AE502EE6E2C332665",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -25040,7 +24998,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec3.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Math/Vec3.html"
         },
       "title" : "-> Vec3[]",
       "ports" : [
@@ -25532,7 +25490,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "886CA090064D7F5407FA5A672EB09736",
+      "presetGUID" : "3743C9599C9B81F07CF7412349077192",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -25590,7 +25548,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawLines" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "helper function to draw a lines object given a color + a single transform\n\n Supported by DrawingHandle"
         },
       "title" : "DrawLines",
@@ -25697,7 +25655,7 @@ dfgEntry {
       "code" : "require InlineDrawing;
 
 dfgEntry {
-  this.drawLines(name, color, specular, specFactor, transform, lines, dummyResult, instance);
+ if(this) this.drawLines(name, color, specular, specFactor, transform, lines, dummyResult, instance);
 }
 "
       },
@@ -25832,7 +25790,7 @@ dfgEntry {
       "extDeps" : {
         "Multipede" : "*"
         },
-      "presetGUID" : "AAA5BA0541ECCA89122B337D8AAD23FD",
+      "presetGUID" : "DE40D66D41E950C57291AFF8FAB1491E",
       "code" : "require Multipede;
 
 dfgEntry {
@@ -25843,7 +25801,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.ExtrudeLines" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Extrudes a circular profile along a Lines object.\n\n Supported by PolygonMesh"
         },
       "title" : "ExtrudeLines",
@@ -25934,7 +25892,7 @@ dfgEntry {
 }
 "
       },
-    "Fabric.Compounds.PolygonMesh.Display.DrawMesh" : {
+    "GUID:59E079DAED6CF13C89D28C7720F48B18" : {
       "objectType" : "Graph",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 120,\n  \"g\" : 130,\n  \"b\" : 144\n  }",
@@ -26097,7 +26055,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawPolygonMesh" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "helper function to draw a mesh given a color + a single transform\n\n Supported by DrawingHandle"
         },
       "title" : "DrawPolygonMesh",
@@ -26229,7 +26187,7 @@ dfgEntry {
       "code" : "require InlineDrawing;
 
 dfgEntry {
-  this.drawPolygonMesh(name, color, specular, specFactor, transform, mesh, wireFrame, doubleSided, dummyResult, instance);
+  if(this) this.drawPolygonMesh(name, color, specular, specFactor, transform, mesh, wireFrame, doubleSided, dummyResult, instance);
 }
 "
       }
