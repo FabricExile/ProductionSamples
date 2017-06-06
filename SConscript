@@ -87,21 +87,7 @@ if 'productionSamples' in COMMAND_LINE_TARGETS \
       )
     )
   productionSamplesFiles.extend(files)
-    
-  # "Samples/FabricSoftimage/Canvas/Scenes"
-  env = parentEnv.CloneSubStage('Samples').CloneSubStage('FabricSoftimage').CloneSubStage('Canvas').CloneSubStage('Scenes').CloneSubStage('ProductionSamples')
-  files = []
-  files = env.RecursiveInstall(
-    env['STAGE_DIR'],
-    env.Dir('Samples').Dir('FabricSoftimage').Dir('Canvas').Dir('Scenes').Dir('ProductionSamples').srcnode(),
-    env.CollectTree(
-      env.Dir('Samples').Dir('FabricSoftimage').Dir('Canvas').Dir('Scenes').srcnode().abspath,
-      excludeFilespecs=["SConscript", ".gitignore"],
-      excludeSubdirs=[".git", ".github", "_old", "_tmp", "_wip"],
-      )
-    )
-  productionSamplesFiles.extend(files)
-    
+        
   Export('productionSamplesFiles')
   Alias('productionSamples', productionSamplesFiles)
   result.extend(productionSamplesFiles)
