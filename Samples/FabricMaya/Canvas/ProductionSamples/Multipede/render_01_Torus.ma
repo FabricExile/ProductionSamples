@@ -3159,7 +3159,7 @@ createNode materialInfo -n "materialInfo15";
 	rename -uid "7A38D291-485C-C05B-1D9A-7E81CC91607D";
 createNode file -n "file1";
 	rename -uid "84EDB68C-4CA0-E2FA-994E-CD800752C558";
-	setAttr ".ftn" -type "string" "%FABRIC_DIR%/Resources/ProductionSamples/Textures/Bark_0001_diffuse .jpg";
+	setAttr ".ftn" -type "string" "%FABRIC_DIR%/Resources/ProductionSamples/Textures/Bark_0001_diffuse.jpg";
 	setAttr ".cs" -type "string" "sRGB";
 createNode place2dTexture -n "place2dTexture1";
 	rename -uid "DD053430-4694-B9DB-C01C-6C86114B0184";
