@@ -1,15 +1,16 @@
 {
   "objectType" : "Graph",
   "metadata" : {
-    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.6503689885139465,\n    \"y\" : -0.7597911953926086,\n    \"z\" : 0.06131723523139954,\n    \"t\" : -0.5730600357055664\n    },\n  \"row1\" : {\n    \"x\" : 5.989129476802191e-07,\n    \"y\" : 0.08007130771875382,\n    \"z\" : 1.001341819763184,\n    \"t\" : 31.98798942565918\n    },\n  \"row2\" : {\n    \"x\" : -0.7659383416175842,\n    \"y\" : -0.6451492309570313,\n    \"z\" : 0.0520661361515522,\n    \"t\" : 6.200477600097656\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
+    "timeline_timerFps" : "60.0",
+    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.6503689289093018,\n    \"y\" : -0.7597912549972534,\n    \"z\" : 0.06131729483604431,\n    \"t\" : -0.5730600357055664\n    },\n  \"row1\" : {\n    \"x\" : 5.390216415435134e-07,\n    \"y\" : 0.08007130771875381,\n    \"z\" : 1.001341819763184,\n    \"t\" : 31.98798942565918\n    },\n  \"row2\" : {\n    \"x\" : -0.765938401222229,\n    \"y\" : -0.6451492309570312,\n    \"z\" : 0.05206607654690742,\n    \"t\" : 6.200477600097656\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
     "timeline_start" : "1",
     "timeline_loopMode" : "1",
-    "uiGraphZoom" : "{\n  \"value\" : 0.1575780510902405\n  }",
+    "uiGraphZoom" : "{\n  \"value\" : 0.1074205860495567\n  }",
     "timeline_simMode" : "0",
     "camera_focalDistance" : "35.98538970947266",
     "timeline_current" : "9",
     "timeline_end" : "250",
-    "uiGraphPan" : "{\n  \"x\" : 901.9651321924903,\n  \"y\" : 166.4408906117496\n  }"
+    "uiGraphPan" : "{\n  \"x\" : 815.789184571031,\n  \"y\" : 113.4623571187581\n  }"
     },
   "title" : "",
   "ports" : [
@@ -120,7 +121,7 @@
           "nodePortType" : "Out"
           }
         ],
-      "executable" : "Fabric.Core.Logic.Le",
+      "executable" : "Fabric.Core.Comparison.Less Or Equal",
       "presetGUID" : "29580C848A777A42608B45D8DF02D37C"
       },
     {
@@ -768,7 +769,7 @@
           "nodePortType" : "Out"
           }
         ],
-      "executable" : "Fabric.Core.Logic.Gt",
+      "executable" : "Fabric.Core.Comparison.Greater Than",
       "presetGUID" : "C22E50DFDD87E347304A46E67A4B673E"
       },
     {
@@ -1980,7 +1981,7 @@
                     "nodePortType" : "Out"
                     }
                   ],
-                "executable" : "Fabric.Exts.Math.Func.LinearInterpolate",
+                "executable" : "Fabric.Exts.Math.Func.Lerp",
                 "presetGUID" : "12CF7203114B81451A5EEC920610EDA9"
                 },
               {
@@ -2248,7 +2249,6 @@
           "nodePortType" : "Out"
           }
         ],
-      "executable" : "Fabric.Exts.InlineDrawing.Display.DrawCurves",
       "presetGUID" : "BEBA2866C55C66359A01706B625D1A70"
       },
     {
@@ -3288,7 +3288,7 @@
                     "nodePortType" : "Out"
                     }
                   ],
-                "executable" : "Fabric.Exts.Math.Func.LinearInterpolate",
+                "executable" : "Fabric.Exts.Math.Func.Lerp",
                 "presetGUID" : "12CF7203114B81451A5EEC920610EDA9"
                 },
               {
@@ -3663,7 +3663,6 @@
           "nodePortType" : "Out"
           }
         ],
-      "executable" : "Fabric.Exts.InlineDrawing.DrawingHandle.EmptyDrawingHandle",
       "presetGUID" : "2440020BA6A1CAB1CEB690A198F99C70"
       },
     {
@@ -3754,7 +3753,6 @@
           "nodePortType" : "Out"
           }
         ],
-      "executable" : "Fabric.Exts.InlineDrawing.DrawingHandle.EmptyDrawingHandle",
       "presetGUID" : "2440020BA6A1CAB1CEB690A198F99C70"
       },
     {
@@ -3891,10 +3889,13 @@
       "Draw2DText_4.this"
       ]
     },
+  "bindingMetadata" : {
+    "host_app" : "Canvas.py"
+    },
   "requiredPresets" : {
-    "Fabric.Core.Logic.Le" : {
+    "Fabric.Core.Comparison.Less Or Equal" : {
       "objectType" : "Func",
-      "title" : "Le <=",
+      "title" : "<=",
       "ports" : [
         {
           "objectType" : "ExecPort",
@@ -3927,6 +3928,10 @@
         ],
       "extDeps" : {},
       "presetGUID" : "29580C848A777A42608B45D8DF02D37C",
+      "tags" : [
+        "aka:<=",
+        "aka:Le"
+        ],
       "code" : "
 dfgEntry {
 	result = lhs <= rhs;
@@ -4162,7 +4167,7 @@ dfgEntry {
     "Fabric.Exts.Manipulation.ManipHandle.ManipHandle" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "constructor taking a name\n\nSupported types:\n  name: String\n  result: ManipHandle\n"
         },
       "title" : "ManipHandle",
@@ -4206,7 +4211,7 @@ dfgEntry {
     "Fabric.Exts.Manipulation.ManipHandle.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "clears the content of the ManipHandle\n\nSupported types:\n  this: ManipHandle\n"
         },
       "title" : "Clear",
@@ -4252,6 +4257,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "exec",
           "nodePortType" : "IO",
+          "defaultValues" : {
+            "Execute" : {}
+            },
           "execPortType" : "IO",
           "typeSpec" : "Execute"
           },
@@ -4272,6 +4280,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "mesh",
           "nodePortType" : "In",
+          "defaultValues" : {
+            "PolygonMesh" : null
+            },
           "execPortType" : "Out",
           "typeSpec" : "PolygonMesh"
           }
@@ -4338,6 +4349,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "exec",
           "nodePortType" : "IO",
+          "defaultValues" : {
+            "Execute" : {}
+            },
           "execPortType" : "IO",
           "typeSpec" : "Execute"
           },
@@ -4371,6 +4385,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "mesh",
           "nodePortType" : "In",
+          "defaultValues" : {
+            "PolygonMesh" : null
+            },
           "execPortType" : "Out",
           "typeSpec" : "PolygonMesh"
           }
@@ -4703,6 +4720,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "exec",
           "nodePortType" : "IO",
+          "defaultValues" : {
+            "Execute" : {}
+            },
           "execPortType" : "IO",
           "typeSpec" : "Execute"
           },
@@ -4710,6 +4730,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "mesh",
           "nodePortType" : "Out",
+          "defaultValues" : {
+            "PolygonMesh" : null
+            },
           "execPortType" : "In",
           "typeSpec" : "PolygonMesh"
           },
@@ -4730,6 +4753,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "result",
           "nodePortType" : "In",
+          "defaultValues" : {
+            "PolygonMesh" : null
+            },
           "execPortType" : "Out",
           "typeSpec" : "PolygonMesh"
           }
@@ -4787,32 +4813,6 @@ dfgEntry {
         {
           "objectType" : "Inst",
           "metadata" : {
-            "uiGraphPos" : "{\"x\": 302, \"y\": 108}"
-            },
-          "name" : "ClonePolygonMesh",
-          "ports" : [
-            {
-              "objectType" : "InstPort",
-              "name" : "exec",
-              "nodePortType" : "IO"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "value",
-              "nodePortType" : "In"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "result",
-              "nodePortType" : "Out"
-              }
-            ],
-          "executable" : "Fabric.Exts.Geometry.PolygonMesh.ClonePolygonMesh",
-          "presetGUID" : "8480EBBD95E54A412E1471D01B474BA2"
-          },
-        {
-          "objectType" : "Inst",
-          "metadata" : {
             "uiGraphPos" : "{\"x\": 314, \"y\": 225}"
             },
           "name" : "MathDegToRad",
@@ -4833,13 +4833,39 @@ dfgEntry {
               "nodePortType" : "Out"
               }
             ],
-          "executable" : "Fabric.Exts.Math.Func.Math_degToRad",
+          "executable" : "Fabric.Exts.Math.Constants.DegToRad",
           "presetGUID" : "6BC97C4D61BFC82DBF0660BAD1104520"
+          },
+        {
+          "objectType" : "Inst",
+          "metadata" : {
+            "uiGraphPos" : "{\"x\":320.0,\"y\":100.0}"
+            },
+          "name" : "Clone_1",
+          "ports" : [
+            {
+              "objectType" : "InstPort",
+              "name" : "exec",
+              "nodePortType" : "IO"
+              },
+            {
+              "objectType" : "InstPort",
+              "name" : "value",
+              "nodePortType" : "In"
+              },
+            {
+              "objectType" : "InstPort",
+              "name" : "clonedValue",
+              "nodePortType" : "Out"
+              }
+            ],
+          "executable" : "Fabric.Core.Data.Clone",
+          "presetGUID" : "30401D7851DEFCFA5C46EB3926DD8BAD"
           }
         ],
       "connections" : {
         "mesh" : [
-          "ClonePolygonMesh.value"
+          "Clone_1.value"
           ],
         "hardAngleDegrees" : [
           "MathDegToRad.val"
@@ -4850,18 +4876,18 @@ dfgEntry {
         "Cache.value" : [
           "result"
           ],
-        "ClonePolygonMesh.result" : [
-          "RecomputePointNormals.this"
-          ],
         "MathDegToRad.result" : [
           "RecomputePointNormals.hardAngleRadians"
+          ],
+        "Clone_1.clonedValue" : [
+          "RecomputePointNormals.this"
           ]
         }
       },
     "Fabric.Exts.Geometry.PolygonMesh.RecomputePointNormals" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Recomputes all point normals and introduces normal splits if adjacent polygons' normals differ by more than `hardAngleRadians` radians.\nAll previously stored point normals will be overwritten.\nThe computed normal value is the average of neighbor polygons' :kl-ref:`PolygonMesh.generatePolygonNormal` (or a subset of these if there is a split).\n\n Supported by PolygonMesh"
         },
       "title" : "RecomputePointNormals",
@@ -4902,50 +4928,13 @@ dfgEntry {
 }
 "
       },
-    "Fabric.Exts.Geometry.PolygonMesh.ClonePolygonMesh" : {
-      "objectType" : "Func",
-      "metadata" : {
-        "uiNodeColor" : "{\n  \"r\" : 214,\n  \"g\" : 191,\n  \"b\" : 103\n  }",
-        "uiHeaderColor" : "{\n  \"r\" : 188,\n  \"g\" : 129,\n  \"b\" : 83\n  }"
-        },
-      "title" : "ClonePolygonMesh",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "value",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "PolygonMesh"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "result",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "PolygonMesh"
-          }
-        ],
-      "extDeps" : {},
-      "presetGUID" : "8480EBBD95E54A412E1471D01B474BA2",
-      "code" : "dfgEntry {
-  result = value.clone();
-}
-"
-      },
-    "Fabric.Exts.Math.Func.Math_degToRad" : {
+    "Fabric.Exts.Math.Constants.DegToRad" : {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
         "uiTooltip" : "Converts degrees to radians\n\n Supported by Scalar"
         },
-      "title" : "Math_degToRad",
+      "title" : "DegToRad",
       "ports" : [
         {
           "objectType" : "ExecPort",
@@ -4980,10 +4969,50 @@ dfgEntry {
 }
 "
       },
+    "Fabric.Core.Data.Clone" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiNodeColor" : "{\n  \"r\" : 214,\n  \"g\" : 191,\n  \"b\" : 103\n  }",
+        "uiHeaderColor" : "{\n  \"r\" : 188,\n  \"g\" : 129,\n  \"b\" : 83\n  }"
+        },
+      "title" : "Clone",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "value",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "clonedValue",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "$TYPE$"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "30401D7851DEFCFA5C46EB3926DD8BAD",
+      "tags" : [
+        "aka:DeepCopy"
+        ],
+      "code" : "dfgEntry {
+  clonedValue = value.clone();
+}
+"
+      },
     "Fabric.Exts.Manipulation.ManipHandle.AddPositionPlanarManip" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "Registers a single position manipulator if it doesn't exist yet\n\nSupported types:\n  this: ManipHandle\n  name: String\n  mesh: PolygonMesh\n  pos: Vec3\n  color: Color\n  size: Scalar\n  normal: Vec3\n  parentInstance: InlineInstance\n  portToDrive: String\n  hostGraphName: String\n  instance: InlineInstance\n"
         },
       "title" : "AddPositionPlanarManip",
@@ -5120,7 +5149,7 @@ dfgEntry {
     "Fabric.Exts.Manipulation.ManipHandle.AddPositionManip" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "Registers a single position manipulator if it doesn't exist yet\n\nSupported types:\n  this: ManipHandle\n  name: String\n  mesh: PolygonMesh\n  pos: Vec3\n  color: Color\n  size: Scalar\n  parentInstance: InlineInstance\n  portToDrive: String\n  hostGraphName: String\n  instance: InlineInstance\n"
         },
       "title" : "AddPositionManip",
@@ -5546,7 +5575,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.PolygonMesh" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Constructor.\n\n Supported by PolygonMesh"
         },
       "title" : "PolygonMesh",
@@ -5597,7 +5626,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.Func.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/GeometryAttributes.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/GeometryAttributes.html",
         "uiTooltip" : "Removes all attributes, and resets attribute value array sizes to 0.\n\n Supported by GeometryAttributes,BaseGeometry,Points,Lines,PolygonMesh"
         },
       "title" : "Clear",
@@ -5631,7 +5660,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.AddCuboid" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Appends a transformed cuboid (cube with specified size) to this mesh.\nBefore applying the transformation, the cuboid is centered at the origin,\nand has a range of [-x/2 .. x/2, -y/2 .. y/2, -z/2 .. z/2].\n\nSet Points Normals\nFace 0 (+Z)\nFace 1 (-Z)\nFace 2 (+Y)\nFace 3 (-Y)\nFace 4 (+X)\nFace 5 (-X)\nSet Uvs\nFace 0 (+Z)\nFace 1 (-Z)\nFace 2 (+Y)\nFace 3 (-Y)\nFace 4 (+X)\nFace 5 (-X)\n\n Supported by PolygonMesh"
         },
       "title" : "AddCuboid",
@@ -5734,9 +5763,9 @@ dfgEntry {
 }
 "
       },
-    "Fabric.Core.Logic.Gt" : {
+    "Fabric.Core.Comparison.Greater Than" : {
       "objectType" : "Func",
-      "title" : "Gt >",
+      "title" : ">",
       "ports" : [
         {
           "objectType" : "ExecPort",
@@ -5769,6 +5798,10 @@ dfgEntry {
         ],
       "extDeps" : {},
       "presetGUID" : "C22E50DFDD87E347304A46E67A4B673E",
+      "tags" : [
+        "aka:>",
+        "aka:Gt"
+        ],
       "code" : "
 dfgEntry {
 	result = lhs > rhs;
@@ -6136,7 +6169,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.Curves.Curves" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/Curves.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/Curves.html",
         "uiTooltip" : "Constructor.\n\nSupported types:\n  float64Positions: Boolean\n  result: Curves\n"
         },
       "title" : "Curves",
@@ -6180,7 +6213,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.Curves.SetDrawThickness" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/Curves.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/Curves.html",
         "uiTooltip" : "Sets the draw thickness, in pixels, to be used by the drawing.\n\nSupported types:\n  this: Curves\n  pixels: UInt32\n"
         },
       "title" : "SetDrawThickness",
@@ -6227,7 +6260,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.Curves.SetDrawSamplesPerSpan" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/Curves.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/Curves.html",
         "uiTooltip" : "Sets the number of curve samples per span created for the drawing.\nThis has no impact on linear curves (1 sample per point).\n\nSupported types:\n  this: Curves\n  samples: UInt32\n"
         },
       "title" : "SetDrawSamplesPerSpan",
@@ -6368,7 +6401,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.Curves.AddNURBS" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/Geometry/Curves.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/Curves.html",
         "uiTooltip" : "Adds a NURBS curve, and returns the added Curve.\nIf the curve is closed or periodic, pointPositions exclude repeated end point (implicitly point 0).\nSee Curves for more information about various curve types.\n\nSupported types:\n  this: Curves\n  pointPositions: Vec3[]\n  degree: UInt8\n  curveForm: UInt8\n  result: Curve\n"
         },
       "title" : "AddNURBS",
@@ -6447,6 +6480,9 @@ dfgEntry {
       },
     "Fabric.Core.Array.Get" : {
       "objectType" : "Func",
+      "metadata" : {
+        "uiTooltip" : "Gets an element from the given index of an array."
+        },
       "title" : "Get[]",
       "ports" : [
         {
@@ -6480,6 +6516,10 @@ dfgEntry {
         ],
       "extDeps" : {},
       "presetGUID" : "880D755392299678EEB93260424986E2",
+      "tags" : [
+        "aka:GetArray",
+        "aka:Get[]"
+        ],
       "code" : "
 dfgEntry {
 	element = array[index];
@@ -6490,7 +6530,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Xfo.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Math/Xfo.html"
         },
       "title" : "Xfo ->",
       "ports" : [
@@ -6581,7 +6621,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Quat.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Math/Quat.html",
         "uiTooltip" : "Rotates a vector by this quaterion.\nDon't forget to normalize the quaternion unless\nyou want axial translation as well as rotation.\n\n Supported by Quat"
         },
       "title" : "RotateVector",
@@ -6639,7 +6679,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Math/Vec3.html"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Math/Vec3.html"
         },
       "title" : "Vec3 ->",
       "ports" : [
@@ -7166,13 +7206,13 @@ dfgEntry {
 }
 "
       },
-    "Fabric.Exts.Math.Func.LinearInterpolate" : {
+    "Fabric.Exts.Math.Func.Lerp" : {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
         "uiTooltip" : "Linearly interpolates a scalar value with another based on a blend (0.0 to 1.0)\n\n Supported by Float32,Float64,RGB,RGBA,ARGB,Color,Vec2,Vec3,Vec4,Quat,Xfo"
         },
-      "title" : "LinearInterpolate",
+      "title" : "Lerp",
       "ports" : [
         {
           "objectType" : "ExecPort",
@@ -7217,6 +7257,10 @@ dfgEntry {
         "Math" : "*"
         },
       "presetGUID" : "12CF7203114B81451A5EEC920610EDA9",
+      "tags" : [
+        "aka:LinearInterpolate",
+        "cat:Interpolate"
+        ],
       "code" : "require Math;
 
 dfgEntry {
@@ -7251,6 +7295,9 @@ dfgEntry {
         ],
       "extDeps" : {},
       "presetGUID" : "E1A3D489434CCC2433A2E2DF69094AB3",
+      "tags" : [
+        "aka:Knot"
+        ],
       "code" : "dfgEntry {
   // result = a + b;
 }
@@ -7290,14 +7337,14 @@ dfgEntry {
 }
 "
       },
-    "Fabric.Exts.InlineDrawing.Display.DrawCurves" : {
+    "GUID:BEBA2866C55C66359A01706B625D1A70" : {
       "objectType" : "Graph",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 120,\n  \"g\" : 130,\n  \"b\" : 144\n  }",
-        "uiGraphZoom" : "{\n  \"value\" : 0.6696120500564575\n  }",
+        "uiGraphZoom" : "{\n  \"value\" : 1.0\n  }",
         "uiHeaderColor" : "{\n  \"r\" : 88,\n  \"g\" : 92,\n  \"b\" : 110\n  }",
         "uiTooltip" : "Draws curves into the viewport.",
-        "uiGraphPan" : "{\n  \"x\" : 179.0776944042309,\n  \"y\" : 26.7321219363658\n  }"
+        "uiGraphPan" : "{\n  \"x\" : -168.927490234375,\n  \"y\" : -57.27565002441406\n  }"
         },
       "title" : "DrawCurves",
       "ports" : [
@@ -7456,11 +7503,6 @@ dfgEntry {
               },
             {
               "objectType" : "InstPort",
-              "name" : "dummyResult",
-              "nodePortType" : "Out"
-              },
-            {
-              "objectType" : "InstPort",
               "name" : "instance",
               "nodePortType" : "Out"
               }
@@ -7486,7 +7528,6 @@ dfgEntry {
               "nodePortType" : "Out"
               }
             ],
-          "executable" : "Fabric.Exts.InlineDrawing.DrawingHandle.EmptyDrawingHandle",
           "presetGUID" : "2440020BA6A1CAB1CEB690A198F99C70"
           }
         ],
@@ -7517,8 +7558,8 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawCurves" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.4.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
-        "uiTooltip" : "helper function to draw a curves object given a color + a single transform\n\nSupported types:\n  this: DrawingHandle\n  name: String\n  color: Color\n  specular: Color\n  specFactor: Float32\n  transform: Xfo\n  curves: Curves\n  dummyResult: Vec3\n  instance: InlineInstance\n"
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiTooltip" : "helper function to draw a curves object given a color + a single transform\n\nSupported types:\n  this: DrawingHandle\n  name: String\n  color: Color\n  specular: Color\n  specFactor: Float32\n  transform: Xfo\n  curves: Curves\n  instance: InlineInstance\n"
         },
       "title" : "DrawCurves",
       "ports" : [
@@ -7581,6 +7622,10 @@ dfgEntry {
           },
         {
           "objectType" : "ExecPort",
+          "metadata" : {
+            "uiHardRange" : "(2, 1000)",
+            "uiRange" : "(2, 100)"
+            },
           "name" : "specFactor",
           "nodePortType" : "Out",
           "defaultValues" : {
@@ -7611,16 +7656,6 @@ dfgEntry {
           },
         {
           "objectType" : "ExecPort",
-          "metadata" : {
-            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
-            },
-          "name" : "dummyResult",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "Vec3"
-          },
-        {
-          "objectType" : "ExecPort",
           "name" : "instance",
           "nodePortType" : "In",
           "execPortType" : "Out",
@@ -7634,11 +7669,11 @@ dfgEntry {
       "code" : "require InlineDrawing;
 
 dfgEntry {
-  this.drawCurves(name, color, specular, specFactor, transform, curves, dummyResult, instance);
+  this.drawCurves(name, color, specular, specFactor, transform, curves, instance);
 }
 "
       },
-    "Fabric.Exts.InlineDrawing.DrawingHandle.EmptyDrawingHandle" : {
+    "GUID:2440020BA6A1CAB1CEB690A198F99C70" : {
       "objectType" : "Graph",
       "title" : "EmptyDrawingHandle",
       "cacheRule" : "never",
@@ -7762,7 +7797,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "removes all contents from the DrawingHandle\n\n Supported by DrawingHandle"
         },
       "title" : "Clear",

@@ -1,15 +1,16 @@
 {
   "objectType" : "Graph",
   "metadata" : {
+    "timeline_timerFps" : "60.0",
     "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.3199187517166138,\n    \"y\" : -0.7369351387023926,\n    \"z\" : 0.5989111661911011,\n    \"t\" : 18.17201042175293\n    },\n  \"row1\" : {\n    \"x\" : -4.371738214103971e-06,\n    \"y\" : 0.6289438605308533,\n    \"z\" : 0.7809193134307861,\n    \"t\" : 23.98879623413086\n    },\n  \"row2\" : {\n    \"x\" : -0.9524404406547546,\n    \"y\" : -0.2475348263978958,\n    \"z\" : 0.2011668533086777,\n    \"t\" : 4.835444927215576\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
     "timeline_start" : "1",
     "timeline_loopMode" : "1",
-    "uiGraphZoom" : "{\n  \"value\" : 0.3470756411552429\n  }",
+    "uiGraphZoom" : "{\n  \"value\" : 1.010515213012695\n  }",
     "timeline_simMode" : "0",
     "camera_focalDistance" : "29.62772560119629",
     "timeline_current" : "5",
     "timeline_end" : "250",
-    "uiGraphPan" : "{\n  \"x\" : 737.1969684888682,\n  \"y\" : 226.3225964027315\n  }"
+    "uiGraphPan" : "{\n  \"x\" : 36.81727600097656,\n  \"y\" : -358.8997802734375\n  }"
     },
   "title" : "",
   "ports" : [
@@ -113,7 +114,7 @@
           "nodePortType" : "Out"
           }
         ],
-      "executable" : "Fabric.Core.Logic.Le",
+      "executable" : "Fabric.Core.Comparison.Less Or Equal",
       "presetGUID" : "29580C848A777A42608B45D8DF02D37C"
       },
     {
@@ -720,7 +721,7 @@
           "nodePortType" : "Out"
           }
         ],
-      "executable" : "Fabric.Exts.FabricInterfaces.Execute.Merge",
+      "executable" : "Fabric.Core.Execute.Merge",
       "presetGUID" : "2ADD39E9E3598C793E94B3E7C9F983CA"
       },
     {
@@ -792,7 +793,7 @@
           "nodePortType" : "Out"
           }
         ],
-      "executable" : "Fabric.Core.Logic.Gt",
+      "executable" : "Fabric.Core.Comparison.Greater Than",
       "presetGUID" : "C22E50DFDD87E347304A46E67A4B673E"
       },
     {
@@ -1037,101 +1038,6 @@
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":633.398251534,\"y\":478.969242811}",
-        "uiCollapsedState" : "1"
-        },
-      "name" : "GetLinesRepresentation_1",
-      "ports" : [
-        {
-          "objectType" : "InstPort",
-          "name" : "exec",
-          "nodePortType" : "IO"
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "this",
-          "nodePortType" : "In"
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "muteAll",
-          "nodePortType" : "In"
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "connectingLines",
-          "nodePortType" : "In",
-          "defaultValues" : {
-            "Boolean" : true
-            }
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "centers",
-          "nodePortType" : "In",
-          "defaultValues" : {
-            "Boolean" : false
-            }
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "bodies",
-          "nodePortType" : "In",
-          "defaultValues" : {
-            "Boolean" : false
-            }
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "legRoots",
-          "nodePortType" : "In"
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "legBones",
-          "nodePortType" : "In",
-          "defaultValues" : {
-            "Boolean" : false
-            }
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "legEffectors",
-          "nodePortType" : "In",
-          "defaultValues" : {
-            "Boolean" : false
-            }
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "legEffectorVolumes",
-          "nodePortType" : "In",
-          "defaultValues" : {
-            "Boolean" : false
-            }
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "detail",
-          "nodePortType" : "In"
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "segmentIndex",
-          "nodePortType" : "In"
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "lines",
-          "nodePortType" : "Out"
-          }
-        ],
-      "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetLinesRepresentation",
-      "presetGUID" : "0EE7332808C201D126B2092DB64EC6BF"
-      },
-    {
-      "objectType" : "Inst",
-      "metadata" : {
         "uiGraphPos" : "{\"x\":648.316159248,\"y\":409.793949842}"
         },
       "name" : "EmptyDrawingHandle_1",
@@ -1147,7 +1053,6 @@
           "nodePortType" : "Out"
           }
         ],
-      "executable" : "Fabric.Exts.InlineDrawing.DrawingHandle.EmptyDrawingHandle",
       "presetGUID" : "2440020BA6A1CAB1CEB690A198F99C70"
       },
     {
@@ -1221,6 +1126,88 @@
         },
       "name" : "backDrop_4",
       "ports" : []
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":670.0,\"y\":504.185668945}",
+        "uiCollapsedState" : "2"
+        },
+      "name" : "GetLinesRepresentation_2",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "name" : "exec",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "this",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "muteAll",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "connectingLines",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "centers",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "bodies",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "legRoots",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "legBones",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "legEffectors",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "legEffectorVolumes",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "boundingSphere",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "detail",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "segmentIndex",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "lines",
+          "nodePortType" : "Out"
+          }
+        ],
+      "executable" : "Fabric.ProductionSamples.Multipede.Multipede.Core.GetLinesRepresentation",
+      "presetGUID" : "F524616EF2D2C758938C86A434EDB734"
       }
     ],
   "connections" : {
@@ -1274,7 +1261,7 @@
       "SolveLegBones_1.this"
       ],
     "SolveLegBones_1.this" : [
-      "GetLinesRepresentation_1.this"
+      "GetLinesRepresentation_2.this"
       ],
     "get.value" : [
       "IsNull_2.obj"
@@ -1285,20 +1272,23 @@
     "IsNull_2.result" : [
       "Or_1.lhs"
       ],
-    "GetLinesRepresentation_1.lines" : [
-      "DrawLines_1.lines"
-      ],
     "EmptyDrawingHandle_1.handle" : [
       "DrawLines_1.this"
       ],
     "DrawLines_1.this" : [
       "Merge_1.e0"
+      ],
+    "GetLinesRepresentation_2.lines" : [
+      "DrawLines_1.lines"
       ]
     },
+  "bindingMetadata" : {
+    "host_app" : "Canvas.py"
+    },
   "requiredPresets" : {
-    "Fabric.Core.Logic.Le" : {
+    "Fabric.Core.Comparison.Less Or Equal" : {
       "objectType" : "Func",
-      "title" : "Le <=",
+      "title" : "<=",
       "ports" : [
         {
           "objectType" : "ExecPort",
@@ -1331,6 +1321,10 @@
         ],
       "extDeps" : {},
       "presetGUID" : "29580C848A777A42608B45D8DF02D37C",
+      "tags" : [
+        "aka:<=",
+        "aka:Le"
+        ],
       "code" : "
 dfgEntry {
 	result = lhs <= rhs;
@@ -1566,7 +1560,7 @@ dfgEntry {
     "Fabric.Exts.Manipulation.ManipHandle.ManipHandle" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "constructor taking a name\n\nSupported types:\n  name: String\n  result: ManipHandle\n"
         },
       "title" : "ManipHandle",
@@ -1610,7 +1604,7 @@ dfgEntry {
     "Fabric.Exts.Manipulation.ManipHandle.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "clears the content of the ManipHandle\n\nSupported types:\n  this: ManipHandle\n"
         },
       "title" : "Clear",
@@ -1656,6 +1650,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "exec",
           "nodePortType" : "IO",
+          "defaultValues" : {
+            "Execute" : {}
+            },
           "execPortType" : "IO",
           "typeSpec" : "Execute"
           },
@@ -1676,6 +1673,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "mesh",
           "nodePortType" : "In",
+          "defaultValues" : {
+            "PolygonMesh" : null
+            },
           "execPortType" : "Out",
           "typeSpec" : "PolygonMesh"
           }
@@ -1742,6 +1742,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "exec",
           "nodePortType" : "IO",
+          "defaultValues" : {
+            "Execute" : {}
+            },
           "execPortType" : "IO",
           "typeSpec" : "Execute"
           },
@@ -1775,6 +1778,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "mesh",
           "nodePortType" : "In",
+          "defaultValues" : {
+            "PolygonMesh" : null
+            },
           "execPortType" : "Out",
           "typeSpec" : "PolygonMesh"
           }
@@ -2107,6 +2113,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "exec",
           "nodePortType" : "IO",
+          "defaultValues" : {
+            "Execute" : {}
+            },
           "execPortType" : "IO",
           "typeSpec" : "Execute"
           },
@@ -2114,6 +2123,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "mesh",
           "nodePortType" : "Out",
+          "defaultValues" : {
+            "PolygonMesh" : null
+            },
           "execPortType" : "In",
           "typeSpec" : "PolygonMesh"
           },
@@ -2134,6 +2146,9 @@ dfgEntry {
           "objectType" : "ExecPort",
           "name" : "result",
           "nodePortType" : "In",
+          "defaultValues" : {
+            "PolygonMesh" : null
+            },
           "execPortType" : "Out",
           "typeSpec" : "PolygonMesh"
           }
@@ -2191,32 +2206,6 @@ dfgEntry {
         {
           "objectType" : "Inst",
           "metadata" : {
-            "uiGraphPos" : "{\"x\": 302, \"y\": 108}"
-            },
-          "name" : "ClonePolygonMesh",
-          "ports" : [
-            {
-              "objectType" : "InstPort",
-              "name" : "exec",
-              "nodePortType" : "IO"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "value",
-              "nodePortType" : "In"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "result",
-              "nodePortType" : "Out"
-              }
-            ],
-          "executable" : "Fabric.Exts.Geometry.PolygonMesh.ClonePolygonMesh",
-          "presetGUID" : "8480EBBD95E54A412E1471D01B474BA2"
-          },
-        {
-          "objectType" : "Inst",
-          "metadata" : {
             "uiGraphPos" : "{\"x\": 314, \"y\": 225}"
             },
           "name" : "MathDegToRad",
@@ -2237,13 +2226,39 @@ dfgEntry {
               "nodePortType" : "Out"
               }
             ],
-          "executable" : "Fabric.Exts.Math.Func.Math_degToRad",
+          "executable" : "Fabric.Exts.Math.Constants.DegToRad",
           "presetGUID" : "6BC97C4D61BFC82DBF0660BAD1104520"
+          },
+        {
+          "objectType" : "Inst",
+          "metadata" : {
+            "uiGraphPos" : "{\"x\":320.0,\"y\":100.0}"
+            },
+          "name" : "Clone_1",
+          "ports" : [
+            {
+              "objectType" : "InstPort",
+              "name" : "exec",
+              "nodePortType" : "IO"
+              },
+            {
+              "objectType" : "InstPort",
+              "name" : "value",
+              "nodePortType" : "In"
+              },
+            {
+              "objectType" : "InstPort",
+              "name" : "clonedValue",
+              "nodePortType" : "Out"
+              }
+            ],
+          "executable" : "Fabric.Core.Data.Clone",
+          "presetGUID" : "30401D7851DEFCFA5C46EB3926DD8BAD"
           }
         ],
       "connections" : {
         "mesh" : [
-          "ClonePolygonMesh.value"
+          "Clone_1.value"
           ],
         "hardAngleDegrees" : [
           "MathDegToRad.val"
@@ -2254,18 +2269,18 @@ dfgEntry {
         "Cache.value" : [
           "result"
           ],
-        "ClonePolygonMesh.result" : [
-          "RecomputePointNormals.this"
-          ],
         "MathDegToRad.result" : [
           "RecomputePointNormals.hardAngleRadians"
+          ],
+        "Clone_1.clonedValue" : [
+          "RecomputePointNormals.this"
           ]
         }
       },
     "Fabric.Exts.Geometry.PolygonMesh.RecomputePointNormals" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Recomputes all point normals and introduces normal splits if adjacent polygons' normals differ by more than `hardAngleRadians` radians.\nAll previously stored point normals will be overwritten.\nThe computed normal value is the average of neighbor polygons' :kl-ref:`PolygonMesh.generatePolygonNormal` (or a subset of these if there is a split).\n\n Supported by PolygonMesh"
         },
       "title" : "RecomputePointNormals",
@@ -2306,50 +2321,13 @@ dfgEntry {
 }
 "
       },
-    "Fabric.Exts.Geometry.PolygonMesh.ClonePolygonMesh" : {
-      "objectType" : "Func",
-      "metadata" : {
-        "uiNodeColor" : "{\n  \"r\" : 214,\n  \"g\" : 191,\n  \"b\" : 103\n  }",
-        "uiHeaderColor" : "{\n  \"r\" : 188,\n  \"g\" : 129,\n  \"b\" : 83\n  }"
-        },
-      "title" : "ClonePolygonMesh",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "value",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "PolygonMesh"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "result",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "PolygonMesh"
-          }
-        ],
-      "extDeps" : {},
-      "presetGUID" : "8480EBBD95E54A412E1471D01B474BA2",
-      "code" : "dfgEntry {
-  result = value.clone();
-}
-"
-      },
-    "Fabric.Exts.Math.Func.Math_degToRad" : {
+    "Fabric.Exts.Math.Constants.DegToRad" : {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
         "uiTooltip" : "Converts degrees to radians\n\n Supported by Scalar"
         },
-      "title" : "Math_degToRad",
+      "title" : "DegToRad",
       "ports" : [
         {
           "objectType" : "ExecPort",
@@ -2384,10 +2362,50 @@ dfgEntry {
 }
 "
       },
+    "Fabric.Core.Data.Clone" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiNodeColor" : "{\n  \"r\" : 214,\n  \"g\" : 191,\n  \"b\" : 103\n  }",
+        "uiHeaderColor" : "{\n  \"r\" : 188,\n  \"g\" : 129,\n  \"b\" : 83\n  }"
+        },
+      "title" : "Clone",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "value",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "clonedValue",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "$TYPE$"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "30401D7851DEFCFA5C46EB3926DD8BAD",
+      "tags" : [
+        "aka:DeepCopy"
+        ],
+      "code" : "dfgEntry {
+  clonedValue = value.clone();
+}
+"
+      },
     "Fabric.Exts.Manipulation.ManipHandle.AddPositionPlanarManip" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "Registers a single position manipulator if it doesn't exist yet\n\nSupported types:\n  this: ManipHandle\n  name: String\n  mesh: PolygonMesh\n  pos: Vec3\n  color: Color\n  size: Scalar\n  normal: Vec3\n  parentInstance: InlineInstance\n  portToDrive: String\n  hostGraphName: String\n  instance: InlineInstance\n"
         },
       "title" : "AddPositionPlanarManip",
@@ -2524,7 +2542,7 @@ dfgEntry {
     "Fabric.Exts.Manipulation.ManipHandle.AddPositionManip" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Manipulation/ManipHandle.html",
         "uiTooltip" : "Registers a single position manipulator if it doesn't exist yet\n\nSupported types:\n  this: ManipHandle\n  name: String\n  mesh: PolygonMesh\n  pos: Vec3\n  color: Color\n  size: Scalar\n  parentInstance: InlineInstance\n  portToDrive: String\n  hostGraphName: String\n  instance: InlineInstance\n"
         },
       "title" : "AddPositionManip",
@@ -2950,7 +2968,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.PolygonMesh" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Constructor.\n\n Supported by PolygonMesh"
         },
       "title" : "PolygonMesh",
@@ -3001,7 +3019,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.Func.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/GeometryAttributes.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/GeometryAttributes.html",
         "uiTooltip" : "Removes all attributes, and resets attribute value array sizes to 0.\n\n Supported by GeometryAttributes,BaseGeometry,Points,Lines,PolygonMesh"
         },
       "title" : "Clear",
@@ -3035,7 +3053,7 @@ dfgEntry {
     "Fabric.Exts.Geometry.PolygonMesh.AddCuboid" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Geometry/PolygonMesh.html",
         "uiTooltip" : "Appends a transformed cuboid (cube with specified size) to this mesh.\nBefore applying the transformation, the cuboid is centered at the origin,\nand has a range of [-x/2 .. x/2, -y/2 .. y/2, -z/2 .. z/2].\n\nSet Points Normals\nFace 0 (+Z)\nFace 1 (-Z)\nFace 2 (+Y)\nFace 3 (-Y)\nFace 4 (+X)\nFace 5 (-X)\nSet Uvs\nFace 0 (+Z)\nFace 1 (-Z)\nFace 2 (+Y)\nFace 3 (-Y)\nFace 4 (+X)\nFace 5 (-X)\n\n Supported by PolygonMesh"
         },
       "title" : "AddCuboid",
@@ -3138,10 +3156,10 @@ dfgEntry {
 }
 "
       },
-    "Fabric.Exts.FabricInterfaces.Execute.Merge" : {
+    "Fabric.Core.Execute.Merge" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/FabricInterfaces/Execute.html",
         "uiTooltip" : "\n\n Supported by Execute"
         },
       "title" : "Merge",
@@ -3175,21 +3193,18 @@ dfgEntry {
           "typeSpec" : "Execute"
           }
         ],
-      "extDeps" : {
-        "FabricInterfaces" : "*"
-        },
+      "extDeps" : {},
       "presetGUID" : "2ADD39E9E3598C793E94B3E7C9F983CA",
-      "code" : "require FabricInterfaces;
-
+      "code" : "
 dfgEntry {
   this;
   e0;
 }
 "
       },
-    "Fabric.Core.Logic.Gt" : {
+    "Fabric.Core.Comparison.Greater Than" : {
       "objectType" : "Func",
-      "title" : "Gt >",
+      "title" : ">",
       "ports" : [
         {
           "objectType" : "ExecPort",
@@ -3222,6 +3237,10 @@ dfgEntry {
         ],
       "extDeps" : {},
       "presetGUID" : "C22E50DFDD87E347304A46E67A4B673E",
+      "tags" : [
+        "aka:>",
+        "aka:Gt"
+        ],
       "code" : "
 dfgEntry {
 	result = lhs > rhs;
@@ -3490,156 +3509,7 @@ dfgEntry {
 }
 "
       },
-    "Fabric.ProductionSamples.Multipede.Multipede.Core.GetLinesRepresentation" : {
-      "objectType" : "Func",
-      "metadata" : {
-        "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
-        "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
-        "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
-        "uiTooltip" : "Returns a line representation of the multipede.\n\nSupported types:\n  this: Multipede\n  muteAll: Boolean\n  connectingLines: Boolean\n  centers: Boolean\n  bodies: Boolean\n  legRoots: Boolean\n  legBones: Boolean\n  legEffectors: Boolean\n  legEffectorVolumes: Boolean\n  detail: UInt32\n  segmentIndex: SInt32\n  lines: Lines\n"
-        },
-      "title" : "GetLinesRepresentation",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "this",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "Multipede"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "muteAll",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Boolean" : false
-            },
-          "execPortType" : "In",
-          "typeSpec" : "Boolean"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "connectingLines",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Boolean" : true
-            },
-          "execPortType" : "In",
-          "typeSpec" : "Boolean"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "centers",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Boolean" : false
-            },
-          "execPortType" : "In",
-          "typeSpec" : "Boolean"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "bodies",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Boolean" : false
-            },
-          "execPortType" : "In",
-          "typeSpec" : "Boolean"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "legRoots",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Boolean" : false
-            },
-          "execPortType" : "In",
-          "typeSpec" : "Boolean"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "legBones",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Boolean" : false
-            },
-          "execPortType" : "In",
-          "typeSpec" : "Boolean"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "legEffectors",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Boolean" : false
-            },
-          "execPortType" : "In",
-          "typeSpec" : "Boolean"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "legEffectorVolumes",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Boolean" : false
-            },
-          "execPortType" : "In",
-          "typeSpec" : "Boolean"
-          },
-        {
-          "objectType" : "ExecPort",
-          "metadata" : {
-            "uiRange" : "(1, 32)"
-            },
-          "name" : "detail",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "UInt32" : 12
-            },
-          "execPortType" : "In",
-          "typeSpec" : "UInt32"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "segmentIndex",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "SInt32" : -1
-            },
-          "execPortType" : "In",
-          "typeSpec" : "SInt32"
-          },
-        {
-          "objectType" : "ExecPort",
-          "metadata" : {
-            "uiColor" : "{\n  \"r\" : 51,\n  \"g\" : 1,\n  \"b\" : 106\n  }"
-            },
-          "name" : "lines",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "Lines"
-          }
-        ],
-      "extDeps" : {
-        "Multipede" : "*"
-        },
-      "presetGUID" : "0EE7332808C201D126B2092DB64EC6BF",
-      "code" : "require Multipede;
-
-dfgEntry {
-  this.getLinesRepresentation(muteAll, connectingLines, centers, bodies, legRoots, legBones, legEffectors, legEffectorVolumes, detail, segmentIndex, lines);
-}
-"
-      },
-    "Fabric.Exts.InlineDrawing.DrawingHandle.EmptyDrawingHandle" : {
+    "GUID:2440020BA6A1CAB1CEB690A198F99C70" : {
       "objectType" : "Graph",
       "title" : "EmptyDrawingHandle",
       "cacheRule" : "never",
@@ -3763,7 +3633,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.Clear" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "removes all contents from the DrawingHandle\n\n Supported by DrawingHandle"
         },
       "title" : "Clear",
@@ -3797,7 +3667,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawLines" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.3.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "helper function to draw a lines object given a color + a single transform\n\n Supported by DrawingHandle"
         },
       "title" : "DrawLines",
@@ -3853,8 +3723,15 @@ dfgEntry {
           },
         {
           "objectType" : "ExecPort",
+          "metadata" : {
+            "uiHardRange" : "(2, 1000)",
+            "uiRange" : "(2, 100)"
+            },
           "name" : "specFactor",
           "nodePortType" : "Out",
+          "defaultValues" : {
+            "Float32" : 16
+            },
           "execPortType" : "In",
           "typeSpec" : "Float32"
           },
@@ -3905,6 +3782,165 @@ dfgEntry {
 
 dfgEntry {
  if(this) this.drawLines(name, color, specular, specFactor, transform, lines, dummyResult, instance);
+}
+"
+      },
+    "Fabric.ProductionSamples.Multipede.Multipede.Core.GetLinesRepresentation" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTextColor" : "{\n  \"r\" : 10,\n  \"g\" : 10,\n  \"b\" : 10\n  }",
+        "uiNodeColor" : "{\n  \"r\" : 155,\n  \"g\" : 155,\n  \"b\" : 155\n  }",
+        "uiHeaderColor" : "{\n  \"r\" : 100,\n  \"g\" : 120,\n  \"b\" : 90\n  }",
+        "uiTooltip" : "Returns a line representation of the multipede.\n\nSupported types:\n  this: Multipede\n  muteAll: Boolean\n  connectingLines: Boolean\n  centers: Boolean\n  bodies: Boolean\n  legRoots: Boolean\n  legBones: Boolean\n  legEffectors: Boolean\n  legEffectorVolumes: Boolean\n  boundingSphere: Boolean\n  detail: UInt32\n  segmentIndex: SInt32\n  lines: Lines\n"
+        },
+      "title" : "GetLinesRepresentation",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "this",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "Multipede"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "muteAll",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Boolean" : false
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Boolean"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "connectingLines",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Boolean" : true
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Boolean"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "centers",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Boolean" : false
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Boolean"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "bodies",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Boolean" : false
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Boolean"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "legRoots",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Boolean" : false
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Boolean"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "legBones",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Boolean" : false
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Boolean"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "legEffectors",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Boolean" : false
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Boolean"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "legEffectorVolumes",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Boolean" : false
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Boolean"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "boundingSphere",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Boolean" : false
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Boolean"
+          },
+        {
+          "objectType" : "ExecPort",
+          "metadata" : {
+            "uiRange" : "(1, 32)"
+            },
+          "name" : "detail",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "UInt32" : 12
+            },
+          "execPortType" : "In",
+          "typeSpec" : "UInt32"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "segmentIndex",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "SInt32" : -1
+            },
+          "execPortType" : "In",
+          "typeSpec" : "SInt32"
+          },
+        {
+          "objectType" : "ExecPort",
+          "metadata" : {
+            "uiColor" : "{\n  \"r\" : 51,\n  \"g\" : 1,\n  \"b\" : 106\n  }"
+            },
+          "name" : "lines",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "Lines"
+          }
+        ],
+      "extDeps" : {
+        "Multipede" : "*"
+        },
+      "presetGUID" : "F524616EF2D2C758938C86A434EDB734",
+      "code" : "require Multipede;
+
+dfgEntry {
+  this.getLinesRepresentation(muteAll, connectingLines, centers, bodies, legRoots, legBones, legEffectors, legEffectorVolumes, boundingSphere, detail, segmentIndex, lines);
 }
 "
       }
