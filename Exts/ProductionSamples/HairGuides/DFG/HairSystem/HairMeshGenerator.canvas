@@ -1,0 +1,257 @@
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 20,\n  \"g\" : 20,\n  \"b\" : 20\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 121,\n  \"g\" : 134,\n  \"b\" : 143\n  }"
+    },
+  "title" : "HairMeshGenerator",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "defaultValues" : {
+        "Execute" : {}
+        },
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "hair",
+      "nodePortType" : "IO",
+      "defaultValues" : {
+        "PS::HairSystem" : null
+        },
+      "execPortType" : "IO",
+      "typeSpec" : "PS::HairSystem"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "includeMasterGuides",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Boolean" : false
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "inputCurves",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Curves" : null
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Curves"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "mesh",
+      "nodePortType" : "In",
+      "defaultValues" : {
+        "PolygonMesh" : null
+        },
+      "execPortType" : "Out",
+      "typeSpec" : "PolygonMesh"
+      }
+    ],
+  "blocks" : [
+    {
+      "objectType" : "ExecBlock",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":0.0,\"y\":0.0}"
+        },
+      "name" : "genMeshPerCurve",
+      "ports" : [
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "index",
+          "nodePortType" : "In",
+          "outsidePortType" : "In",
+          "typeSpec" : "Integer"
+          },
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "guide",
+          "nodePortType" : "In",
+          "outsidePortType" : "In",
+          "typeSpec" : "PS::HairGuide"
+          },
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "hair",
+          "nodePortType" : "IO",
+          "outsidePortType" : "IO",
+          "typeSpec" : "PS::HairSystem"
+          },
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "inputCurves",
+          "nodePortType" : "In",
+          "outsidePortType" : "In",
+          "typeSpec" : "Curves"
+          },
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "mesh",
+          "nodePortType" : "Out",
+          "outsidePortType" : "Out",
+          "typeSpec" : "PolygonMesh"
+          }
+        ],
+      "defaultExec" : {
+        "objectType" : "Graph",
+        "metadata" : {
+          "uiGraphPan" : "{\n  \"x\" : 83.0,\n  \"y\" : -86.0\n  }"
+          },
+        "title" : "",
+        "ports" : [],
+        "fixedPorts" : [
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "index",
+            "nodePortType" : "Out",
+            "outsidePortType" : "In"
+            },
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "guide",
+            "nodePortType" : "Out",
+            "outsidePortType" : "In"
+            },
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "hair",
+            "nodePortType" : "IO",
+            "outsidePortType" : "IO"
+            },
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "inputCurves",
+            "nodePortType" : "Out",
+            "outsidePortType" : "In"
+            },
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "mesh",
+            "nodePortType" : "In",
+            "outsidePortType" : "Out"
+            }
+          ],
+        "extDeps" : {},
+        "nodes" : [
+          {
+            "objectType" : "Inst",
+            "metadata" : {
+              "uiGraphPos" : "{\"x\":1067.0,\"y\":300.0}"
+              },
+            "name" : "GenerateMesh_1",
+            "ports" : [
+              {
+                "objectType" : "InstPort",
+                "name" : "exec",
+                "nodePortType" : "IO"
+                },
+              {
+                "objectType" : "InstPort",
+                "name" : "this",
+                "nodePortType" : "IO"
+                },
+              {
+                "objectType" : "InstPort",
+                "name" : "curveIndex",
+                "nodePortType" : "In"
+                },
+              {
+                "objectType" : "InstPort",
+                "name" : "inputCurves",
+                "nodePortType" : "In"
+                },
+              {
+                "objectType" : "InstPort",
+                "name" : "radius",
+                "nodePortType" : "In"
+                },
+              {
+                "objectType" : "InstPort",
+                "name" : "profile",
+                "nodePortType" : "In"
+                },
+              {
+                "objectType" : "InstPort",
+                "name" : "segmentLength",
+                "nodePortType" : "In",
+                "defaultValues" : {
+                  "Scalar" : 1
+                  }
+                },
+              {
+                "objectType" : "InstPort",
+                "name" : "cylinderSides",
+                "nodePortType" : "In"
+                },
+              {
+                "objectType" : "InstPort",
+                "name" : "upvector",
+                "nodePortType" : "In"
+                },
+              {
+                "objectType" : "InstPort",
+                "name" : "result",
+                "nodePortType" : "Out"
+                }
+              ],
+            "executable" : "Fabric.ProductionSamples.HairGuides.HairSystem.GenerateMesh",
+            "presetGUID" : "D69A18A2577A37EA4E444F664EFB97B2"
+            }
+          ],
+        "connections" : {
+          "index" : [
+            "GenerateMesh_1.curveIndex"
+            ],
+          "inputCurves" : [
+            "GenerateMesh_1.inputCurves"
+            ],
+          "hair" : [
+            "GenerateMesh_1.this"
+            ],
+          "GenerateMesh_1.result" : [
+            "mesh"
+            ]
+          }
+        }
+      }
+    ],
+  "extDeps" : {
+    "HairGuides" : "*"
+    },
+  "presetGUID" : "B7B9A38EC5EE3523522E8B76BF07078E",
+  "code" : "dfgEntry {
+  PolygonMesh meshes[];
+
+  if(hair == null)
+    return;
+
+  Curves curves = inputCurves;
+  if(curves == null)
+    curves = hair.generateCurves();
+
+  Index curveIndex = 0;
+  for(Size i=0;i<hair.guides.size();i++)
+  {
+    if(!hair.guides[i].isValid())
+      continue;
+    if(!includeMasterGuides && hair.guides[i].layer == 0)
+      continue;
+    meshes.push(dfgPullBlockPort('genMeshPerCurve.mesh', curveIndex, hair.guides[i], hair, curves));
+    curveIndex++;
+  }
+  
+  Xfo xfos[](meshes.size());
+  mesh = PolygonMesh();
+  mesh.mergeMeshes(meshes, xfos, true);
+}
+"
+  }

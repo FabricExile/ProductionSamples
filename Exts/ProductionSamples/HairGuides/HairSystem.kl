@@ -1,0 +1,286 @@
+require Math;
+require Geometry;
+require InlineDrawing;
+require AnimX;
+
+namespace PS
+{
+  object HairSystem
+  {
+    HairGuide guides[];
+    Curves curves;
+  };
+
+  HairSystem()
+  {
+    this.curves = null;
+  }
+
+  // ! means that the method is mutable (can change content)
+  Integer HairSystem.addGuide!(HairGuide guide)
+  {
+    if(this == null)
+      return 0;
+    this.curves = null;
+    this.guides.push(guide);
+    return this.guides.size() - 1;
+  }
+
+  Integer[] HairSystem.addGuidesFromCurves!(Curves curves, Color color, Index layer)
+  {
+    Integer result[];
+    if(this == null)
+      return result;
+    if(curves == null)
+      return result;
+
+    for(Size i=0;i<curves.curveCount();i++)
+    {
+      Curve curve = curves.getCurve(i);
+      if(curve.pointCount() != HairGuide_NbPoints)
+        continue;
+      HairGuide guide(curve, Vec3(0, 1, 0), color, layer);
+      result.push(this.addGuide(guide));
+    }
+    return result;
+  }
+
+  HairSystem.setGuideColorsFromMesh!(PolygonMesh mesh)
+  {
+    if(this == null || mesh == null)
+      return;
+
+    Ref<Vec3Attribute> normals = mesh.getAttribute('normals');
+    if(!normals)
+      return;
+    Ref<ColorAttribute> vertexColors = mesh.getAttribute('vertexColors');
+    if(!vertexColors)
+      return;
+
+    for(Size i=0;i<this.guides.size();i++)
+    {
+      HairGuide guide = this.guides[i];
+      if(guide.points.size() == 0)
+        continue;
+      GeometryLocation location = mesh.getClosest(guide.points[0], Vec3(1), -1);
+      this.guides[i].normal = GetAttributeAtLocation(mesh, location, normals);
+      this.guides[i].color = GetAttributeAtLocation(mesh, location, vertexColors);
+    }
+  }
+
+  Curves HairSystem.generateCurves!()
+  {
+    if(this == null)
+      return null;
+
+    if(this.curves == null || this.curves.curveCount() != this.guides.size())
+    {
+      this.curves = Curves();
+
+      GeometryAttributes attributes = this.curves.getAttributes();
+      ColorAttribute vertexColors = attributes.getOrCreateColorAttribute('vertexColors');
+
+      // convert the curves
+      for(Size i=0;i<this.guides.size();i++)
+      {
+        if(!this.guides[i].isValid())
+          continue;
+        Curve curve = this.curves.addNURBS(this.guides[i].points, 2, curveForm_open);
+        Index first = curve.getFirstPointIndex();
+        Index last = first + curve.pointCount();
+        for(Size j=first;j<last;j++)
+          vertexColors.values[j] = this.guides[i].color;
+      }
+    }
+    return this.curves;
+  }
+
+  /// \dfgPresetDefault radius 0.1
+  /// \dfgPresetRange radius (0, 1)
+  /// \dfgPresetDefault segmentLength 1.0
+  /// \dfgPresetRange segmentLength (0, 0.5)
+  /// \dfgPresetDefault cylinderSides 6
+  /// \dfgPresetRange cylinderSides (3, 24)
+  /// \dfgPresetDefault upvector {"x": 1.0, "y": 0.0, "z": 0.0}
+  PolygonMesh HairSystem.generateMesh!(
+    Index curveIndex,
+    Curves inputCurves,
+    Scalar radius,
+    AnimX::AnimCurve profile,
+    Scalar segmentLength,
+    Integer cylinderSides,
+    Vec3 upvector)
+  {
+    if(this == null)
+      return null;
+
+    Curves curves = inputCurves;
+    if(!curves)
+      curves = this.generateCurves();
+
+    if(curveIndex >= curves.curveCount())
+      throw('curveIndex is out of range - there are only '+curves.curveCount()+' curves.');
+    if(segmentLength <= 0.0)
+      throw('segmentLength needs to be higher than 0');
+
+    Boolean useProfile = profile != null;
+    if(useProfile)
+      useProfile = profile.keyframeCount() > 0;
+
+    Scalar length = curves.getCurveLength(curveIndex);
+    Integer subdivU = SInt32(length / segmentLength + 0.5) + 1;
+    if(subdivU < 3)
+      subdivU = 3;
+    Integer subdivV = cylinderSides;
+    if(subdivV < 3)
+      subdivV = 3;
+
+    Xfo xfos[];
+    xfos.resize(subdivU);
+    for(Size i=0;i<subdivU;i++)
+    {
+      Scalar ratio = Scalar(i) / Scalar(subdivU-1);
+      Scalar u = curves.getParameterFromLength(curveIndex, length * ratio);
+
+      xfos[i].tr = curves.getPositionAtParam(curveIndex, u);
+
+      Vec3 tangent = curves.getTangentAtParam(curveIndex, u);
+      xfos[i].ori.setFromDirectionAndUpvector(tangent, upvector);
+
+      Float32 s = radius;
+      if(useProfile)
+      {
+        s *= Float32(profile.evaluate(ratio));
+      }
+      xfos[i].sc = Vec3(s, s, s);
+    }
+
+    Vec3 circle[];
+    circle.resize(subdivV);
+
+    for(Size i=0;i<subdivV;i++)
+    {
+      Quat quat;
+      quat.setFromAxisAndAngle(Vec3(0, 0, -1), TWO_PI * Scalar(i) / Scalar(subdivV));
+      circle[i] = quat.rotateVector(Vec3(0, 1, 0));
+    }
+
+    PolygonMesh mesh();
+    mesh.addExtrusion(xfos, circle, true /* close profile */);
+
+    // add the caps
+    // first add two points
+    Index startCenterPoint = mesh.createPoints(1);
+    Index endCenterPoint = mesh.createPoints(1);
+    mesh.setPointPosition(startCenterPoint, xfos[0].tr);
+    mesh.setPointPosition(endCenterPoint, xfos[xfos.size()-1].tr);
+
+    // create the triangles for the start cap
+    mesh.beginStructureChanges();
+    for(Size i=0;i<subdivV;i++)
+    {
+      mesh.addPolygon(startCenterPoint, i, (i + 1) % subdivV);
+    }
+    // create the triangles for the end cap
+    Index lastRowFirstPoint = mesh.pointCount() - 2 - subdivV;
+    for(Size i=0;i<subdivV;i++)
+    {
+      mesh.addPolygon(endCenterPoint, lastRowFirstPoint + (i + 1) % subdivV, lastRowFirstPoint + i);
+    }
+    mesh.endStructureChanges();
+
+    // setup UVs
+    Ref<Vec2Attribute> uvs = mesh.getOrCreateVec2Attribute('uvs0');
+    for(Size i=0;i<subdivU;i++)
+    {
+      for(Size j=0;j<subdivV;j++)
+      {
+        Index idx = i * subdivV + j;
+        Vec2 singleUv;
+        singleUv.x = 1.0 - Scalar(j) / Scalar(subdivV);
+        singleUv.y = Scalar(i) / Scalar(subdivU-1);
+        mesh.setPointAttribute(idx, uvs, singleUv);
+      }
+    }
+    mesh.setPointAttribute(startCenterPoint, uvs, Vec2(0.0, 0.0));
+    mesh.setPointAttribute(endCenterPoint, uvs, Vec2(0.0, 1.0));
+
+    mesh.recomputePointNormals();
+
+    // transfer colors from guide
+    GeometryAttributes curveAttributes = curves.getAttributes();
+    Ref<ColorAttribute> curveColors = curveAttributes.getAttribute('vertexColors');
+    Color color = curveColors.values[curves.getCurve(curveIndex).getFirstPointIndex()];
+
+    ColorAttribute vertexColors = mesh.getOrCreateColorAttribute('vertexColors');
+    for(Size i=0;i<vertexColors.values.size();i++)
+      vertexColors.values[i] = color;
+
+    return mesh;
+  }
+
+  /// \dfgPresetDefault subDiv 10
+  /// \dfgPresetRange subDiv (5, 32)
+  resampleHairCurves(in Curves curves, in Integer subDiv, out Curves result)
+  {
+    result = Curves();
+    if(curves == null)
+      return;
+
+    Ref<ColorAttribute> curveColors = curves.getAttributes().getAttribute('vertexColors');
+    GeometryAttributes resultAttributes = result.getAttributes();
+    Ref<ColorAttribute> resultColors = resultAttributes.getOrCreateColorAttribute('vertexColors');
+
+    for(Size i=0;i<curves.curveCount();i++)
+    {
+      Curve curve = curves.getCurve(i);
+      Integer newCount = subDiv;
+
+      Vec3 points[];
+      if(curve.pointCount() > newCount)
+      {
+        points.resize(curve.pointCount());
+        for(Size j=0;j<points.size();j++)
+          points[j] = curve.getPointPosition(j);
+      }
+      else
+      {
+        points.resize(newCount);
+        for(Size j=0;j<points.size();j++)
+        {
+          Float32 p = Float32(j) / Float32(points.size()-1);
+          points[j] = curve.getPositionAtNormalizedParam(p);
+        }
+      }
+
+      Curve resultCurve = result.addNURBS(points, 2, curveForm_open);
+
+      // copy the vertex colors
+      Color c = curveColors.values[curve.getFirstPointIndex()];
+      for(Size j=0;j<resultCurve.pointCount();j++)
+        resultColors.values[resultCurve.getFirstPointIndex()+j] = c;
+    }
+  }
+
+  drawHairSystem(io DrawingHandle handle, HairSystem hair)
+  {
+    if(handle == null || hair == null)
+      return;
+
+    // create a name based on the unique id of the hair system
+    String shapeName = hair.uid();
+    InlineDebugShape shape = handle.getEmptyDebugShape(shapeName);
+
+    for(Size i=0;i<hair.guides.size();i++)
+    {
+      HairGuide guide = hair.guides[i];
+      if(!guide.isValid())
+        continue;
+      
+      shape.setPen(guide.color, 4 /*radius*/);
+      shape.drawLineStrip(guide.points);
+      if(guide.layer == 0)
+        shape.drawPoints(guide.points);
+    }
+  }
+}

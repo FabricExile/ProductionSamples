@@ -1,0 +1,302 @@
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTextColor" : "{\n  \"r\" : 20,\n  \"g\" : 20,\n  \"b\" : 20\n  }",
+    "uiNodeColor" : "{\n  \"r\" : 121,\n  \"g\" : 134,\n  \"b\" : 143\n  }"
+    },
+  "title" : "AddGuidesFromGuides",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "defaultValues" : {
+        "Execute" : {}
+        },
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "hair",
+      "nodePortType" : "IO",
+      "defaultValues" : {
+        "PS::HairSystem" : null
+        },
+      "execPortType" : "IO",
+      "typeSpec" : "PS::HairSystem"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "guideA",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "PS::HairGuide" : {
+          "points" : [],
+          "normal" : {
+            "x" : 0,
+            "y" : 0,
+            "z" : 0
+            },
+          "color" : {
+            "r" : 0,
+            "g" : 0,
+            "b" : 0,
+            "a" : 1
+            },
+          "layer" : 0
+          }
+        },
+      "execPortType" : "In",
+      "typeSpec" : "PS::HairGuide"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "guideB",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "PS::HairGuide" : {
+          "points" : [],
+          "normal" : {
+            "x" : 0,
+            "y" : 0,
+            "z" : 0
+            },
+          "color" : {
+            "r" : 0,
+            "g" : 0,
+            "b" : 0,
+            "a" : 1
+            },
+          "layer" : 0
+          }
+        },
+      "execPortType" : "In",
+      "typeSpec" : "PS::HairGuide"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "guideC",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "PS::HairGuide" : {
+          "points" : [],
+          "normal" : {
+            "x" : 0,
+            "y" : 0,
+            "z" : 0
+            },
+          "color" : {
+            "r" : 0,
+            "g" : 0,
+            "b" : 0,
+            "a" : 1
+            },
+          "layer" : 0
+          }
+        },
+      "execPortType" : "In",
+      "typeSpec" : "PS::HairGuide"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "guideD",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "PS::HairGuide" : {
+          "points" : [],
+          "normal" : {
+            "x" : 0,
+            "y" : 0,
+            "z" : 0
+            },
+          "color" : {
+            "r" : 0,
+            "g" : 0,
+            "b" : 0,
+            "a" : 1
+            },
+          "layer" : 0
+          }
+        },
+      "execPortType" : "In",
+      "typeSpec" : "PS::HairGuide"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "count",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Size" : 8
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Size"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "result",
+      "nodePortType" : "In",
+      "defaultValues" : {
+        "Integer[]" : []
+        },
+      "execPortType" : "Out",
+      "typeSpec" : "Integer[]"
+      }
+    ],
+  "blocks" : [
+    {
+      "objectType" : "ExecBlock",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":0.0,\"y\":0.0}"
+        },
+      "name" : "addGuide",
+      "ports" : [
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "baseA",
+          "nodePortType" : "In",
+          "outsidePortType" : "In",
+          "typeSpec" : "PS::HairGuide"
+          },
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "baseB",
+          "nodePortType" : "In",
+          "outsidePortType" : "In",
+          "typeSpec" : "PS::HairGuide"
+          },
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "baseC",
+          "nodePortType" : "In",
+          "outsidePortType" : "In",
+          "typeSpec" : "PS::HairGuide"
+          },
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "baseD",
+          "nodePortType" : "In",
+          "outsidePortType" : "In",
+          "typeSpec" : "PS::HairGuide"
+          },
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "index",
+          "nodePortType" : "In",
+          "outsidePortType" : "In",
+          "typeSpec" : "SInt32"
+          },
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "count",
+          "nodePortType" : "In",
+          "outsidePortType" : "In",
+          "typeSpec" : "SInt32"
+          },
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "ratio",
+          "nodePortType" : "In",
+          "outsidePortType" : "In",
+          "typeSpec" : "Float32"
+          },
+        {
+          "objectType" : "ExecBlockPort",
+          "name" : "result",
+          "nodePortType" : "Out",
+          "outsidePortType" : "Out",
+          "typeSpec" : "PS::HairGuide"
+          }
+        ],
+      "defaultExec" : {
+        "objectType" : "Graph",
+        "metadata" : {
+          "uiGraphPan" : "{\n  \"x\" : 184.0,\n  \"y\" : -110.0\n  }"
+          },
+        "title" : "",
+        "ports" : [],
+        "fixedPorts" : [
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "baseA",
+            "nodePortType" : "Out",
+            "outsidePortType" : "In"
+            },
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "baseB",
+            "nodePortType" : "Out",
+            "outsidePortType" : "In"
+            },
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "baseC",
+            "nodePortType" : "Out",
+            "outsidePortType" : "In"
+            },
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "baseD",
+            "nodePortType" : "Out",
+            "outsidePortType" : "In"
+            },
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "index",
+            "nodePortType" : "Out",
+            "outsidePortType" : "In"
+            },
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "count",
+            "nodePortType" : "Out",
+            "outsidePortType" : "In"
+            },
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "ratio",
+            "nodePortType" : "Out",
+            "outsidePortType" : "In"
+            },
+          {
+            "objectType" : "ExecFixedPort",
+            "name" : "result",
+            "nodePortType" : "In",
+            "outsidePortType" : "Out"
+            }
+          ],
+        "extDeps" : {},
+        "nodes" : [],
+        "connections" : {
+          "baseA" : [
+            "result"
+            ]
+          }
+        }
+      }
+    ],
+  "extDeps" : {
+    "HairGuides" : "*"
+    },
+  "presetGUID" : "028C779723A463A643DD6D67AA127FBD",
+  "code" : "require HairGuides;
+
+dfgEntry {
+  hair.addGuide(guideA);
+  hair.addGuide(guideB);
+  hair.addGuide(guideC);
+  hair.addGuide(guideD);
+
+  for(Size i=0;i<count;i++)
+  {
+    Index idx = hair.guides.size();
+    hair.addGuide(guideA);
+    Float32 ratio = 1.0;
+    if(count > 1)
+      ratio = Float32(i) / Float32(count-1);
+    hair.guides[idx] = dfgPullBlockPort('addGuide.result', guideA, guideB, guideC, guideD, i, count, ratio);
+    result.push(idx);
+  }
+}
+"
+  }

@@ -1,0 +1,41 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "Supported types:\n  this: HairGuide\n  points: Vec3[]\n"
+    },
+  "title" : "Transform",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "this",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "PS::HairGuide"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "xfo",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "Xfo"
+      }
+    ],
+  "extDeps" : {
+    "HairGuides" : "*"
+    },
+  "presetGUID" : "A755DF8F53D17C16FA2D034EDBDFF5A2",
+  "code" : "require HairGuides;
+
+dfgEntry {
+  this.transform(xfo);
+}
+"
+  }

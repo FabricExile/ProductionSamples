@@ -1,0 +1,88 @@
+require Manipulation;
+
+using namespace Tool;
+
+namespace PS
+{
+  struct HairGuideEditData
+  {
+    Index guideIndex[];
+    Index vertexIndex[];
+    Vec3 positionOffset[];
+  };
+
+  object HairGuideMovePointCommand : BaseScriptableCommand{
+  };
+
+  HairGuideMovePointCommand() {
+    this.declareArg( "guideEditData", HairGuideEditData, CommandArgFlag_IO, RTVal() );
+    this.declareArg( "movedGuideIndex", Index, CommandArgFlag_IN, RTVal() );
+    this.declareArg( "movedVertexIndex", Index, CommandArgFlag_IN, RTVal() );
+    this.declareArg( "positionOffset", Vec3, CommandArgFlag_IN, RTVal() );
+  }
+
+  Boolean HairGuideMovePointCommand.canUndo() {
+    return true;
+  }
+
+  Boolean HairGuideMovePointCommand.redoIt!() {
+    HairGuideEditData guideEditData = this.getArgValue( "guideEditData" );
+    
+    Index movedGuideIndex = this.getArgValue( "movedGuideIndex" );
+    Index movedVertexIndex = this.getArgValue( "movedVertexIndex" );
+    Vec3 posOffset = this.getArgValue( "positionOffset" );
+
+    guideEditData.guideIndex.push(movedGuideIndex);
+    guideEditData.vertexIndex.push(movedVertexIndex);
+    guideEditData.positionOffset.push(posOffset);
+
+    this.setArgValue( "guideEditData", RTVal(guideEditData) );
+    return true;
+  }
+
+  Boolean HairGuideMovePointCommand.doIt!( io String error ) {
+    return this.redoIt();
+  }
+
+  Boolean HairGuideMovePointCommand.undoIt!( ) {
+    HairGuideEditData guideEditData = this.getArgValue( "guideEditData" );
+    if(guideEditData.guideIndex.size() > 0)
+    {
+      Index i = guideEditData.positionOffset.size() - 1;
+      guideEditData.guideIndex.resize(i);
+      guideEditData.vertexIndex.resize(i);
+      guideEditData.positionOffset.resize(i);
+    }
+    this.setArgValue( "guideEditData", RTVal(guideEditData) );
+    return true;
+  }
+
+  HairGuideMovePointCommand.merge!( Command prevCmd ) {
+
+    HairGuideEditData guideEditData = this.getArgValue( "guideEditData" );
+    if(guideEditData.guideIndex.size() > 1)
+    {
+      Index i = guideEditData.positionOffset.size() - 1;
+      if(guideEditData.guideIndex[i-1] != guideEditData.guideIndex[i])
+        return;
+      if(guideEditData.vertexIndex[i-1] != guideEditData.vertexIndex[i])
+        return;
+      // add the relative offsets
+      guideEditData.positionOffset[i-1] += guideEditData.positionOffset[i];
+      guideEditData.guideIndex.resize(i);
+      guideEditData.vertexIndex.resize(i);
+      guideEditData.positionOffset.resize(i);
+    }
+    this.setArgValue( "guideEditData", RTVal(guideEditData) );
+  }
+
+}
+
+namespace HairGuides
+{
+  operator ExtDidLoad() {
+    // Register commands defined in this extension at extension loading time
+    Ref<CommandRegistry> commandRegistry = GetCommandRegistry();
+    commandRegistry.registerCommand( "MoveHairGuidePoint", PS::HairGuideMovePointCommand );
+  }
+}
