@@ -2,14 +2,14 @@
   "objectType" : "Graph",
   "metadata" : {
     "timeline_timerFps" : "60.0",
-    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.9979693293571472,\n    \"y\" : -0.01511621475219727,\n    \"z\" : 0.06163742765784264,\n    \"t\" : 3.65966272354126\n    },\n  \"row1\" : {\n    \"x\" : -9.750802973940154e-07,\n    \"y\" : 0.971213161945343,\n    \"z\" : 0.2382009029388428,\n    \"t\" : 4.206614494323731\n    },\n  \"row2\" : {\n    \"x\" : -0.06346307694911957,\n    \"y\" : -0.2377203702926636,\n    \"z\" : 0.9692569971084595,\n    \"t\" : 6.218733310699463\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
+    "camera_mat44" : "{\n  \"row0\" : {\n    \"x\" : 0.9772788882255554,\n    \"y\" : -0.07076379656791687,\n    \"z\" : 0.1997228711843491,\n    \"t\" : 4.184648513793945\n    },\n  \"row1\" : {\n    \"x\" : -9.87186922429828e-07,\n    \"y\" : 0.9425797462463379,\n    \"z\" : 0.3339717090129852,\n    \"t\" : 4.389475345611572\n    },\n  \"row2\" : {\n    \"x\" : -0.2118855714797974,\n    \"y\" : -0.3263879716396332,\n    \"z\" : 0.9211792945861816,\n    \"t\" : 5.885529518127441\n    },\n  \"row3\" : {\n    \"x\" : 0,\n    \"y\" : 0,\n    \"z\" : 0,\n    \"t\" : 1\n    }\n  }",
     "timeline_start" : "1",
     "timeline_loopMode" : "1",
     "timeline_simMode" : "0",
-    "camera_focalDistance" : "7.507289886474609",
+    "camera_focalDistance" : "7.341357231140137",
     "timeline_current" : "1",
     "timeline_end" : "250",
-    "uiGraphPan" : "{\n  \"x\" : -379.0,\n  \"y\" : -71.0\n  }"
+    "uiGraphPan" : "{\n  \"x\" : -273.0,\n  \"y\" : -52.0\n  }"
     },
   "title" : "",
   "ports" : [
@@ -26,6 +26,16 @@
       "nodePortType" : "In",
       "execPortType" : "Out",
       "typeSpec" : "DrawingHandle"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiPersistValue" : "true"
+        },
+      "name" : "editYellowGuides",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "Boolean"
       }
     ],
   "extDeps" : {},
@@ -144,7 +154,7 @@
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":2304.0,\"y\":252.0}"
+        "uiGraphPos" : "{\"x\":2452.0,\"y\":403.5}"
         },
       "name" : "DrawHairSystem_1",
       "ports" : [
@@ -170,7 +180,7 @@
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":2003.0,\"y\":164.5}"
+        "uiGraphPos" : "{\"x\":2163.0,\"y\":274.0}"
         },
       "name" : "EmptyDrawingHandle_1",
       "ports" : [
@@ -327,9 +337,73 @@
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiGraphPos" : "{\"x\":1195.0,\"y\":277.5}"
+        "uiGraphPos" : "{\"x\":676.5,\"y\":274.0}"
         },
-      "name" : "AddGuidesFromGuides_1",
+      "name" : "AddGuide_1",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "name" : "exec",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "this",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "guide",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "result",
+          "nodePortType" : "Out"
+          }
+        ],
+      "executable" : "Fabric.ProductionSamples.HairGuides.HairSystem.AddGuide",
+      "presetGUID" : "F17E3B7BA98975D48EDDB27C1DF8E6CB"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":860.0,\"y\":407.0}"
+        },
+      "name" : "AddGuide_2",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "name" : "exec",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "this",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "guide",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "result",
+          "nodePortType" : "Out"
+          }
+        ],
+      "executable" : "Fabric.ProductionSamples.HairGuides.HairSystem.AddGuide",
+      "presetGUID" : "F17E3B7BA98975D48EDDB27C1DF8E6CB"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiComment" : "Only clone the first guide for this example",
+        "uiGraphPos" : "{\"x\":1346.0,\"y\":268.0}",
+        "uiCommentExpanded" : "true"
+        },
+      "name" : "CloneGuides_1",
       "ports" : [
         {
           "objectType" : "InstPort",
@@ -343,31 +417,13 @@
           },
         {
           "objectType" : "InstPort",
-          "name" : "guideA",
+          "name" : "layer",
           "nodePortType" : "In"
           },
         {
           "objectType" : "InstPort",
-          "name" : "guideB",
+          "name" : "indices",
           "nodePortType" : "In"
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "guideC",
-          "nodePortType" : "In"
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "guideD",
-          "nodePortType" : "In"
-          },
-        {
-          "objectType" : "InstPort",
-          "name" : "count",
-          "nodePortType" : "In",
-          "defaultValues" : {
-            "Size" : 12
-            }
           },
         {
           "objectType" : "InstPort",
@@ -377,39 +433,40 @@
         ],
       "blocks" : [
         {
-          "name" : "addGuide",
+          "name" : "getNumberOfClones",
           "objectType" : "InstBlock",
-          "execBlockRelPath" : "addGuide",
-          "ports" : [],
+          "execBlockRelPath" : "getNumberOfClones",
+          "ports" : [
+            {
+              "objectType" : "InstBlockPort",
+              "name" : "clones",
+              "nodePortType" : "In",
+              "defaultValues" : {
+                "Integer" : 12
+                },
+              "outsidePortType" : "In"
+              }
+            ],
           "exec" : {
             "objectType" : "Graph",
-            "metadata" : {
-              "uiGraphPan" : "{\n  \"x\" : 429.0,\n  \"y\" : -166.0\n  }"
-              },
             "title" : "",
-            "ports" : [],
+            "ports" : [
+              {
+                "objectType" : "ExecPort",
+                "metadata" : {},
+                "name" : "clones",
+                "nodePortType" : "Out",
+                "defaultValues" : {
+                  "Integer" : 1
+                  },
+                "execPortType" : "In",
+                "typeSpec" : "Integer"
+                }
+              ],
             "fixedPorts" : [
               {
                 "objectType" : "ExecFixedPort",
-                "name" : "baseA",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "baseB",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "baseC",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "baseD",
+                "name" : "guide",
                 "nodePortType" : "Out",
                 "outsidePortType" : "In"
                 },
@@ -422,18 +479,6 @@
               {
                 "objectType" : "ExecFixedPort",
                 "name" : "count",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "ratio",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "result",
                 "nodePortType" : "In",
                 "outsidePortType" : "Out"
                 }
@@ -443,7 +488,291 @@
               {
                 "objectType" : "Inst",
                 "metadata" : {
-                  "uiGraphPos" : "{\"x\":-3.5,\"y\":200.0}"
+                  "uiGraphPos" : "{\"x\":846.0,\"y\":399.0}"
+                  },
+                "name" : "Integer_1",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "value",
+                    "nodePortType" : "In",
+                    "defaultValues" : {
+                      "Integer" : 1
+                      }
+                    }
+                  ],
+                "executable" : "Fabric.Core.Constants.Integer",
+                "presetGUID" : "70A8710A81C6715B65874101A33CC86E"
+                }
+              ],
+            "connections" : {
+              "clones" : [
+                "Integer_1.value"
+                ],
+              "Integer_1.value" : [
+                "count"
+                ]
+              }
+            }
+          }
+        ],
+      "executable" : "Fabric.ProductionSamples.HairGuides.HairSystem.CloneGuides",
+      "presetGUID" : "A6CCFE23EC31CADD6B75ABC0AC589452"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":855.0,\"y\":274.0}"
+        },
+      "name" : "Push_1",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "name" : "exec",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "array",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "element",
+          "nodePortType" : "In"
+          }
+        ],
+      "executable" : "Fabric.Core.Array.Push",
+      "presetGUID" : "572880BF96ACC34D6987BE3333715F52"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":1111.5,\"y\":407.0}",
+        "uiCollapsedState" : "0"
+        },
+      "name" : "HairGuideTool_2",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "name" : "exec",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "hair",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "active",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "color",
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "Color" : {
+              "r" : 0,
+              "g" : 0,
+              "b" : 1,
+              "a" : 1
+              }
+            }
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "radius",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "layer",
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "SInt32" : 0
+            }
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "editData",
+          "nodePortType" : "IO",
+          "defaultValues" : {
+            "PS::HairGuideEditData" : {
+              "guideIndex" : [
+                1,
+                1
+                ],
+              "vertexIndex" : [
+                3,
+                2
+                ],
+              "positionOffset" : [
+                {
+                  "x" : 0,
+                  "y" : 0,
+                  "z" : 0
+                  },
+                {
+                  "x" : 0,
+                  "y" : 0,
+                  "z" : 0
+                  }
+                ]
+              }
+            }
+          }
+        ],
+      "executable" : "Fabric.ProductionSamples.HairGuides.HairSystem.HairGuideTool",
+      "presetGUID" : "B928AE9E426DA6F76BF3638D1B8BC949"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":1633.0,\"y\":359.5}"
+        },
+      "name" : "EditGuides_1",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "name" : "exec",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "hair",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "indices",
+          "nodePortType" : "In"
+          }
+        ],
+      "blocks" : [
+        {
+          "name" : "edit",
+          "objectType" : "InstBlock",
+          "execBlockRelPath" : "edit",
+          "ports" : [
+            {
+              "objectType" : "InstBlockPort",
+              "name" : "guide",
+              "nodePortType" : "In",
+              "defaultValues" : {
+                "PS::HairGuide" : {
+                  "points" : [],
+                  "normal" : {
+                    "x" : 0,
+                    "y" : 0,
+                    "z" : 0
+                    },
+                  "color" : {
+                    "r" : 0,
+                    "g" : 0,
+                    "b" : 0,
+                    "a" : 1
+                    },
+                  "layer" : 0
+                  }
+                },
+              "outsidePortType" : "In"
+              },
+            {
+              "objectType" : "InstBlockPort",
+              "name" : "inMin",
+              "nodePortType" : "In",
+              "defaultValues" : {
+                "Float32" : 0.8999999761581421
+                },
+              "outsidePortType" : "In"
+              },
+            {
+              "objectType" : "InstBlockPort",
+              "name" : "inMax",
+              "nodePortType" : "In",
+              "defaultValues" : {
+                "Float32" : 13.89999961853027
+                },
+              "outsidePortType" : "In"
+              }
+            ],
+          "exec" : {
+            "objectType" : "Graph",
+            "metadata" : {
+              "uiGraphPan" : "{\n  \"x\" : 590.0,\n  \"y\" : -135.0\n  }"
+              },
+            "title" : "",
+            "ports" : [
+              {
+                "objectType" : "ExecPort",
+                "metadata" : {},
+                "name" : "guide",
+                "nodePortType" : "Out",
+                "execPortType" : "In",
+                "typeSpec" : "PS::HairGuide"
+                },
+              {
+                "objectType" : "ExecPort",
+                "metadata" : {},
+                "name" : "inMin",
+                "nodePortType" : "Out",
+                "defaultValues" : {
+                  "Float32" : 1.299999952316284
+                  },
+                "execPortType" : "In",
+                "typeSpec" : "Float32"
+                },
+              {
+                "objectType" : "ExecPort",
+                "metadata" : {},
+                "name" : "inMax",
+                "nodePortType" : "Out",
+                "defaultValues" : {
+                  "Float32" : 6.699999809265137
+                  },
+                "execPortType" : "In",
+                "typeSpec" : "Float32"
+                }
+              ],
+            "fixedPorts" : [
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "base",
+                "nodePortType" : "Out",
+                "outsidePortType" : "In"
+                },
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "result",
+                "nodePortType" : "In",
+                "outsidePortType" : "Out"
+                },
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "index",
+                "nodePortType" : "Out",
+                "outsidePortType" : "In"
+                },
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "count",
+                "nodePortType" : "Out",
+                "outsidePortType" : "In"
+                }
+              ],
+            "extDeps" : {},
+            "nodes" : [
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":290.0,\"y\":183.0}"
                   },
                 "name" : "DecomposeHairGuide_1",
                 "ports" : [
@@ -484,7 +813,56 @@
               {
                 "objectType" : "Inst",
                 "metadata" : {
-                  "uiGraphPos" : "{\"x\":-10.0,\"y\":366.0}"
+                  "uiGraphPos" : "{\"x\":1400.0,\"y\":256.0}"
+                  },
+                "name" : "HairGuideFromArray_1",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "points",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "normal",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "color",
+                    "nodePortType" : "In",
+                    "defaultValues" : {
+                      "Color" : {
+                        "r" : 1,
+                        "g" : 0.3333333432674408,
+                        "b" : 0,
+                        "a" : 1
+                        }
+                      }
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "layer",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "result",
+                    "nodePortType" : "Out"
+                    }
+                  ],
+                "executable" : "Fabric.ProductionSamples.HairGuides.HairGuide.HairGuideFromArray",
+                "presetGUID" : "19F75A92DC32001823F9799873AC196A"
+                },
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":303.0,\"y\":369.5}"
                   },
                 "name" : "DecomposeHairGuide_2",
                 "ports" : [
@@ -525,195 +903,79 @@
               {
                 "objectType" : "Inst",
                 "metadata" : {
-                  "uiGraphPos" : "{\"x\":635.0,\"y\":225.5}"
+                  "uiGraphPos" : "{\"x\":950.0,\"y\":369.5}"
                   },
-                "name" : "Modify_1",
+                "name" : "LerpArray_1",
                 "ports" : [
                   {
                     "objectType" : "InstPort",
                     "name" : "exec",
                     "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "this",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "other",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "t",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "result",
+                    "nodePortType" : "Out"
+                    }
+                  ],
+                "executable" : "Fabric.Exts.Math.Func.LerpArray",
+                "presetGUID" : "18106EF6D37632C1481973598A9A886C"
+                },
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":315.0,\"y\":582.5}"
+                  },
+                "name" : "Float32Array_1",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "element",
+                    "nodePortType" : "In",
+                    "defaultValues" : {
+                      "Float32" : 0.5
+                      }
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "count",
+                    "nodePortType" : "In"
                     },
                   {
                     "objectType" : "InstPort",
                     "name" : "array",
-                    "nodePortType" : "In"
-                    },
-                  {
-                    "objectType" : "InstPort",
-                    "name" : "result",
                     "nodePortType" : "Out"
                     }
                   ],
-                "blocks" : [
-                  {
-                    "name" : "modify",
-                    "objectType" : "InstBlock",
-                    "execBlockRelPath" : "ForLoop_1.body.modify",
-                    "ports" : [
-                      {
-                        "objectType" : "InstBlockPort",
-                        "name" : "points",
-                        "nodePortType" : "In",
-                        "outsidePortType" : "In"
-                        },
-                      {
-                        "objectType" : "InstBlockPort",
-                        "name" : "t",
-                        "nodePortType" : "In",
-                        "defaultValues" : {
-                          "Scalar" : 0.5
-                          },
-                        "outsidePortType" : "In"
-                        }
-                      ],
-                    "exec" : {
-                      "objectType" : "Graph",
-                      "title" : "",
-                      "ports" : [
-                        {
-                          "objectType" : "ExecPort",
-                          "name" : "points",
-                          "nodePortType" : "Out",
-                          "execPortType" : "In",
-                          "typeSpec" : "Vec3[]"
-                          },
-                        {
-                          "objectType" : "ExecPort",
-                          "metadata" : {
-                            "uiRange" : "(0, 1)"
-                            },
-                          "name" : "t",
-                          "nodePortType" : "Out",
-                          "defaultValues" : {
-                            "Scalar" : 0
-                            },
-                          "execPortType" : "In",
-                          "typeSpec" : "Scalar"
-                          }
-                        ],
-                      "fixedPorts" : [
-                        {
-                          "objectType" : "ExecFixedPort",
-                          "name" : "index",
-                          "nodePortType" : "Out",
-                          "outsidePortType" : "In"
-                          },
-                        {
-                          "objectType" : "ExecFixedPort",
-                          "name" : "inValue",
-                          "nodePortType" : "Out",
-                          "outsidePortType" : "In"
-                          },
-                        {
-                          "objectType" : "ExecFixedPort",
-                          "name" : "outValue",
-                          "nodePortType" : "In",
-                          "outsidePortType" : "Out"
-                          }
-                        ],
-                      "extDeps" : {},
-                      "nodes" : [
-                        {
-                          "objectType" : "Inst",
-                          "metadata" : {
-                            "uiGraphPos" : "{\"x\":423.5,\"y\":380.0}"
-                            },
-                          "name" : "Lerp_1",
-                          "ports" : [
-                            {
-                              "objectType" : "InstPort",
-                              "name" : "exec",
-                              "nodePortType" : "IO"
-                              },
-                            {
-                              "objectType" : "InstPort",
-                              "name" : "this",
-                              "nodePortType" : "In"
-                              },
-                            {
-                              "objectType" : "InstPort",
-                              "name" : "other",
-                              "nodePortType" : "In"
-                              },
-                            {
-                              "objectType" : "InstPort",
-                              "name" : "t",
-                              "nodePortType" : "In"
-                              },
-                            {
-                              "objectType" : "InstPort",
-                              "name" : "result",
-                              "nodePortType" : "Out"
-                              }
-                            ],
-                          "executable" : "Fabric.Exts.Math.Func.Lerp",
-                          "presetGUID" : "12CF7203114B81451A5EEC920610EDA9"
-                          },
-                        {
-                          "objectType" : "Inst",
-                          "metadata" : {
-                            "uiGraphPos" : "{\"x\":123.0,\"y\":421.0}"
-                            },
-                          "name" : "Get_1",
-                          "ports" : [
-                            {
-                              "objectType" : "InstPort",
-                              "name" : "exec",
-                              "nodePortType" : "IO"
-                              },
-                            {
-                              "objectType" : "InstPort",
-                              "name" : "array",
-                              "nodePortType" : "In"
-                              },
-                            {
-                              "objectType" : "InstPort",
-                              "name" : "index",
-                              "nodePortType" : "In"
-                              },
-                            {
-                              "objectType" : "InstPort",
-                              "name" : "element",
-                              "nodePortType" : "Out"
-                              }
-                            ],
-                          "executable" : "Fabric.Core.Array.Get",
-                          "presetGUID" : "880D755392299678EEB93260424986E2"
-                          }
-                        ],
-                      "connections" : {
-                        "index" : [
-                          "Get_1.index"
-                          ],
-                        "inValue" : [
-                          "Lerp_1.this"
-                          ],
-                        "points" : [
-                          "Get_1.array"
-                          ],
-                        "t" : [
-                          "Lerp_1.t"
-                          ],
-                        "Lerp_1.result" : [
-                          "outValue"
-                          ],
-                        "Get_1.element" : [
-                          "Lerp_1.other"
-                          ]
-                        }
-                      }
-                    }
-                  ],
-                "executable" : "Fabric.Compounds.Blocks.Array.Modify",
-                "presetGUID" : "211EC119321D70A59703EADED903EADF"
+                "executable" : "Fabric.Core.Constants.Float32Array",
+                "presetGUID" : "9BAEB103B0AF589C442E44D03132EB30"
                 },
               {
                 "objectType" : "Inst",
                 "metadata" : {
-                  "uiGraphPos" : "{\"x\":1100.0,\"y\":391.5}"
+                  "uiGraphPos" : "{\"x\":-240.0,\"y\":483.0}"
                   },
-                "name" : "HairGuideFromArray_1",
+                "name" : "TypeCast_1",
                 "ports" : [
                   {
                     "objectType" : "InstPort",
@@ -722,48 +984,22 @@
                     },
                   {
                     "objectType" : "InstPort",
-                    "name" : "points",
+                    "name" : "input",
                     "nodePortType" : "In"
                     },
                   {
                     "objectType" : "InstPort",
-                    "name" : "normal",
-                    "nodePortType" : "In"
-                    },
-                  {
-                    "objectType" : "InstPort",
-                    "name" : "color",
-                    "nodePortType" : "In",
-                    "defaultValues" : {
-                      "Color" : {
-                        "r" : 1,
-                        "g" : 0.3176470696926117,
-                        "b" : 0.09019608050584793,
-                        "a" : 1
-                        }
-                      }
-                    },
-                  {
-                    "objectType" : "InstPort",
-                    "name" : "layer",
-                    "nodePortType" : "In",
-                    "defaultValues" : {
-                      "Integer" : 1
-                      }
-                    },
-                  {
-                    "objectType" : "InstPort",
-                    "name" : "result",
+                    "name" : "output",
                     "nodePortType" : "Out"
                     }
                   ],
-                "executable" : "Fabric.ProductionSamples.HairGuides.HairGuide.HairGuideFromArray",
-                "presetGUID" : "19F75A92DC32001823F9799873AC196A"
+                "executable" : "Fabric.Core.Conversion.TypeCast",
+                "presetGUID" : "9C95D1BB028908684AADC77848E89AA2"
                 },
               {
                 "objectType" : "Inst",
                 "metadata" : {
-                  "uiGraphPos" : "{\"x\":184.0,\"y\":600.0}"
+                  "uiGraphPos" : "{\"x\":37.0,\"y\":538.5}"
                   },
                 "name" : "Rescale_1",
                 "ports" : [
@@ -780,30 +1016,30 @@
                   {
                     "objectType" : "InstPort",
                     "name" : "inMin",
-                    "nodePortType" : "In"
+                    "nodePortType" : "In",
+                    "defaultValues" : {
+                      "Float32" : 1.299999952316284
+                      }
                     },
                   {
                     "objectType" : "InstPort",
                     "name" : "inMax",
                     "nodePortType" : "In",
                     "defaultValues" : {
-                      "Float32" : 1
+                      "Float32" : 6.699999809265137
                       }
                     },
                   {
                     "objectType" : "InstPort",
                     "name" : "outMin",
-                    "nodePortType" : "In",
-                    "defaultValues" : {
-                      "Scalar" : 0.2000000029802322
-                      }
+                    "nodePortType" : "In"
                     },
                   {
                     "objectType" : "InstPort",
                     "name" : "outMax",
                     "nodePortType" : "In",
                     "defaultValues" : {
-                      "Float32" : 0.800000011920929
+                      "Float32" : 1
                       }
                     },
                   {
@@ -817,45 +1053,60 @@
                 }
               ],
             "connections" : {
-              "baseA" : [
+              "base" : [
                 "DecomposeHairGuide_1.value"
                 ],
-              "baseB" : [
+              "index" : [
+                "TypeCast_1.input"
+                ],
+              "guide" : [
                 "DecomposeHairGuide_2.value"
                 ],
-              "ratio" : [
-                "Rescale_1.value"
+              "inMin" : [
+                "Rescale_1.inMin"
+                ],
+              "inMax" : [
+                "Rescale_1.inMax"
                 ],
               "DecomposeHairGuide_1.points" : [
-                "Modify_1.array"
+                "LerpArray_1.this"
                 ],
-              "DecomposeHairGuide_2.points" : [
-                "Modify_1.modify.points"
-                ],
-              "DecomposeHairGuide_2.normal" : [
+              "DecomposeHairGuide_1.normal" : [
                 "HairGuideFromArray_1.normal"
                 ],
-              "Modify_1.result" : [
-                "HairGuideFromArray_1.points"
+              "DecomposeHairGuide_1.layer" : [
+                "HairGuideFromArray_1.layer"
                 ],
               "HairGuideFromArray_1.result" : [
                 "result"
                 ],
+              "DecomposeHairGuide_2.points" : [
+                "LerpArray_1.other"
+                ],
+              "LerpArray_1.result" : [
+                "HairGuideFromArray_1.points"
+                ],
+              "Float32Array_1.array" : [
+                "LerpArray_1.t"
+                ],
+              "TypeCast_1.output" : [
+                "Rescale_1.value"
+                ],
               "Rescale_1.result" : [
-                "Modify_1.modify.t"
+                "Float32Array_1.element"
                 ]
               }
             }
           }
         ],
-      "executable" : "Fabric.ProductionSamples.HairGuides.HairSystem.AddGuidesFromGuides",
-      "presetGUID" : "028C779723A463A643DD6D67AA127FBD"
+      "executable" : "Fabric.ProductionSamples.HairGuides.HairSystem.EditGuides",
+      "presetGUID" : "D0941F936623950F4179EB78CC7824A4"
       },
     {
       "objectType" : "Inst",
       "metadata" : {
-        "uiComment" : "use the Q button in the standalone on the viewport to activate the tool",
-        "uiGraphPos" : "{\"x\":1603.0,\"y\":303.0}",
+        "uiComment" : "use the Q button in the standalone on the viewport to activate the tool.\nnote that you cannot values prior to the procedural flow,\nso changing the yellow guides does not effect the orange guides.\nyou can however add multiple tools as shown in this demo.",
+        "uiGraphPos" : "{\"x\":1949.5,\"y\":429.0}",
         "uiCommentExpanded" : "true"
         },
       "name" : "HairGuideTool_1",
@@ -882,8 +1133,8 @@
           "defaultValues" : {
             "Color" : {
               "r" : 0,
-              "g" : 1,
-              "b" : 0.2000000029802322,
+              "g" : 0,
+              "b" : 1,
               "a" : 1
               }
             }
@@ -896,7 +1147,10 @@
         {
           "objectType" : "InstPort",
           "name" : "layer",
-          "nodePortType" : "In"
+          "nodePortType" : "In",
+          "defaultValues" : {
+            "SInt32" : 1
+            }
           },
         {
           "objectType" : "InstPort",
@@ -904,111 +1158,53 @@
           "nodePortType" : "IO",
           "defaultValues" : {
             "PS::HairGuideEditData" : {
-              "guideIndex" : [
-                13,
-                13,
-                13,
-                13,
-                14,
-                14,
-                14,
-                14,
-                15,
-                15,
-                15,
-                15
-                ],
-              "vertexIndex" : [
-                4,
-                3,
-                2,
-                1,
-                4,
-                3,
-                2,
-                1,
-                4,
-                3,
-                2,
-                1
-                ],
-              "positionOffset" : [
-                {
-                  "x" : -0.1264123916625977,
-                  "y" : 0.7476077079772949,
-                  "z" : 4.625320434570313e-05
-                  },
-                {
-                  "x" : -0.02717423439025879,
-                  "y" : 0.6344926357269287,
-                  "z" : -0.1180572509765625
-                  },
-                {
-                  "x" : 0.006397724151611328,
-                  "y" : 0.599700927734375,
-                  "z" : -0.2185978889465332
-                  },
-                {
-                  "x" : -0.006904363632202148,
-                  "y" : 0.8070437908172607,
-                  "z" : -0.4181981086730957
-                  },
-                {
-                  "x" : 0.401871919631958,
-                  "y" : 0.8250932693481445,
-                  "z" : -0.03569746017456055
-                  },
-                {
-                  "x" : -0.003594398498535156,
-                  "y" : 1.090965747833252,
-                  "z" : -0.1904969215393066
-                  },
-                {
-                  "x" : -0.0660245418548584,
-                  "y" : 1.641629219055176,
-                  "z" : -0.5735583305358887
-                  },
-                {
-                  "x" : -0.02232980728149414,
-                  "y" : 0.8278422355651856,
-                  "z" : -0.4087200164794922
-                  },
-                {
-                  "x" : 0.927217960357666,
-                  "y" : 0.7480082511901856,
-                  "z" : -0.01276683807373047
-                  },
-                {
-                  "x" : 0.2457485198974609,
-                  "y" : 0.8953096866607666,
-                  "z" : -0.16357421875
-                  },
-                {
-                  "x" : -0.001245737075805664,
-                  "y" : 0.7622523307800293,
-                  "z" : -0.265376091003418
-                  },
-                {
-                  "x" : 0.1394033432006836,
-                  "y" : 0.2975022792816162,
-                  "z" : -0.1447148323059082
-                  }
-                ]
+              "guideIndex" : [],
+              "vertexIndex" : [],
+              "positionOffset" : []
               }
             }
           }
         ],
       "executable" : "Fabric.ProductionSamples.HairGuides.HairSystem.HairGuideTool",
       "presetGUID" : "B928AE9E426DA6F76BF3638D1B8BC949"
+      },
+    {
+      "objectType" : "Inst",
+      "metadata" : {
+        "uiGraphPos" : "{\"x\":1546.0,\"y\":572.0}"
+        },
+      "name" : "Not_1",
+      "ports" : [
+        {
+          "objectType" : "InstPort",
+          "name" : "exec",
+          "nodePortType" : "IO"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "value",
+          "nodePortType" : "In"
+          },
+        {
+          "objectType" : "InstPort",
+          "name" : "result",
+          "nodePortType" : "Out"
+          }
+        ],
+      "executable" : "Fabric.Core.Logic.Not",
+      "presetGUID" : "B8FE3CDCF84BBE1B3A07C80E724FB147"
       }
     ],
   "connections" : {
+    "editYellowGuides" : [
+      "HairGuideTool_2.active"
+      ],
     "HairSystem_1.result" : [
-      "AddGuidesFromGuides_1.hair"
+      "AddGuide_1.this"
       ],
     "HairGuide_1.result" : [
       "Transform_1.this",
-      "AddGuidesFromGuides_1.guideA"
+      "AddGuide_1.guide"
       ],
     "DrawHairSystem_1.handle" : [
       "handle"
@@ -1017,16 +1213,46 @@
       "DrawHairSystem_1.handle"
       ],
     "Transform_1.this" : [
-      "AddGuidesFromGuides_1.guideB"
+      "AddGuide_2.guide"
       ],
     "XfoFromSRT_1.result" : [
       "Transform_1.xfo"
       ],
-    "AddGuidesFromGuides_1.hair" : [
+    "AddGuide_1.this" : [
+      "AddGuide_2.this"
+      ],
+    "AddGuide_1.result" : [
+      "Push_1.element"
+      ],
+    "AddGuide_2.this" : [
+      "HairGuideTool_2.hair"
+      ],
+    "AddGuide_2.guide" : [
+      "EditGuides_1.edit.guide"
+      ],
+    "CloneGuides_1.hair" : [
+      "EditGuides_1.hair"
+      ],
+    "CloneGuides_1.result" : [
+      "EditGuides_1.indices"
+      ],
+    "Push_1.array" : [
+      "CloneGuides_1.indices"
+      ],
+    "HairGuideTool_2.hair" : [
+      "CloneGuides_1.hair"
+      ],
+    "HairGuideTool_2.active" : [
+      "Not_1.value"
+      ],
+    "EditGuides_1.hair" : [
       "HairGuideTool_1.hair"
       ],
     "HairGuideTool_1.hair" : [
       "DrawHairSystem_1.hair"
+      ],
+    "Not_1.result" : [
+      "HairGuideTool_1.active"
       ]
     },
   "bindingMetadata" : {
@@ -1483,13 +1709,60 @@ dfgEntry {
 }
 "
       },
-    "Fabric.ProductionSamples.HairGuides.HairSystem.AddGuidesFromGuides" : {
+    "Fabric.ProductionSamples.HairGuides.HairSystem.AddGuide" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTooltip" : "Supported types:\n  this: HairSystem\n  guide: PS::HairGuide\n  result: Index\n"
+        },
+      "title" : "AddGuide",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "this",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "PS::HairSystem"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "guide",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "PS::HairGuide"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "result",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "Integer"
+          }
+        ],
+      "extDeps" : {
+        "HairGuides" : "*"
+        },
+      "presetGUID" : "F17E3B7BA98975D48EDDB27C1DF8E6CB",
+      "code" : "require HairGuides;
+
+dfgEntry {
+  result = this.addGuide(guide);
+}
+"
+      },
+    "Fabric.ProductionSamples.HairGuides.HairSystem.CloneGuides" : {
       "objectType" : "Func",
       "metadata" : {
         "uiTextColor" : "{\n  \"r\" : 20,\n  \"g\" : 20,\n  \"b\" : 20\n  }",
         "uiNodeColor" : "{\n  \"r\" : 121,\n  \"g\" : 134,\n  \"b\" : 143\n  }"
         },
-      "title" : "AddGuidesFromGuides",
+      "title" : "CloneGuides",
       "ports" : [
         {
           "objectType" : "ExecPort",
@@ -1513,109 +1786,23 @@ dfgEntry {
           },
         {
           "objectType" : "ExecPort",
-          "name" : "guideA",
+          "name" : "layer",
           "nodePortType" : "Out",
           "defaultValues" : {
-            "PS::HairGuide" : {
-              "points" : [],
-              "normal" : {
-                "x" : 0,
-                "y" : 0,
-                "z" : 0
-                },
-              "color" : {
-                "r" : 0,
-                "g" : 0,
-                "b" : 0,
-                "a" : 1
-                },
-              "layer" : 0
-              }
+            "Integer" : 1
             },
           "execPortType" : "In",
-          "typeSpec" : "PS::HairGuide"
+          "typeSpec" : "Integer"
           },
         {
           "objectType" : "ExecPort",
-          "name" : "guideB",
+          "name" : "indices",
           "nodePortType" : "Out",
           "defaultValues" : {
-            "PS::HairGuide" : {
-              "points" : [],
-              "normal" : {
-                "x" : 0,
-                "y" : 0,
-                "z" : 0
-                },
-              "color" : {
-                "r" : 0,
-                "g" : 0,
-                "b" : 0,
-                "a" : 1
-                },
-              "layer" : 0
-              }
+            "Integer[]" : []
             },
           "execPortType" : "In",
-          "typeSpec" : "PS::HairGuide"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "guideC",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "PS::HairGuide" : {
-              "points" : [],
-              "normal" : {
-                "x" : 0,
-                "y" : 0,
-                "z" : 0
-                },
-              "color" : {
-                "r" : 0,
-                "g" : 0,
-                "b" : 0,
-                "a" : 1
-                },
-              "layer" : 0
-              }
-            },
-          "execPortType" : "In",
-          "typeSpec" : "PS::HairGuide"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "guideD",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "PS::HairGuide" : {
-              "points" : [],
-              "normal" : {
-                "x" : 0,
-                "y" : 0,
-                "z" : 0
-                },
-              "color" : {
-                "r" : 0,
-                "g" : 0,
-                "b" : 0,
-                "a" : 1
-                },
-              "layer" : 0
-              }
-            },
-          "execPortType" : "In",
-          "typeSpec" : "PS::HairGuide"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "count",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Size" : 8
-            },
-          "execPortType" : "In",
-          "typeSpec" : "Size"
+          "typeSpec" : "Integer[]"
           },
         {
           "objectType" : "ExecPort",
@@ -1634,32 +1821,11 @@ dfgEntry {
           "metadata" : {
             "uiGraphPos" : "{\"x\":0.0,\"y\":0.0}"
             },
-          "name" : "addGuide",
+          "name" : "getNumberOfClones",
           "ports" : [
             {
               "objectType" : "ExecBlockPort",
-              "name" : "baseA",
-              "nodePortType" : "In",
-              "outsidePortType" : "In",
-              "typeSpec" : "PS::HairGuide"
-              },
-            {
-              "objectType" : "ExecBlockPort",
-              "name" : "baseB",
-              "nodePortType" : "In",
-              "outsidePortType" : "In",
-              "typeSpec" : "PS::HairGuide"
-              },
-            {
-              "objectType" : "ExecBlockPort",
-              "name" : "baseC",
-              "nodePortType" : "In",
-              "outsidePortType" : "In",
-              "typeSpec" : "PS::HairGuide"
-              },
-            {
-              "objectType" : "ExecBlockPort",
-              "name" : "baseD",
+              "name" : "guide",
               "nodePortType" : "In",
               "outsidePortType" : "In",
               "typeSpec" : "PS::HairGuide"
@@ -1669,59 +1835,24 @@ dfgEntry {
               "name" : "index",
               "nodePortType" : "In",
               "outsidePortType" : "In",
-              "typeSpec" : "SInt32"
+              "typeSpec" : "Integer"
               },
             {
               "objectType" : "ExecBlockPort",
               "name" : "count",
-              "nodePortType" : "In",
-              "outsidePortType" : "In",
-              "typeSpec" : "SInt32"
-              },
-            {
-              "objectType" : "ExecBlockPort",
-              "name" : "ratio",
-              "nodePortType" : "In",
-              "outsidePortType" : "In",
-              "typeSpec" : "Float32"
-              },
-            {
-              "objectType" : "ExecBlockPort",
-              "name" : "result",
               "nodePortType" : "Out",
               "outsidePortType" : "Out",
-              "typeSpec" : "PS::HairGuide"
+              "typeSpec" : "Integer"
               }
             ],
           "defaultExec" : {
             "objectType" : "Graph",
-            "metadata" : {
-              "uiGraphPan" : "{\n  \"x\" : 184.0,\n  \"y\" : -110.0\n  }"
-              },
             "title" : "",
             "ports" : [],
             "fixedPorts" : [
               {
                 "objectType" : "ExecFixedPort",
-                "name" : "baseA",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "baseB",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "baseC",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "baseD",
+                "name" : "guide",
                 "nodePortType" : "Out",
                 "outsidePortType" : "In"
                 },
@@ -1734,27 +1865,40 @@ dfgEntry {
               {
                 "objectType" : "ExecFixedPort",
                 "name" : "count",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "ratio",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "result",
                 "nodePortType" : "In",
                 "outsidePortType" : "Out"
                 }
               ],
             "extDeps" : {},
-            "nodes" : [],
+            "nodes" : [
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":846.0,\"y\":399.0}"
+                  },
+                "name" : "Integer_1",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "value",
+                    "nodePortType" : "In",
+                    "defaultValues" : {
+                      "Integer" : 1
+                      }
+                    }
+                  ],
+                "executable" : "Fabric.Core.Constants.Integer",
+                "presetGUID" : "70A8710A81C6715B65874101A33CC86E"
+                }
+              ],
             "connections" : {
-              "baseA" : [
-                "result"
+              "Integer_1.value" : [
+                "count"
                 ]
               }
             }
@@ -1763,31 +1907,42 @@ dfgEntry {
       "extDeps" : {
         "HairGuides" : "*"
         },
-      "presetGUID" : "028C779723A463A643DD6D67AA127FBD",
-      "code" : "require HairGuides;
-
-dfgEntry {
-  hair.addGuide(guideA);
-  hair.addGuide(guideB);
-  hair.addGuide(guideC);
-  hair.addGuide(guideD);
-
-  for(Size i=0;i<count;i++)
+      "presetGUID" : "A6CCFE23EC31CADD6B75ABC0AC589452",
+      "code" : "dfgEntry {
+  
+  Integer idxs[] = indices.clone();
+  if(idxs.size() == 0)
   {
-    Index idx = hair.guides.size();
-    hair.addGuide(guideA);
-    Float32 ratio = 1.0;
-    if(count > 1)
-      ratio = Float32(i) / Float32(count-1);
-    hair.guides[idx] = dfgPullBlockPort('addGuide.result', guideA, guideB, guideC, guideD, i, count, ratio);
-    result.push(idx);
+    for(Size i=0;i<hair.guides.size();i++)
+    {
+      idxs.push(i);
+    }
   }
+  
+  for(Size i=0;i<idxs.size();i++)
+  {
+    Index idx = idxs[i];
+    Integer count = dfgPullBlockPort('getNumberOfClones.count', hair.guides[idx], idx);
+    for(Integer j=0;j<count;j++)
+    {
+      result.push(hair.guides.size());
+      PS::HairGuide guide = hair.guides[idx].clone();
+      // if the layer is negative then keep the original layer
+      if(layer >= 0)
+        guide.layer = layer;
+      hair.addGuide(guide);
+    }
+  }
+  
 }
 "
       },
-    "Fabric.ProductionSamples.HairGuides.HairGuide.DecomposeHairGuide" : {
+    "Fabric.Core.Constants.Integer" : {
       "objectType" : "Func",
-      "title" : "HairGuide ->",
+      "metadata" : {
+        "uiAlwaysShowDaisyChainPorts" : "true"
+        },
+      "title" : "Integer",
       "ports" : [
         {
           "objectType" : "ExecPort",
@@ -1801,636 +1956,18 @@ dfgEntry {
           "name" : "value",
           "nodePortType" : "Out",
           "execPortType" : "In",
-          "typeSpec" : "PS::HairGuide"
-          },
-        {
-          "objectType" : "ExecPort",
-          "metadata" : {
-            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
-            },
-          "name" : "points",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "Vec3[]"
-          },
-        {
-          "objectType" : "ExecPort",
-          "metadata" : {
-            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
-            },
-          "name" : "normal",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "Vec3"
-          },
-        {
-          "objectType" : "ExecPort",
-          "metadata" : {
-            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 0,\n  \"b\" : 0\n  }"
-            },
-          "name" : "color",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "Color"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "layer",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
           "typeSpec" : "Integer"
           }
         ],
-      "extDeps" : {
-        "HairGuides" : "*"
-        },
-      "presetGUID" : "9EBD529B3348263C5A27A4DB311735A9",
-      "code" : "require HairGuides;
-
-dfgEntry {
-  points = value.points;
-  normal = value.normal;
-  color = value.color;
-  layer = value.layer;
-}
-"
-      },
-    "Fabric.Compounds.Blocks.Array.Modify" : {
-      "objectType" : "Graph",
-      "metadata" : {
-        "uiTextColor" : "{\n  \"r\" : 20,\n  \"g\" : 20,\n  \"b\" : 20\n  }",
-        "uiNodeColor" : "{\n  \"r\" : 121,\n  \"g\" : 134,\n  \"b\" : 143\n  }",
-        "uiGraphZoom" : "{\n  \"value\" : 1.0\n  }",
-        "uiGraphPan" : "{\n  \"x\" : 352.0,\n  \"y\" : -10.0\n  }"
-        },
-      "title" : "Modify",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "defaultValues" : {
-            "Execute" : {}
-            },
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "array",
-          "nodePortType" : "Out",
-          "execPortType" : "In"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "result",
-          "nodePortType" : "In",
-          "execPortType" : "Out"
-          }
-        ],
       "extDeps" : {},
-      "presetGUID" : "211EC119321D70A59703EADED903EADF",
-      "nodes" : [
-        {
-          "objectType" : "Inst",
-          "metadata" : {
-            "uiGraphPos" : "{\"x\":151.0,\"y\":139.0}"
-            },
-          "name" : "Size_1",
-          "ports" : [
-            {
-              "objectType" : "InstPort",
-              "name" : "exec",
-              "nodePortType" : "IO"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "array",
-              "nodePortType" : "In"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "count",
-              "nodePortType" : "Out"
-              }
-            ],
-          "executable" : "Fabric.Core.Array.Size",
-          "presetGUID" : "5B186A97C79ACF32526EC844AD805421"
-          },
-        {
-          "objectType" : "Inst",
-          "metadata" : {
-            "uiGraphPos" : "{\"x\":497.0,\"y\":89.0}"
-            },
-          "name" : "ForLoop_1",
-          "ports" : [
-            {
-              "objectType" : "InstPort",
-              "name" : "exec",
-              "nodePortType" : "IO"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "count",
-              "nodePortType" : "In"
-              }
-            ],
-          "blocks" : [
-            {
-              "name" : "body",
-              "objectType" : "InstBlock",
-              "execBlockRelPath" : "body",
-              "ports" : [
-                {
-                  "objectType" : "InstBlockPort",
-                  "name" : "array",
-                  "nodePortType" : "In",
-                  "outsidePortType" : "In"
-                  },
-                {
-                  "objectType" : "InstBlockPort",
-                  "name" : "result",
-                  "nodePortType" : "In",
-                  "outsidePortType" : "In"
-                  }
-                ],
-              "exec" : {
-                "objectType" : "Graph",
-                "metadata" : {
-                  "uiGraphZoom" : "{\n  \"value\" : 1.0\n  }",
-                  "uiGraphPan" : "{\n  \"x\" : 126.25,\n  \"y\" : 33.25\n  }"
-                  },
-                "title" : "",
-                "ports" : [
-                  {
-                    "objectType" : "ExecPort",
-                    "name" : "array",
-                    "nodePortType" : "Out",
-                    "execPortType" : "In"
-                    },
-                  {
-                    "objectType" : "ExecPort",
-                    "name" : "result",
-                    "nodePortType" : "Out",
-                    "execPortType" : "In"
-                    }
-                  ],
-                "fixedPorts" : [
-                  {
-                    "objectType" : "ExecFixedPort",
-                    "name" : "exec",
-                    "nodePortType" : "IO",
-                    "outsidePortType" : "IO"
-                    },
-                  {
-                    "objectType" : "ExecFixedPort",
-                    "name" : "index",
-                    "nodePortType" : "Out",
-                    "outsidePortType" : "In"
-                    },
-                  {
-                    "objectType" : "ExecFixedPort",
-                    "name" : "count",
-                    "nodePortType" : "Out",
-                    "outsidePortType" : "In"
-                    }
-                  ],
-                "blocks" : [
-                  {
-                    "objectType" : "ExecBlock",
-                    "metadata" : {
-                      "uiGraphPos" : "{\"x\":656.0,\"y\":146.0}",
-                      "uiNodeColor" : "{\n  \"r\" : 193,\n  \"g\" : 189,\n  \"b\" : 138\n  }",
-                      "uiTextColor" : "{\n  \"r\" : 20,\n  \"g\" : 20,\n  \"b\" : 20\n  }"
-                      },
-                    "name" : "modify",
-                    "ports" : [
-                      {
-                        "objectType" : "ExecBlockPort",
-                        "name" : "index",
-                        "nodePortType" : "In",
-                        "defaultValues" : {
-                          "UInt32" : 0
-                          },
-                        "outsidePortType" : "In",
-                        "typeSpec" : "UInt32"
-                        },
-                      {
-                        "objectType" : "ExecBlockPort",
-                        "name" : "inValue",
-                        "nodePortType" : "In",
-                        "outsidePortType" : "In"
-                        },
-                      {
-                        "objectType" : "ExecBlockPort",
-                        "name" : "outValue",
-                        "nodePortType" : "Out",
-                        "outsidePortType" : "Out"
-                        }
-                      ],
-                    "defaultExec" : {
-                      "objectType" : "Graph",
-                      "title" : "",
-                      "ports" : [],
-                      "fixedPorts" : [
-                        {
-                          "objectType" : "ExecFixedPort",
-                          "name" : "index",
-                          "nodePortType" : "Out",
-                          "outsidePortType" : "In"
-                          },
-                        {
-                          "objectType" : "ExecFixedPort",
-                          "name" : "inValue",
-                          "nodePortType" : "Out",
-                          "outsidePortType" : "In"
-                          },
-                        {
-                          "objectType" : "ExecFixedPort",
-                          "name" : "outValue",
-                          "nodePortType" : "In",
-                          "outsidePortType" : "Out"
-                          }
-                        ],
-                      "extDeps" : {},
-                      "nodes" : [],
-                      "connections" : {}
-                      }
-                    }
-                  ],
-                "extDeps" : {},
-                "nodes" : [
-                  {
-                    "objectType" : "Inst",
-                    "metadata" : {
-                      "uiGraphPos" : "{\"x\":369.5,\"y\":146.5}"
-                      },
-                    "name" : "Get_1",
-                    "ports" : [
-                      {
-                        "objectType" : "InstPort",
-                        "name" : "exec",
-                        "nodePortType" : "IO"
-                        },
-                      {
-                        "objectType" : "InstPort",
-                        "name" : "array",
-                        "nodePortType" : "In"
-                        },
-                      {
-                        "objectType" : "InstPort",
-                        "name" : "index",
-                        "nodePortType" : "In"
-                        },
-                      {
-                        "objectType" : "InstPort",
-                        "name" : "element",
-                        "nodePortType" : "Out"
-                        }
-                      ],
-                    "executable" : "Fabric.Core.Array.Get",
-                    "presetGUID" : "880D755392299678EEB93260424986E2"
-                    },
-                  {
-                    "objectType" : "Inst",
-                    "metadata" : {
-                      "uiGraphPos" : "{\"x\":959.5,\"y\":76.5}"
-                      },
-                    "name" : "Set_1",
-                    "ports" : [
-                      {
-                        "objectType" : "InstPort",
-                        "name" : "exec",
-                        "nodePortType" : "IO"
-                        },
-                      {
-                        "objectType" : "InstPort",
-                        "name" : "array",
-                        "nodePortType" : "IO"
-                        },
-                      {
-                        "objectType" : "InstPort",
-                        "name" : "index",
-                        "nodePortType" : "In"
-                        },
-                      {
-                        "objectType" : "InstPort",
-                        "name" : "element",
-                        "nodePortType" : "In"
-                        }
-                      ],
-                    "executable" : "Fabric.Core.Array.Set",
-                    "presetGUID" : "D4D13729AE7853F59417AF7DD50571E2"
-                    },
-                  {
-                    "objectType" : "Inst",
-                    "metadata" : {
-                      "uiGraphPos" : "{\"x\":355.0,\"y\":100.0}",
-                      "uiCollapsedState" : "2"
-                      },
-                    "name" : "PassThrough",
-                    "ports" : [
-                      {
-                        "objectType" : "InstPort",
-                        "name" : "exec",
-                        "nodePortType" : "IO"
-                        },
-                      {
-                        "objectType" : "InstPort",
-                        "name" : "value",
-                        "nodePortType" : "IO"
-                        }
-                      ],
-                    "definition" : {
-                      "objectType" : "Func",
-                      "title" : "PassThrough",
-                      "ports" : [
-                        {
-                          "objectType" : "ExecPort",
-                          "name" : "exec",
-                          "nodePortType" : "IO",
-                          "execPortType" : "IO",
-                          "typeSpec" : "Execute"
-                          },
-                        {
-                          "objectType" : "ExecPort",
-                          "name" : "value",
-                          "nodePortType" : "IO",
-                          "execPortType" : "IO",
-                          "typeSpec" : "$TYPE$[]"
-                          }
-                        ],
-                      "extDeps" : {},
-                      "code" : "dfgEntry {
-  //result = lhs + rhs;
-}
-"
-                      }
-                    }
-                  ],
-                "connections" : {
-                  "index" : [
-                    "Get_1.index"
-                    ],
-                  "array" : [
-                    "Get_1.array"
-                    ],
-                  "result" : [
-                    "PassThrough.value"
-                    ],
-                  "modify.index" : [
-                    "Set_1.index"
-                    ],
-                  "modify.outValue" : [
-                    "Set_1.element"
-                    ],
-                  "Get_1.index" : [
-                    "modify.index"
-                    ],
-                  "Get_1.element" : [
-                    "modify.inValue"
-                    ],
-                  "Set_1.exec" : [
-                    "exec"
-                    ],
-                  "PassThrough.value" : [
-                    "Set_1.array"
-                    ]
-                  }
-                }
-              }
-            ],
-          "executable" : "Fabric.Core.Control.ForLoop",
-          "presetGUID" : "3F6896C3844799D09EA3F8C78850EC3B"
-          },
-        {
-          "objectType" : "Inst",
-          "metadata" : {
-            "uiGraphPos" : "{\"x\":332.0,\"y\":205.0}"
-            },
-          "name" : "Resize_1",
-          "ports" : [
-            {
-              "objectType" : "InstPort",
-              "name" : "exec",
-              "nodePortType" : "IO"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "array",
-              "nodePortType" : "IO"
-              },
-            {
-              "objectType" : "InstPort",
-              "name" : "count",
-              "nodePortType" : "In"
-              }
-            ],
-          "executable" : "Fabric.Core.Array.Resize",
-          "presetGUID" : "73292917610FDC85B6E59510604F2467"
-          }
-        ],
-      "connections" : {
-        "array" : [
-          "Size_1.array"
-          ],
-        "Size_1.array" : [
-          "ForLoop_1.body.array"
-          ],
-        "Size_1.count" : [
-          "ForLoop_1.count",
-          "Resize_1.count"
-          ],
-        "ForLoop_1.body.result" : [
-          "result"
-          ],
-        "Resize_1.array" : [
-          "ForLoop_1.body.result"
-          ]
-        }
-      },
-    "Fabric.Core.Array.Size" : {
-      "objectType" : "Func",
-      "title" : "Size[]",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "array",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "$TYPE$"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "count",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "UInt32"
-          }
-        ],
-      "extDeps" : {},
-      "presetGUID" : "5B186A97C79ACF32526EC844AD805421",
-      "code" : "
-dfgEntry {
-	count = array.size();
+      "presetGUID" : "70A8710A81C6715B65874101A33CC86E",
+      "code" : "dfgEntry {
 }
 "
       },
-    "Fabric.Core.Control.ForLoop" : {
+    "Fabric.Core.Array.Push" : {
       "objectType" : "Func",
-      "title" : "ForLoop",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "defaultValues" : {
-            "Execute" : {}
-            },
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "metadata" : {
-            "uiPersistValue" : "true"
-            },
-          "name" : "count",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Count" : 3
-            },
-          "execPortType" : "In",
-          "typeSpec" : "$TYPE$"
-          }
-        ],
-      "blocks" : [
-        {
-          "objectType" : "ExecBlock",
-          "name" : "body",
-          "ports" : [
-            {
-              "objectType" : "ExecBlockPort",
-              "name" : "exec",
-              "nodePortType" : "IO",
-              "outsidePortType" : "IO",
-              "typeSpec" : "Execute"
-              },
-            {
-              "objectType" : "ExecBlockPort",
-              "name" : "index",
-              "nodePortType" : "In",
-              "outsidePortType" : "In",
-              "typeSpec" : "Index"
-              },
-            {
-              "objectType" : "ExecBlockPort",
-              "name" : "count",
-              "nodePortType" : "In",
-              "outsidePortType" : "In",
-              "typeSpec" : "$TYPE$"
-              }
-            ],
-          "defaultExec" : {
-            "objectType" : "Graph",
-            "title" : "",
-            "ports" : [],
-            "fixedPorts" : [
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "exec",
-                "nodePortType" : "IO",
-                "outsidePortType" : "IO"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "index",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                },
-              {
-                "objectType" : "ExecFixedPort",
-                "name" : "count",
-                "nodePortType" : "Out",
-                "outsidePortType" : "In"
-                }
-              ],
-            "extDeps" : {},
-            "nodes" : [],
-            "connections" : {}
-            }
-          }
-        ],
-      "extDeps" : {},
-      "presetGUID" : "3F6896C3844799D09EA3F8C78850EC3B",
-      "code" : "
-dfgEntry {
-  for ($TYPE$ index = 0; index < count; ++index)
-    dfgPullBlockPort('body.exec', index, count);
-}
-"
-      },
-    "Fabric.Core.Array.Get" : {
-      "objectType" : "Func",
-      "metadata" : {
-        "uiTooltip" : "Gets an element from the given index of an array."
-        },
-      "title" : "Get[]",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "array",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "$TYPE$[]"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "index",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "UInt32"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "element",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "$TYPE$"
-          }
-        ],
-      "extDeps" : {},
-      "presetGUID" : "880D755392299678EEB93260424986E2",
-      "tags" : [
-        "aka:GetArray",
-        "aka:Get[]"
-        ],
-      "code" : "
-dfgEntry {
-	element = array[index];
-}
-"
-      },
-    "Fabric.Core.Array.Set" : {
-      "objectType" : "Func",
-      "metadata" : {
-        "uiTooltip" : "Sets an element into the given index of an array."
-        },
-      "title" : "Set[]",
+      "title" : "Push[]",
       "ports" : [
         {
           "objectType" : "ExecPort",
@@ -2448,13 +1985,6 @@ dfgEntry {
           },
         {
           "objectType" : "ExecPort",
-          "name" : "index",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "UInt32"
-          },
-        {
-          "objectType" : "ExecPort",
           "name" : "element",
           "nodePortType" : "Out",
           "execPortType" : "In",
@@ -2462,257 +1992,10 @@ dfgEntry {
           }
         ],
       "extDeps" : {},
-      "presetGUID" : "D4D13729AE7853F59417AF7DD50571E2",
-      "tags" : [
-        "aka:SetArray",
-        "aka:Set[]"
-        ],
+      "presetGUID" : "572880BF96ACC34D6987BE3333715F52",
       "code" : "
 dfgEntry {
-	array[index] = element;
-}
-"
-      },
-    "Fabric.Core.Array.Resize" : {
-      "objectType" : "Func",
-      "title" : "Resize[]",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "array",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "$TYPE$"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "count",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "UInt32"
-          }
-        ],
-      "extDeps" : {},
-      "presetGUID" : "73292917610FDC85B6E59510604F2467",
-      "code" : "
-dfgEntry {
-	array.resize(count);
-}
-"
-      },
-    "Fabric.Exts.Math.Func.Lerp" : {
-      "objectType" : "Func",
-      "metadata" : {
-        "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiTooltip" : "Linearly interpolates a scalar value with another based on a blend (0.0 to 1.0)\n\n Supported by Float32,Float64,RGB,RGBA,ARGB,Color,Vec2,Vec3,Vec4,Quat,Xfo"
-        },
-      "title" : "Lerp",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "this",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "$TYPE$"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "other",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "$TYPE$"
-          },
-        {
-          "objectType" : "ExecPort",
-          "metadata" : {
-            "uiRange" : "(0, 1)"
-            },
-          "name" : "t",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "Scalar"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "result",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "$TYPE$"
-          }
-        ],
-      "extDeps" : {
-        "Math" : "*"
-        },
-      "presetGUID" : "12CF7203114B81451A5EEC920610EDA9",
-      "tags" : [
-        "aka:LinearInterpolate",
-        "cat:Interpolate"
-        ],
-      "code" : "require Math;
-
-dfgEntry {
-  result = this.linearInterpolate(other, t);
-}
-"
-      },
-    "Fabric.ProductionSamples.HairGuides.HairGuide.HairGuideFromArray" : {
-      "objectType" : "Func",
-      "metadata" : {
-        "uiTooltip" : "Supported types:\n  points: Vec3[]\n  normal: Vec3\n  color: Color\n  layer: Integer\n  result: HairGuide\n"
-        },
-      "title" : "HairGuideFromArray",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "metadata" : {
-            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
-            },
-          "name" : "points",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "Vec3[]"
-          },
-        {
-          "objectType" : "ExecPort",
-          "metadata" : {
-            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
-            },
-          "name" : "normal",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Vec3" : {
-              "x" : 0,
-              "y" : 1,
-              "z" : 0
-              }
-            },
-          "execPortType" : "In",
-          "typeSpec" : "Vec3"
-          },
-        {
-          "objectType" : "ExecPort",
-          "metadata" : {
-            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 0,\n  \"b\" : 0\n  }"
-            },
-          "name" : "color",
-          "nodePortType" : "Out",
-          "defaultValues" : {
-            "Color" : {
-              "r" : 1,
-              "g" : 1,
-              "b" : 0,
-              "a" : 1
-              }
-            },
-          "execPortType" : "In",
-          "typeSpec" : "Color"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "layer",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "Integer"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "result",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "PS::HairGuide"
-          }
-        ],
-      "extDeps" : {
-        "HairGuides" : "*"
-        },
-      "presetGUID" : "19F75A92DC32001823F9799873AC196A",
-      "code" : "require HairGuides;
-
-dfgEntry {
-  result = PS::HairGuide(points, normal, color, layer);
-}
-"
-      },
-    "Fabric.Core.Math.Rescale" : {
-      "objectType" : "Func",
-      "title" : "Rescale",
-      "ports" : [
-        {
-          "objectType" : "ExecPort",
-          "name" : "exec",
-          "nodePortType" : "IO",
-          "execPortType" : "IO",
-          "typeSpec" : "Execute"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "value",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "$TYPE$"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "inMin",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "$TYPE$"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "inMax",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "$TYPE$"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "outMin",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "$TYPE$"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "outMax",
-          "nodePortType" : "Out",
-          "execPortType" : "In",
-          "typeSpec" : "$TYPE$"
-          },
-        {
-          "objectType" : "ExecPort",
-          "name" : "result",
-          "nodePortType" : "In",
-          "execPortType" : "Out",
-          "typeSpec" : "$TYPE$"
-          }
-        ],
-      "extDeps" : {},
-      "presetGUID" : "4769F739D0AB963E327F9F6DB41FB521",
-      "code" : "
-dfgEntry {
-	result = outMin + (outMax - outMin) * (value - inMin) / (inMax - inMin);
+	array.push(element);
 }
 "
       },
@@ -2830,6 +2113,684 @@ dfgEntry {
   tool.setActive(active);
 }
 "
+      },
+    "Fabric.ProductionSamples.HairGuides.HairSystem.EditGuides" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTextColor" : "{\n  \"r\" : 20,\n  \"g\" : 20,\n  \"b\" : 20\n  }",
+        "uiNodeColor" : "{\n  \"r\" : 121,\n  \"g\" : 134,\n  \"b\" : 143\n  }"
+        },
+      "title" : "EditGuides",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "defaultValues" : {
+            "Execute" : {}
+            },
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "hair",
+          "nodePortType" : "IO",
+          "defaultValues" : {
+            "PS::HairSystem" : null
+            },
+          "execPortType" : "IO",
+          "typeSpec" : "PS::HairSystem"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "indices",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Integer[]" : []
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Integer[]"
+          }
+        ],
+      "blocks" : [
+        {
+          "objectType" : "ExecBlock",
+          "metadata" : {
+            "uiGraphPos" : "{\"x\":0.0,\"y\":0.0}"
+            },
+          "name" : "edit",
+          "ports" : [
+            {
+              "objectType" : "ExecBlockPort",
+              "name" : "base",
+              "nodePortType" : "In",
+              "outsidePortType" : "In",
+              "typeSpec" : "PS::HairGuide"
+              },
+            {
+              "objectType" : "ExecBlockPort",
+              "name" : "result",
+              "nodePortType" : "Out",
+              "outsidePortType" : "Out",
+              "typeSpec" : "PS::HairGuide"
+              },
+            {
+              "objectType" : "ExecBlockPort",
+              "name" : "index",
+              "nodePortType" : "In",
+              "outsidePortType" : "In",
+              "typeSpec" : "Integer"
+              },
+            {
+              "objectType" : "ExecBlockPort",
+              "name" : "count",
+              "nodePortType" : "In",
+              "outsidePortType" : "In",
+              "typeSpec" : "Integer"
+              }
+            ],
+          "defaultExec" : {
+            "objectType" : "Graph",
+            "title" : "",
+            "ports" : [],
+            "fixedPorts" : [
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "base",
+                "nodePortType" : "Out",
+                "outsidePortType" : "In"
+                },
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "result",
+                "nodePortType" : "In",
+                "outsidePortType" : "Out"
+                },
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "index",
+                "nodePortType" : "Out",
+                "outsidePortType" : "In"
+                },
+              {
+                "objectType" : "ExecFixedPort",
+                "name" : "count",
+                "nodePortType" : "Out",
+                "outsidePortType" : "In"
+                }
+              ],
+            "extDeps" : {},
+            "nodes" : [
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":523.0,\"y\":300.0}"
+                  },
+                "name" : "DecomposeHairGuide_1",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "value",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "points",
+                    "nodePortType" : "Out"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "normal",
+                    "nodePortType" : "Out"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "color",
+                    "nodePortType" : "Out"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "layer",
+                    "nodePortType" : "Out"
+                    }
+                  ],
+                "executable" : "Fabric.ProductionSamples.HairGuides.HairGuide.DecomposeHairGuide",
+                "presetGUID" : "9EBD529B3348263C5A27A4DB311735A9"
+                },
+              {
+                "objectType" : "Inst",
+                "metadata" : {
+                  "uiGraphPos" : "{\"x\":1301.0,\"y\":322.0}"
+                  },
+                "name" : "HairGuideFromArray_1",
+                "ports" : [
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "exec",
+                    "nodePortType" : "IO"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "points",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "normal",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "color",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "layer",
+                    "nodePortType" : "In"
+                    },
+                  {
+                    "objectType" : "InstPort",
+                    "name" : "result",
+                    "nodePortType" : "Out"
+                    }
+                  ],
+                "executable" : "Fabric.ProductionSamples.HairGuides.HairGuide.HairGuideFromArray",
+                "presetGUID" : "19F75A92DC32001823F9799873AC196A"
+                }
+              ],
+            "connections" : {
+              "base" : [
+                "DecomposeHairGuide_1.value"
+                ],
+              "DecomposeHairGuide_1.points" : [
+                "HairGuideFromArray_1.points"
+                ],
+              "DecomposeHairGuide_1.normal" : [
+                "HairGuideFromArray_1.normal"
+                ],
+              "DecomposeHairGuide_1.color" : [
+                "HairGuideFromArray_1.color"
+                ],
+              "DecomposeHairGuide_1.layer" : [
+                "HairGuideFromArray_1.layer"
+                ],
+              "HairGuideFromArray_1.result" : [
+                "result"
+                ]
+              }
+            }
+          }
+        ],
+      "extDeps" : {
+        "HairGuides" : "*"
+        },
+      "presetGUID" : "D0941F936623950F4179EB78CC7824A4",
+      "code" : "dfgEntry {
+  if(hair == null)
+    return;
+    
+  Integer idxs[] = indices.clone();
+  if(idxs.size() == 0)
+  {
+    for(Size i=0;i<hair.guides.size();i++)
+    {
+      idxs.push(i);
+    }
+  }
+
+  for(Size i=0;i<idxs.size();i++)
+  {
+    Integer idx = idxs[i];
+    if(!hair.guides[idx].isValid())
+      continue;
+    hair.guides[idx] = dfgPullBlockPort('edit.result', hair.guides[idx], idx, hair.guides.size());
+  }
+}
+"
+      },
+    "Fabric.ProductionSamples.HairGuides.HairGuide.DecomposeHairGuide" : {
+      "objectType" : "Func",
+      "title" : "HairGuide ->",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "value",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "PS::HairGuide"
+          },
+        {
+          "objectType" : "ExecPort",
+          "metadata" : {
+            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
+            },
+          "name" : "points",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "Vec3[]"
+          },
+        {
+          "objectType" : "ExecPort",
+          "metadata" : {
+            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
+            },
+          "name" : "normal",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "Vec3"
+          },
+        {
+          "objectType" : "ExecPort",
+          "metadata" : {
+            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 0,\n  \"b\" : 0\n  }"
+            },
+          "name" : "color",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "Color"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "layer",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "Integer"
+          }
+        ],
+      "extDeps" : {
+        "HairGuides" : "*"
+        },
+      "presetGUID" : "9EBD529B3348263C5A27A4DB311735A9",
+      "code" : "require HairGuides;
+
+dfgEntry {
+  points = value.points;
+  normal = value.normal;
+  color = value.color;
+  layer = value.layer;
+}
+"
+      },
+    "Fabric.ProductionSamples.HairGuides.HairGuide.HairGuideFromArray" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTooltip" : "Supported types:\n  points: Vec3[]\n  normal: Vec3\n  color: Color\n  layer: Integer\n  result: HairGuide\n"
+        },
+      "title" : "HairGuideFromArray",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "metadata" : {
+            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
+            },
+          "name" : "points",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "Vec3[]"
+          },
+        {
+          "objectType" : "ExecPort",
+          "metadata" : {
+            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
+            },
+          "name" : "normal",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Vec3" : {
+              "x" : 0,
+              "y" : 1,
+              "z" : 0
+              }
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Vec3"
+          },
+        {
+          "objectType" : "ExecPort",
+          "metadata" : {
+            "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 0,\n  \"b\" : 0\n  }"
+            },
+          "name" : "color",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Color" : {
+              "r" : 1,
+              "g" : 1,
+              "b" : 0,
+              "a" : 1
+              }
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Color"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "layer",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "Integer"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "result",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "PS::HairGuide"
+          }
+        ],
+      "extDeps" : {
+        "HairGuides" : "*"
+        },
+      "presetGUID" : "19F75A92DC32001823F9799873AC196A",
+      "code" : "require HairGuides;
+
+dfgEntry {
+  result = PS::HairGuide(points, normal, color, layer);
+}
+"
+      },
+    "Fabric.Exts.Math.Func.LerpArray" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
+        "uiTooltip" : "Linearly interpolates a scalar value with another based on a blend (0.0 to 1.0)\n\n Supported by Float32,Float64,RGB,RGBA,ARGB,Color,Vec2,Vec3,Vec4,Quat,Xfo"
+        },
+      "title" : "Lerp[]",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "this",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Float32[]" : [
+              0
+              ]
+            },
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$[]"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "other",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Float32[]" : [
+              0
+              ]
+            },
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$[]"
+          },
+        {
+          "objectType" : "ExecPort",
+          "metadata" : {
+            "uiRange" : "(0, 1)"
+            },
+          "name" : "t",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "Scalar[]" : [
+              0
+              ]
+            },
+          "execPortType" : "In",
+          "typeSpec" : "Scalar[]"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "result",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "$TYPE$[]"
+          }
+        ],
+      "extDeps" : {
+        "Math" : "*"
+        },
+      "presetGUID" : "18106EF6D37632C1481973598A9A886C",
+      "tags" : [
+        "aka:LinearInterpolate[]",
+        "cat:Interpolate"
+        ],
+      "code" : "require Math;
+
+operator Math_Float32_linearInterpolate_task<<<index>>>(
+  io $TYPE$[] result
+, in $TYPE$[] this
+, in $TYPE$[] other
+, in Scalar[] t
+) {
+  result[index] = this[index < this.size() ? index : this.size() - 1].linearInterpolate(other[index < other.size() ? index : other.size() - 1], t[index < t.size() ? index : t.size() - 1]);
+}
+
+dfgEntry {
+  if( this.size() == 0) return;
+  if( other.size() == 0) return;
+  if( t.size() == 0) return;
+  Size task_size = this.size();
+  if(task_size < other.size()) task_size = other.size();
+  if(task_size < t.size()) task_size = t.size();
+  result.resize(task_size);
+  if(task_size < 10000 /* pex margin */) {
+    for(Size index = 0; index < task_size; index++) {
+      Math_Float32_linearInterpolate_task(index, result, this, other, t);
+    }
+  } else {
+    Math_Float32_linearInterpolate_task<<<task_size>>>(result, this, other, t);
+  }
+}
+"
+      },
+    "Fabric.Core.Constants.Float32Array" : {
+      "objectType" : "Func",
+      "title" : "Float32[]",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "element",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "Float32"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "count",
+          "nodePortType" : "Out",
+          "defaultValues" : {
+            "SInt32" : 1
+            },
+          "execPortType" : "In",
+          "typeSpec" : "SInt32"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "array",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "Float32[]"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "9BAEB103B0AF589C442E44D03132EB30",
+      "code" : "
+dfgEntry {
+  array.resize(count);
+  for(Size i=0;i<count;i++)
+    array[i] = element;
+}
+"
+      },
+    "Fabric.Core.Conversion.TypeCast" : {
+      "objectType" : "Func",
+      "metadata" : {
+        "uiTextColor" : "{\n  \"r\" : 20,\n  \"g\" : 20,\n  \"b\" : 20\n  }",
+        "uiNodeColor" : "{\n  \"r\" : 121,\n  \"g\" : 134,\n  \"b\" : 143\n  }",
+        "uiTooltip" : "Arbitrarily casts a type to another one. A compile-time error will be occur if that conversion isn't allowed in KL."
+        },
+      "title" : "TypeCast",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "defaultValues" : {
+            "Execute" : {}
+            },
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "input",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "output",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "$TYPE2$"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "9C95D1BB028908684AADC77848E89AA2",
+      "code" : "dfgEntry {
+  output = input;
+}
+"
+      },
+    "Fabric.Core.Math.Rescale" : {
+      "objectType" : "Func",
+      "title" : "Rescale",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "value",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "inMin",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "inMax",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "outMin",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "outMax",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "result",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "$TYPE$"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "4769F739D0AB963E327F9F6DB41FB521",
+      "code" : "
+dfgEntry {
+	result = outMin + (outMax - outMin) * (value - inMin) / (inMax - inMin);
+}
+"
+      },
+    "Fabric.Core.Logic.Not" : {
+      "objectType" : "Func",
+      "title" : "Not !",
+      "ports" : [
+        {
+          "objectType" : "ExecPort",
+          "name" : "exec",
+          "nodePortType" : "IO",
+          "execPortType" : "IO",
+          "typeSpec" : "Execute"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "value",
+          "nodePortType" : "Out",
+          "execPortType" : "In",
+          "typeSpec" : "$TYPE$"
+          },
+        {
+          "objectType" : "ExecPort",
+          "name" : "result",
+          "nodePortType" : "In",
+          "execPortType" : "Out",
+          "typeSpec" : "Boolean"
+          }
+        ],
+      "extDeps" : {},
+      "presetGUID" : "B8FE3CDCF84BBE1B3A07C80E724FB147",
+      "code" : "
+dfgEntry {
+	result = !value;
+}
+"
       }
     },
   "args" : [
@@ -2837,6 +2798,10 @@ dfgEntry {
       "type" : "DrawingHandle",
       "value" : null,
       "ext" : "InlineDrawing"
+      },
+    {
+      "type" : "Boolean",
+      "value" : true
       }
     ]
   }
