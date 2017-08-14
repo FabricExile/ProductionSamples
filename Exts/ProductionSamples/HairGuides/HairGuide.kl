@@ -1,0 +1,84 @@
+require Math;
+require Geometry;
+
+namespace PS
+{
+  const Integer HairGuide_NbPoints = 5;
+
+  /// \dfgNoCompose
+  /// \dfgNoConstant
+  struct HairGuide
+  {
+    Vec3 points[];
+    Vec3 normal;
+    Color color;
+    Integer layer;
+  };
+
+  /// \dfgPresetDefault a {"x": 0.0, "y": 0.0, "z": 0.0}
+  /// \dfgPresetDefault b {"x": 0.0, "y": 1.0, "z": 0.0}
+  /// \dfgPresetDefault c {"x": 0.0, "y": 2.0, "z": 0.0}
+  /// \dfgPresetDefault d {"x": 0.0, "y": 3.0, "z": 0.0}
+  /// \dfgPresetDefault e {"x": 0.0, "y": 4.0, "z": 0.0}
+  /// \dfgPresetDefault normal {"x": 0.0, "y": 1.0, "z": 0.0}
+  /// \dfgPresetDefault color {"r": 1.0, "g": 1.0, "b": 0.0, "a": 1.0}
+  HairGuide(Vec3 a, Vec3 b, Vec3 c, Vec3 d, Vec3 e, Vec3 normal, Color color, Integer layer)
+  {
+    this.points.resize(HairGuide_NbPoints);
+    this.points[0] = a;
+    this.points[1] = b;
+    this.points[2] = c;
+    this.points[3] = d;
+    this.points[4] = e;
+    this.normal = normal;
+    this.color = color;
+    this.layer = layer;
+  }
+
+  /// \dfgPresetTitle HairGuideFromArray
+  /// \dfgPresetDefault normal {"x": 0.0, "y": 1.0, "z": 0.0}
+  /// \dfgPresetDefault color {"r": 1.0, "g": 1.0, "b": 0.0, "a": 1.0}
+  HairGuide(Vec3 points[], Vec3 normal, Color color, Integer layer)
+  {
+    this.points = points.clone();
+    this.normal = normal;
+    this.color = color;
+    this.layer = layer;
+  }
+
+  /// \dfgPresetTitle HairGuideFromCurve
+  /// \dfgPresetDefault normal {"x": 0.0, "y": 1.0, "z": 0.0}
+  /// \dfgPresetDefault color {"r": 1.0, "g": 1.0, "b": 0.0, "a": 1.0}
+  HairGuide(Curve curve, Vec3 normal, Color color, Integer layer)
+  {
+    if(curve.pointCount() != HairGuide_NbPoints)
+      throw("HairGuide can only be created from curves with "+HairGuide_NbPoints+" points");
+    this.points.resize(HairGuide_NbPoints);
+    for(Size i=0;i<HairGuide_NbPoints;i++)
+      this.points[i] = curve.getPointPosition(i);
+    this.normal = normal;
+    this.color = color;
+    this.layer = layer;
+  }
+
+  Boolean HairGuide.isValid()
+  {
+    return this.points.size() == HairGuide_NbPoints;
+  }
+
+  HairGuide.setPoints!(Vec3 points[])
+  {
+    if(points.size() != HairGuide_NbPoints)
+      return;
+    this.points = points.clone();
+  }
+
+  HairGuide.transform!(Xfo xfo)
+  {
+    this.points = this.points.clone();
+    for(Size i=0;i<this.points.size();i++)
+    {
+      this.points[i] = xfo.transformVector(this.points[i]);
+    }
+  }
+}

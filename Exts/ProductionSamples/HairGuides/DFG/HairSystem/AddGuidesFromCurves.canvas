@@ -1,0 +1,68 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "Supported types:\n  this: HairSystem\n  curves: Curves\n  color: Color\n  layer: Index\n  result: Index[]\n"
+    },
+  "title" : "AddGuidesFromCurves",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "this",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "PS::HairSystem"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 51,\n  \"g\" : 1,\n  \"b\" : 106\n  }"
+        },
+      "name" : "curves",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "Curves"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 0,\n  \"b\" : 0\n  }"
+        },
+      "name" : "color",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "Color"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "layer",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "Index"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "result",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "Integer[]"
+      }
+    ],
+  "extDeps" : {
+    "HairGuides" : "*"
+    },
+  "presetGUID" : "9936183D5119AC8BBF910723CCEBFD0A",
+  "code" : "require HairGuides;
+
+dfgEntry {
+  result = this.addGuidesFromCurves(curves, color, layer);
+}
+"
+  }

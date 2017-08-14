@@ -1,0 +1,12 @@
+{
+  "code": [
+    "HairGuide.kl",
+    "HairSystem.kl",
+    "HairGuideCommands.kl",
+    "HairGuideTool.kl"
+  ],
+  "dfgPresets": {
+    "dir": "DFG",
+    "presetPath": "Fabric.ProductionSamples.HairGuides"
+    }
+}

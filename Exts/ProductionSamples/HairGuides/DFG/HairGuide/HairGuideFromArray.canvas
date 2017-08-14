@@ -1,0 +1,86 @@
+// Created by kl2dfg (processFunction)
+{
+  "objectType" : "Func",
+  "metadata" : {
+    "uiTooltip" : "Supported types:\n  points: Vec3[]\n  normal: Vec3\n  color: Color\n  layer: Integer\n  result: HairGuide\n"
+    },
+  "title" : "HairGuideFromArray",
+  "ports" : [
+    {
+      "objectType" : "ExecPort",
+      "name" : "exec",
+      "nodePortType" : "IO",
+      "execPortType" : "IO",
+      "typeSpec" : "Execute"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
+        },
+      "name" : "points",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "Vec3[]"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 242,\n  \"b\" : 0\n  }"
+        },
+      "name" : "normal",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Vec3" : {
+          "x" : 0,
+          "y" : 1,
+          "z" : 0
+          }
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Vec3"
+      },
+    {
+      "objectType" : "ExecPort",
+      "metadata" : {
+        "uiColor" : "{\n  \"r\" : 255,\n  \"g\" : 0,\n  \"b\" : 0\n  }"
+        },
+      "name" : "color",
+      "nodePortType" : "Out",
+      "defaultValues" : {
+        "Color" : {
+          "r" : 1,
+          "g" : 1,
+          "b" : 0,
+          "a" : 1
+          }
+        },
+      "execPortType" : "In",
+      "typeSpec" : "Color"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "layer",
+      "nodePortType" : "Out",
+      "execPortType" : "In",
+      "typeSpec" : "Integer"
+      },
+    {
+      "objectType" : "ExecPort",
+      "name" : "result",
+      "nodePortType" : "In",
+      "execPortType" : "Out",
+      "typeSpec" : "PS::HairGuide"
+      }
+    ],
+  "extDeps" : {
+    "HairGuides" : "*"
+    },
+  "presetGUID" : "19F75A92DC32001823F9799873AC196A",
+  "code" : "require HairGuides;
+
+dfgEntry {
+  result = PS::HairGuide(points, normal, color, layer);
+}
+"
+  }
