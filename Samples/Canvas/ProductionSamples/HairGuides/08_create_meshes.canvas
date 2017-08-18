@@ -2848,7 +2848,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Math/Xfo.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.6.0/HTML/KLExtensionsGuide/Math/Xfo.html",
         "uiTooltip" : "Constructor from single channels\n\n Supported by Xfo"
         },
       "title" : "XfoFromSRT",
@@ -4860,7 +4860,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Math/RGB.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.6.0/HTML/KLExtensionsGuide/Math/RGB.html",
         "uiTooltip" : "Returns the product of the this object and a scalar\n\n Supported by RGB,RGBA,ARGB,Color,Vec2,Vec3,Vec4,Mat22,Mat33,Mat44,Quat"
         },
       "title" : "MultiplyScalar",
@@ -4912,7 +4912,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Math/Quat.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.6.0/HTML/KLExtensionsGuide/Math/Quat.html",
         "uiTooltip" : "Rotates a vector by this quaterion.\nDon't forget to normalize the quaternion unless\nyou want axial translation as well as rotation.\n\n Supported by Quat"
         },
       "title" : "RotateVector",
@@ -4970,7 +4970,7 @@ dfgEntry {
       "objectType" : "Func",
       "metadata" : {
         "uiNodeColor" : "{\n  \"r\" : 99,\n  \"g\" : 129,\n  \"b\" : 92\n  }",
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/Math/Quat.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.6.0/HTML/KLExtensionsGuide/Math/Quat.html",
         "uiTooltip" : "Set this quat to a rotation defined by an axis and an angle (in radians)\n\n Supported by Quat"
         },
       "title" : "SetFromAxisAndAngle",
@@ -5937,7 +5937,7 @@ dfgEntry {
     "Fabric.Exts.InlineDrawing.DrawingHandle.DrawColoredPolygonMesh" : {
       "objectType" : "Func",
       "metadata" : {
-        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.5.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
+        "uiDocUrl" : "http://docs.fabric-engine.com/FabricEngine/2.6.0/HTML/KLExtensionsGuide/InlineDrawing/DrawingHandle.html",
         "uiTooltip" : "helper function to draw a mesh given a color + a single transform\n\n Supported by DrawingHandle"
         },
       "title" : "DrawColoredPolygonMesh",
